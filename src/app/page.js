@@ -16,28 +16,33 @@ export default function Home() {
         src="/immagini/background/home.webp"
       >
 
-        <div className="absolute bottom-1/8 sm:bottom-1/4 w-full gap-10 flex flex-wrap sm:flex-nowrap justify-evenly items-center text-center">
+        <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 max-w-md sm:max-w-none">
+          {/* CTA principale */}
           <motion.div
-            className="w-full sm:w-auto sm:max-w-full"
-            initial={{ x: "-10%", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-full sm:w-auto"
           >
             <Link
               href="/preventivo"
-              className="text-white bg-herbalife-4 hover:bg-herbalife-1 text-center px-6 py-3 sm:text-3xl uppercase font-bold border rounded-xl mx-5 sm:m-auto"
-            >preventivo prodotti</Link>
+              className="block text-center text-white bg-herbalife-4 hover:bg-herbalife-1 text-base md:text-lg uppercase font-black tracking-wider px-8 py-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
+            >
+              preventivo prodotti
+            </Link>
           </motion.div>
+          {/* CTA secondaria */}
           <motion.div
-          className="w-full sm:w-auto sm:max-w-full"
-            initial={{ x: "10%", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="w-full sm:w-auto"
           >
             <Link
               href="https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305"
               target="_blank"
-              className="text-white bg-herbalife-3 hover:bg-blue-700 text-center px-6 py-3 sm:text-3xl uppercase font-bold border rounded-xl mx-5 sm:m-auto"
+              className="block text-center text-zinc-900 dark:text-white bg-transparent hover:bg-zinc-900/5 text-base md:text-lg uppercase font-bold tracking-wider px-8 py-4 rounded-xl border-2 border-zinc-900 dark:border-white transition-all duration-300"
+
             >
               entra nel mio team
             </Link>
