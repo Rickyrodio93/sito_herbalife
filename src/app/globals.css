@@ -1,26 +1,108 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+    --font-montserrat: 'Montserrat', 'sans-serif';
+    --font-poppins: 'Poppins', 'sans-serif';
+    --font-courier: 'Courier New', 'Courier', 'monospace';
+    --font-noto: 'Noto Sans', 'sans-serif';
+    --font-rancho: 'Rancho', 'cursive';
+
+    --spacing-nav: 80px;
+
+    --color-herbalife-1: #266431;
+    --color-herbalife-2: #e5ffc5;
+    --color-herbalife-3: #3b9187;
+    --color-herbalife-4: #42a046;
+    --color-odd: #f9f8f4;
+    --color-p: #1c1c1c;
+    --dark-1: #2e2e2e;
+
+    --drop-shadow-text: 0px 0px 5px #000000;
+
+    --shadow-nav: 0 1px 5px 3px rgba(0, 0, 0, 10%);
+    --shadow-card: 12px 12px 8px rgba(0, 0, 0, 30%);
+    --shadow-prodotti: 6px 6px 5px rgba(0, 0, 0, 30%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* scrollbar */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+::-webkit-scrollbar-track {
+    background: transparent;
 }
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: var(--color-herbalife-3);
+    cursor:grab
+}
+::-webkit-scrollbar-thumb:active{
+    cursor:grabbing
+}
+
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    @apply bg-gray-200 dark:bg-p selection:bg-herbalife-4 dark:selection:bg-herbalife-1 selection:text-white;
+}
+
+main h2 {
+    @apply uppercase flex justify-center font-bold text-herbalife-1 dark:text-green-600 mb-5 py-14 text-3xl text-center;
+}
+
+
+.text-outline {
+    -webkit-text-stroke: 1px rgba(255 255 255 / 30%);
+}
+
+.text-outline-black {
+    -webkit-text-stroke: 1px black;
+}
+
+@layer components {
+    .sub-menu {
+        @apply absolute top-[calc(var(--spacing-nav)+3px)] p-3.75 rounded-md origin-[50%_-170px] backdrop-blur-2xl bg-white
+    }
+}
+
+@layer utilities {
+    .flex-center {
+        @apply flex items-center;
+    }
+
+    .flex-center-between {
+        @apply flex items-center justify-between;
+    }
+
+    .section-p {
+        @apply text-justify hyphens-auto text-p dark:text-white text-[1pc] leading-9 first-letter:text-7xl first-letter:font-bold first-letter:capitalize first-letter:mr-3 first-letter:tracking-wider first-letter:float-left
+    }
+
+    .section-a{
+        @apply text-blue-700 underline capitalize hover:text-blue-800
+    }
+
+    .paper::before {
+        content: "";
+        top: -7px;
+        rotate: 180deg;
+    }
+
+    .paper::after {
+        content: "";
+        bottom: -7px
+    }
+
+    .paper::before, .paper::after {
+        position: absolute;
+        height: 0.5rem;
+        width: 100%;
+        left: 0;
+        background-color: #ffffff;
+        clip-path: polygon(1% 0%, 4% 100%, 9% 0%, 13% 100%, 19% 1%, 21% 100%, 26% 5%, 30% 100%, 36% 2%, 39% 48%, 43% 100%, 50% 1%, 52% 100%, 61% 0%, 69% 94%, 70% 0%, 76% 100%, 81% 0%, 84% 100%, 91% 0%, 97% 100%, 99% 3%);
+    }
 }
