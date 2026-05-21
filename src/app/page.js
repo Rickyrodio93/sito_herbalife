@@ -28,7 +28,12 @@ export default function Home() {
               className="text-white bg-herbalife-4 hover:bg-herbalife-1 text-center px-6 py-3 sm:text-3xl uppercase font-bold border rounded-xl mx-5 sm:m-auto"
             >preventivo prodotti</Link>
           </motion.div>
-          <motion.div>
+          <motion.div
+          className="w-full sm:w-auto sm:max-w-full"
+            initial={{ x: "10%", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
             <Link
               href="https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305"
               target="_blank"
