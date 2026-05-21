@@ -1,4 +1,4 @@
-import PreventivoClient from "@/components/pagine/preventivoClient"
+import PreventivoWrapper from "@/components/pagine/PreventivoWrapper"
 
 export const metadata = {
     title: "preventivo prodotti",
@@ -23,7 +23,7 @@ export default function Preventivo() {
     return (
         <>
             <main className="pb-25 px-5 lg:px-10 text-balance">
-                <PreventivoClient />
+                <PreventivoWrapper />
             </main>
         </>
     )
