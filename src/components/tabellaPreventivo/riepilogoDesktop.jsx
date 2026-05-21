@@ -50,52 +50,54 @@ export default function Riepilogo({
 
   return (
     <>
-      <div className="hidden lg:block">
-        <div className="text-black dark:text-white capitalize">
-          <div className="bg-white dark:bg-[#2e2e2e] lg:sticky lg:top-[calc(var(--spacing-nav)+100px)]">
-            <div className="w-72 h-min shadow-[0px_0px_15px_rgba(0,0,0,0.3)] p-6 my-5 mx-auto text-center relative paper dark:before:bg-[#2e2e2e!important] dark:after:bg-[#2e2e2e!important]">
-              <h3 className="mt-0 text-2xl pb-3 uppercase font-courier">
-                la tua lista prodotti:
-              </h3>
+      {/* VERSIONE DESKTOP */}
+      <div className="hidden lg:block w-full">
+        <div className="text-black dark:text-white capitalize w-72">
+          
+          <div className="w-full h-min shadow-2xl p-6 my-5 mx-auto text-center relative paper bg-white dark:bg-zinc-800 dark:before:bg-zinc-800! dark:after:bg-zinc-800! rounded-lg">
+            <h3 className="mt-0 text-xl pb-3 uppercase font-mono font-bold tracking-wide border-b border-zinc-100 dark:border-zinc-700/50 mb-4">
+              la tua lista prodotti:
+            </h3>
 
-              <PreventivoLista
-                prodotti={prodotti}
-                onRimuoviProdotto={onRimuoviProdotto}
-              />
-              <h3 className="mb-3 text-2xl uppercase font-courier">
-                dettagli prodotti:
-              </h3>
-              <PreventivoDettaglio
-                ruolo={ruolo}
-                preventivo={preventivo}
-                livelloMarketing={livelloMarketing}
-                usoDistributore={usoDistributore}
-              />
-            </div>
+            <PreventivoLista
+              prodotti={prodotti}
+              onRimuoviProdotto={onRimuoviProdotto}
+            />
+
+            <h3 className="my-4 text-xl uppercase font-mono font-bold tracking-wide border-b border-zinc-100 dark:border-zinc-700/50 pb-2">
+              dettagli prodotti:
+            </h3>
+
+            <PreventivoDettaglio
+              ruolo={ruolo}
+              preventivo={preventivo}
+              livelloMarketing={livelloMarketing}
+              usoDistributore={usoDistributore}
+            />
+
+            {/* 2. Il pulsante rimane integrato DENTRO il blocco carta per un look compatto */}
+            {prodotti.length > 0 && (
+              <button
+                onClick={ruolo === "cliente" ? openModal : handleCopySKU}
+                className="mt-6 flex items-center justify-center gap-2 w-full py-3 px-4 bg-herbalife-4 hover:bg-herbalife-1 text-white rounded-xl transition-all duration-300 text-sm font-black uppercase tracking-wider shadow-md hover:shadow-lg active:scale-[0.98]"
+              >
+                {copied ? (
+                  <>
+                    <Check size={18} /> Copiato!
+                  </>
+                ) : (
+                  <>
+                    <ClipboardCopy size={18} />{" "}
+                    {ruolo !== "cliente" ? "copia per myHL" : "conferma ordine"}
+                  </>
+                )}
+              </button>
+            )}
           </div>
         </div>
       </div>
 
-      {/* pulsante per la condivisione ordini */}
-      {prodotti.length > 0 && (
-        <button
-          onClick={ruolo === "cliente" ? openModal : handleCopySKU}
-          className="max-lg:hidden flex items-center justify-center gap-2 w-full mb-6 py-2 px-4 bg-green-600 hover:bg-green-700 text-white rounded-md transition-all text-sm font-bold uppercase tracking-wider shadow-md"
-        >
-          {copied ? (
-            <>
-              <Check size={16} /> Copiato!
-            </>
-          ) : (
-            <>
-              <ClipboardCopy size={16} />{" "}
-              {ruolo !== "cliente" ? "copia per myHL" : "conferma ordine"}
-            </>
-          )}
-        </button>
-      )}
-
-      {/* riepilogo smartphone */}
+      {/* RIEPILOGO SMARTPHONE */}
       <RiepilogoTelefono
         prodotti={prodotti}
         ruolo={ruolo}
@@ -110,6 +112,7 @@ export default function Riepilogo({
         openModal={openModal}
       />
 
+      {/* MODALI DI CONFERMA / COPIA */}
       <AnimatePresence>
         {ruolo === "cliente" && showModal && (
           <ModalRiepilogo

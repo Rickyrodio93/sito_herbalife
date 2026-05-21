@@ -8,7 +8,7 @@ const PreventivoClient = dynamic(
   () => import("@/components/pagine/preventivoClient"),
   { 
     ssr: false,
-    loading: () => <div className="p-10 text-center text-xl">Caricamento configuratore...</div>
+    loading: () => <div className="p-10 text-center text-xl">Caricamento preventivo...</div>
   }
 );
 

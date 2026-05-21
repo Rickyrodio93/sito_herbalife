@@ -26,7 +26,7 @@ export default function Tabella({
   return (
     <div className="w-full ">
       <table className="w-full overflow-x-auto table-auto border-collapse">
-        <thead className="text-white bg-herbalife-1 sticky text-sm top-0 h-10 uppercase">
+        <thead className="text-white bg-herbalife-1 sticky text-sm top-0 h-10 uppercase z-1">
           <tr>
             {tableThead.map((nameCol, index) => (
               <th key={index} className="px-6 py-2">
@@ -69,7 +69,7 @@ export default function Tabella({
                   <tr>
                     <td
                       colSpan={tableThead.length}
-                      className="bg-herbalife-2 text-herbalife-1 text-center font-semibold text-xl capitalize sticky top-10"
+                      className="bg-herbalife-2 text-herbalife-1 text-center font-semibold text-xl capitalize sticky top-10 z-1"
                     >
                       {categoria.title}
                     </td>
