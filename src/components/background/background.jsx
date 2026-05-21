@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
@@ -12,34 +12,36 @@ export default function Background({ src, titolo, children }) {
     offset: ["start end", "end start"],
   });
 
-  // Trasforma il progresso nello scroll in un movimento verticale
   const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const scale = 1.35; // un po' più grande per evitare spazi vuoti
-
   return (
     <div
       ref={ref}
-      className="h-[calc(100dvh-var(--spacing-nav))] w-full relative overflow-hidden bg-gray-400"
+      className="min-h-[70dvh] w-full grid grid-cols-1 lg:grid-cols-12 bg-zinc-100 dark:bg-zinc-900"
     >
-      {/* Immagine con parallasse continuo */}
-      <motion.div
-        style={{ y }}
-        className="absolute left-0 w-full h-[120%] top-[-10%] object-cover"
-      >
-        <Image src={src} alt={titolo} fill priority className="object-cover" />
-      </motion.div>
-
-      {/* Overlay + titolo */}
-      <div
-        className="w-full h-full absolute top-0 flex flex-col items-center 
-          before:absolute before:bottom-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.65)]"
-      >
-        <h1 className="text-center my-auto mx-auto uppercase md:text-7xl text-5xl text-white font-bold z-10 font-noto text-shadow-[2px_2px_3px_#1c1c1c]">
+      {/* colonna sinistra */}
+      <div className="lg:col-span-5 flex flex-col justify-center p-8 md:p-16 z-20 order-2 lg:order-1">
+        <span className="text-xs uppercase tracking-widest text-herbalife-1 font-bold mb-2">
+          Riccardo Rodio
+        </span>
+        <h1 className="uppercase text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter mb-6 leading-none">
           {titolo}
         </h1>
+        {children}
       </div>
 
-      {children}
+      {/* colonna destra */}
+      <div className="lg:col-span-7 relative h-[40dvh] lg:h-auto overflow-hidden order-1 lg:order-2">
+        <motion.div style={{y}} className="absolute w-full h-[120%] top-[-10%]">
+          <Image
+            src={src}
+            alt={titolo}
+            fill
+            priority
+            className="object-cover"
+          />
+        </motion.div>
+        <div className="hidden lg:block absolute inset-y-0 left-0 w-24 bg-linear-to-r from-zinc-100 dark:from-zinc-900 to-transparent"/>
+      </div>
     </div>
   );
 }
