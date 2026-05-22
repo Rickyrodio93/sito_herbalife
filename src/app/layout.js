@@ -45,7 +45,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.riccardorodio/immagini/background/home.webp",
+        url: "https://www.riccardorodio.com/immagini/background/home.webp",
         width: 1200,
         height: 630,
         alt: "Riccardo Rodio - Distributore Indipendente Herbalife"
@@ -58,7 +58,7 @@ export const metadata = {
     card: "summary_large_image", // Mostra la card con l'immagine grande, molto più cliccata
     title: "Riccardo Rodio | Distributore Indipendente Herbalife",
     description: "Scopri i prodotti Herbalife e trasforma la tua forma fisica.",
-    images: ["https://www.riccardorodio/immagini/background/home.webp"],
+    images: ["https://www.riccardorodio.com/immagini/background/home.webp"],
   },
   // favicon
   icons: {
