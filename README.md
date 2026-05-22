@@ -4,7 +4,7 @@ Un'applicazione web ad alte prestazioni sviluppata con **Next.js**, progettata p
 
 Lo strumento offre un'interfaccia intuitiva sia per i clienti finali, sia per la rete vendita (Clienti Privilegiati e Distributori), integrando un motore di calcolo fiscale dinamico e flessibile in tempo reale.
 
-🌐 **sito online** [https://www.riccardorodio.com](riccardorodio.com)
+🌐 **sito online** [https://www.riccardorodio.com](https://www.riccardorodio.com)
 
 ---
 
