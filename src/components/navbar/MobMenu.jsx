@@ -1,26 +1,17 @@
 "use client";
 
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function MobMenu({ Menus }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [clicked, setClicked] = useState(null);
-
-  // * toggle Drawer
-  const toggleDrawer = () => {
-    setIsOpen(!isOpen);
-    setClicked(null);
-  };
-
-  // funzione per azzerare e chiudere tutto quando si cambia pagina
-  const closeAll = () => {
-    setIsOpen(false);
-    setClicked(null);
-  };
-
+export default function MobMenu({
+  Menus,
+  closeAll,
+  isOpen,
+  clicked,
+  setClicked,
+  toggleDrawer,
+}) {
   // * toggle sub menu item
   const subMenuDrawer = {
     enter: {
