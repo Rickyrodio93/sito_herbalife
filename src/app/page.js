@@ -1,5 +1,6 @@
 "use client"
 import Background from "@/components/background/background";
+import FloatingCallCTA from "@/components/FoatingCallCTA";
 import ProdottiConsigliati from "@/components/prodottiConsigliati/prodottiConsigliati";
 import Section from "@/components/Section/Section";
 import SectionComponent from "@/components/Section/SectionComponent";
@@ -70,6 +71,7 @@ export default function Home() {
           <ProdottiConsigliati pagina="prodottiHome2" />
         </Section>
       </main>
+      <FloatingCallCTA />
     </>
   )
 }

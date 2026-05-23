@@ -1,4 +1,3 @@
-// components/pagine/PreventivoWrapper.jsx
 "use client";
 
 import dynamic from "next/dynamic";

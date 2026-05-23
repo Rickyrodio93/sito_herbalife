@@ -44,7 +44,7 @@ export default function DesktopMenu({ menu }) {
     >
       <Link
         href={menu.link || "#"}
-        className="flex-center gap-1 cursor-pointer px-3 py-1 rounded-xl hover:bg-black/5 dark:hover:bg-white/5"
+        className="flex items-center gap-1 cursor-pointer px-3 py-1 rounded-xl hover:bg-black/5 dark:hover:bg-white/5"
       >
         {menu.name}
         {hasSubMenu && (
@@ -73,7 +73,7 @@ export default function DesktopMenu({ menu }) {
                 key={i}
                 className="relative cursor-pointer"
               >
-                <div className="flex-center gap-x-4 group/menubox">
+                <div className="flex items-center gap-x-4 group/menubox">
                   <div className="bg-black/5 dark:bg-white/5 w-fit p-2 rounded-md group-hover/menubox:bg-black group-hover/menubox:text-gray-100 dark:group-hover/menubox:bg-white dark:group-hover/menubox:text-gray-900 duration-300">
                     {subMenu?.icon && <subMenu.icon />}
                   </div>

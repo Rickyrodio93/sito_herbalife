@@ -16,7 +16,8 @@
     --color-herbalife-4: #42a046;
     --color-odd: #f9f8f4;
     --color-p: #1c1c1c;
-    --dark-1: #2e2e2e;
+    --dark-1: #383b43;
+    --dark-2: #2e2e2e;
 
     --drop-shadow-text: 0px 0px 5px #000000;
 
@@ -70,13 +71,13 @@ main h2 {
 }
 
 @layer utilities {
-    .flex-center {
+    /* .flex-center {
         @apply flex items-center;
     }
 
     .flex-center-between {
         @apply flex items-center justify-between;
-    }
+    } */
 
     .section-p {
         @apply text-justify hyphens-auto text-p dark:text-white text-[1pc] leading-9 first-letter:text-7xl first-letter:font-bold first-letter:capitalize first-letter:mr-3 first-letter:tracking-wider first-letter:float-left

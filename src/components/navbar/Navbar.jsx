@@ -11,8 +11,8 @@ import Link from 'next/link.js';
 
 export default function Navbar() {
   return (
-    <nav className="h-(--spacing-nav) text-[15px] sticky z-99999 inset-0 flex flex-center shadow-(--shadow-nav) bg-white dark:bg-gray-800">
-      <div className="px-3.5 flex-center-between w-full max-w-7xl mx-auto">
+    <nav className="h-(--spacing-nav) text-[15px] sticky z-99999 inset-0 flex items-center shadow-(--shadow-nav) bg-white dark:bg-gray-800">
+      <div className="px-3.5 flex items-center justify-between w-full max-w-7xl mx-auto">
         <Link href="/" title="Home" className='max-w-lg'>
           <Image
             src="/immagini/distributore_indipendente_orizzontale.png"
@@ -30,7 +30,7 @@ export default function Navbar() {
             <DesktopMenu menu={menu} key={menu.name} />
           ))}
         </ul>
-        <div className="flex-center gap-x-3">
+        <div className="flex items-center gap-x-3">
           <DarkMode />
 
           {/* mobile menu */}

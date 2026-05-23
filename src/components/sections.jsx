@@ -16,6 +16,24 @@ import Link from "next/link";
 
 const phoneNumber = "+393496635371";
 
+function calcolaEta(dataDiNascitaStringa) {
+  const oggi = new Date();
+  const dataDiNascita = new Date(dataDiNascitaStringa);
+
+  let eta = oggi.getFullYear() - dataDiNascita.getFullYear();
+  let mese = oggi.getMonth() - dataDiNascita.getMonth();
+
+  if (mese < 0 || (mese === 0 && oggi.getDate() < dataDiNascita.getDate())) {
+    eta--;
+  }
+  return eta;
+}
+
+const miaDataDiNascita = "1993-07-07";
+const inizioAttivita = "2016-06-20"
+const etaDinamica = calcolaEta(miaDataDiNascita);
+const etaHerbalife = calcolaEta(inizioAttivita)
+
 const message = "Salve, vorrei saperne di più sul piano marketing herbalife";
 const messageContact =
   "Salve, vorrei unirmi al suo team Herbalife. Cosa devo fare?";
@@ -129,20 +147,21 @@ export const SECTIONHOME = [
     square: true,
     text: (
       <>
-        Ciao, mi chiamo Riccardo, ho 32 anni, e mi sono laureato presso la
-        facoltà di scienze agrarie a Milano. Sono sempre stato uno sportivo a
-        livello agonistico. Ho praticato molti sport come: basket, ginnastica
-        artistica, nuoto, calcio. Ho conosciuto Herbalife 8 anni fa grazie a
-        un'amica che mi ha invitato a un evento informativo di 2 giorni.
-        All'inizio ero scettico, non pensavo di avere bisogno dei prodotti nè
-        conoscevo il tipo di business, ma ho deciso lo stesso di informarmi.
-        Dopo l'evento ho capito che non sapevo nulla su questa incredibile
-        azienda, sui prodotti di altissima qualità e sull'opportunità economica.
-        In Herbalife ho trovato una meravigliosa opportunità di crescita che mi
-        ha permesso non solo di rimettermi in forma perdendo circa 8 kg*, ma
-        anche di poter costruire la mia attività autonoma e indipendente
-        condividendo con tante persone prodotti incredibili e un'opportunità
-        davvero unica che può essere svolta anche part-time.
+        Ciao, mi chiamo Riccardo, ho {etaDinamica} anni, e mi sono laureato
+        presso la facoltà di scienze agrarie a Milano. Sono sempre stato uno
+        sportivo a livello agonistico. Ho praticato molti sport come: basket,
+        ginnastica artistica, nuoto, calcio. Ho conosciuto Herbalife{" "}
+        {etaHerbalife} anni fa grazie a un'amica che mi ha invitato a un evento
+        informativo di 2 giorni. All'inizio ero scettico, non pensavo di avere
+        bisogno dei prodotti nè conoscevo il tipo di business, ma ho deciso lo
+        stesso di informarmi. Dopo l'evento ho capito che non sapevo nulla su
+        questa incredibile azienda, sui prodotti di altissima qualità e
+        sull'opportunità economica. In Herbalife ho trovato una meravigliosa
+        opportunità di crescita che mi ha permesso non solo di rimettermi in
+        forma perdendo circa 8 kg*, ma anche di poter costruire la mia attività
+        autonoma e indipendente condividendo con tante persone prodotti
+        incredibili e un'opportunità davvero unica che può essere svolta anche
+        part-time.
       </>
     ),
   },
@@ -436,7 +455,7 @@ export const SECTIONSKIN = [
   {
     title: "hl/skin",
     image: "/immagini/swiperImmagini/hl-skin.jpeg",
-    
+
     text: (
       <>
         scopri l'eleganza della skincare evoluta. HL/Skin unisce l'avanzata
@@ -609,7 +628,7 @@ export const SECTIONSPORT = [
   {
     title: "sviluppati in laboratorio, verificati sul campo",
     image: "/immagini/sport/informed_sport.svg",
-    
+
     text: (
       <>
         Tutti i prodotti Herbalife24 vengono sottoposti a test completi che
@@ -736,7 +755,7 @@ export const SECTIONSPORT = [
 export const SECTIONSCIENZA = [
   {
     title: "ricerca e sviluppo",
-    video:"https://youtu.be/j-SdPY9XSrs",
+    video: "https://youtu.be/j-SdPY9XSrs",
     text: (
       <>
         I prodotti Herbalife nascono da anni di ricerca nel campo della
@@ -753,7 +772,7 @@ export const SECTIONSCIENZA = [
   },
   {
     title: "controlli di qualità",
-    video:"https://youtu.be/Bad9cExF8gA",
+    video: "https://youtu.be/Bad9cExF8gA",
     text: (
       <>
         Durante la produzione dei prodotti Herbalife vengono effettuati numerosi

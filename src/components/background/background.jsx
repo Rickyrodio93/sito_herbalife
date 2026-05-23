@@ -20,7 +20,7 @@ export default function Background({ src, titolo, children }) {
     >
       {/* colonna sinistra */}
       <div className="lg:col-span-5 flex flex-col justify-center p-8 md:p-16 z-20 order-2 lg:order-1">
-        <span className="text-xs uppercase tracking-widest text-herbalife-1 font-bold mb-2">
+        <span className="text-xs uppercase tracking-widest text-herbalife-4 font-bold mb-2">
           Riccardo Rodio
         </span>
         <h1 className="uppercase text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter mb-6 leading-none">

@@ -55,11 +55,12 @@
 }
 
 .swiper-button-prev, .swiper-button-next {
-    background-color: #e5ffc5;
+    background-color: var(--color-herbalife-1);
     width: 3.4rem;
     height: 3.4rem;
     border-radius: 9999px;
-    color: var(--color-herbalife-1)
+    color: var(--color-herbalife-2);
+    padding: 0.75rem;
 }
 
 .swiper-button-prev:after, .swiper-button-next:after {
@@ -71,11 +72,11 @@
 @media screen and (max-width: 768px) {
     .swiper-button-prev, .swiper-button-next {
         background-color: transparent;
-        color: var(--color-herbalife-1)
+        color: var(--color-herbalife-2)
     }
 
     .swiper-button-prev:after, .swiper-button-next:after {
-        color: var(--color-herbalife-2);
+        color: var(--color-herbalife-1);
     }
 
 }
