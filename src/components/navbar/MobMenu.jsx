@@ -59,7 +59,7 @@ export default function MobMenu({ Menus }) {
               <li key={name}>
                 <Link
                   href={link || "#"}
-                  className="flex-center-between p-4 hover:bg-black/5 dark:hover:bg-white/5 rounded-md cursor-pointer relative"
+                  className="flex items-center justify-between p-4 hover:bg-black/5 dark:hover:bg-white/5 rounded-md cursor-pointer relative"
                   // * toggle sub menu item open
                   onClick={(e) => {
                     if (hasSubMenu) {
@@ -92,7 +92,7 @@ export default function MobMenu({ Menus }) {
                         <Link
                           href={link}
                           key={name}
-                          className="p-2 flex-center hover:bg-black/5 dark:hover:bg-white/5 rounded-md cursor-pointer gap-x-2 capitalize"
+                          className="p-2 flex items-center hover:bg-black/5 dark:hover:bg-white/5 rounded-md cursor-pointer gap-x-2 capitalize"
                           title={desc}
                           onClick={closeAll}
                         >
