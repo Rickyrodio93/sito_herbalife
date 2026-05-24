@@ -1,4 +1,5 @@
 import Background from "@/components/background/background";
+import FloatingCallCTA from "@/components/FoatingCallCTA";
 import Section from "@/components/Section/Section"
 import SectionComponent from "@/components/Section/SectionComponent"
 import { SECTIONBUSINESS } from "@/components/sections";
@@ -39,6 +40,7 @@ export default function Business() {
                     </Section>
                 ))}
             </main>
+            <FloatingCallCTA />
         </>
     )
 }

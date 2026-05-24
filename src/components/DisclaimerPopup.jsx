@@ -56,7 +56,7 @@ export default function DisclaimerPopup() {
                       ricevi consigli su misura per te. È veloce e semplice.
                     </p>
                   </div>
-                  <div className="w-full sm:w-1/2 px-5 mt-10 sm:mt-0 border-l-0 sm:border-l-2 border-(--color-herbalife-4) dark:border-(--color-herbalife-1)">
+                  <div className="w-full sm:w-1/2 px-5 mt-10 sm:mt-0 border-l-0 sm:border-l-2 border-herbalife-4 dark:border-herbalife-1">
                     <h1 className="uppercase font-bold text-[0.95rem] mb-2.5">
                       vuoi diventare distributore?
                     </h1>

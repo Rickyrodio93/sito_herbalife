@@ -40,7 +40,7 @@ export default function fatturatoChart() {
 
   return (
     <>
-      <h2>fatturato herbalife (1980 - 2024)</h2>
+      <h2>fatturato herbalife (1980 - 2025)</h2>
       <div className="w-full h-150 mb-25 ">
         {dati.length > 0 ? (
           <ResponsiveContainer>
