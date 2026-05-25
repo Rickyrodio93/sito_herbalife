@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Share, Store, X } from "lucide-react";
+import { MdLocalShipping } from "react-icons/md";
 import { createPortal } from "react-dom";
 import calcoloPrezzo from "./calcoloPrezzo";
 import { getScontoUnitario } from "./calcoloPreventivo";
@@ -236,8 +237,8 @@ export default function ModalRiepilogo({
                         return(
 
                           <tr className="bg-zinc-50 dark:bg-zinc-900/50 border-t border-zinc-200">
-                        <td className="text-center py-3 px-2 text-xs text-zinc-400">
-                          SHIP
+                        <td className="text-center py-3 px-2 text-xs text-zinc-400 flex items-center justify-center">
+                          <MdLocalShipping size={16}/>
                         </td>
                         <td className="text-left py-3 px-2 font-medium">
                           Spedizione
