@@ -20,7 +20,7 @@ export default function manifest() {
                 purpose: 'any',
             },
             {
-                src:'/immagini/ico-maskable.png',
+                src:'/immagini/images.png',
                 sizes: '40x40',
                 type: 'image/png',
                 purpose: 'maskable'
