@@ -108,7 +108,7 @@ export default function ModalRiepilogo({
                     {modalThead.map((nameCol, idx) => (
                       <td
                         key={nameCol}
-                        className={`pb-3 font-semibold ${idx === 1 ? "text-left" : idx === modalThead.length - 1 ? "text-right" : "text-center"}`}
+                        className={`pb-3 font-semibold ${idx === 1 ? "text-left" : idx === modalThead.length - 1 ? "text-right pr-2" : "text-center"}`}
                       >
                         {nameCol}
                       </td>
@@ -286,7 +286,7 @@ export default function ModalRiepilogo({
                         </td>
                       </>
                     )}
-                    <td className="text-right pt-4 pb-2 font-black font-mono text-xs text-herbalife-1 dark:text-herbalife-2">
+                    <td className="text-right pt-4 pb-2 pr-2 font-black font-mono text-xs text-herbalife-1 dark:text-herbalife-2">
                       {isCliente
                         ? preventivo.venditaCliente.toFixed(2)
                         : preventivo.totale.toFixed(2)}
