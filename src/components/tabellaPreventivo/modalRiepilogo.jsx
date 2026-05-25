@@ -1,3 +1,4 @@
+"use client"
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Share, Store, X } from "lucide-react";
@@ -177,10 +178,10 @@ export default function ModalRiepilogo({
                       return (
                         <tr
                           key={p.id}
-                          className="text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors"
+                          className="text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors text-xs sm:text-sm"
                         >
                           {/* ID */}
-                          <td className="text-center py-3.5 px-2 font-mono text-xs text-zinc-400 dark:text-zinc-500">
+                          <td className="text-center py-3.5 px-2 font-mono text-zinc-400 dark:text-zinc-500">
                             {p.id}
                           </td>
                           {/* Nome prodotto */}
@@ -203,7 +204,7 @@ export default function ModalRiepilogo({
                               </td>
                               {/* tasse */}
                               <td className="text-center py-3.5 px-2 font-medium text-zinc-500 dark:text-zinc-400">
-                                {tasseRiga.toFixed(2)}€
+                                {tasseRiga=== 0 ?"-":`${tasseRiga.toFixed(2)}€`}
                               </td>
                               {/* iva */}
                               <td className="text-center py-3.5 px-2 font-medium text-zinc-500 dark:text-zinc-400">
@@ -235,11 +236,11 @@ export default function ModalRiepilogo({
                         preventivo.spedizione *
                         (sommaIvaUnit / preventivo.sommaProdotti);
                       return (
-                        <tr className="bg-zinc-50 dark:bg-zinc-900/50 border-t border-zinc-200 text-zinc-800 dark:text-zinc-100">
+                        <tr className="bg-zinc-50 dark:bg-zinc-900/50 border-t border-zinc-200 text-zinc-800 dark:text-zinc-100 text-xs">
                           <td className="text-center py-3.5 px-2 text-xs text-zinc-400 dark:text-zinc-500 flex items-center justify-center">
                             <MdLocalShipping size={16} />
                           </td>
-                          <td className="text-left py-3.5 px-2 font-medium max-w-55 tracking-tight text">
+                          <td className="text-left py-3.5 px-2 font-medium max-w-55 tracking-tight text-sm">
                             Spedizione
                           </td>
                           <td className="text-center py-3 px-2 font-mono text-red-500">
@@ -274,18 +275,18 @@ export default function ModalRiepilogo({
                     </td>
                     {!isCliente && (
                       <>
-                        <td className="text-center pt-4 pb-2 font-mono text-green-500 dark:text-green-400 text-lg">
+                        <td className="text-center pt-4 pb-2 font-mono text-green-500 dark:text-green-400 text-xs">
                           -{preventivo.sconto.toFixed(2)}€
                         </td>
-                        <td className="text-center pt-4 pb-2 font-mono text-zinc-500 dark:text-zinc-400 text-lg">
-                          {preventivo.tasse.toFixed(2)}€
+                        <td className="text-center pt-4 pb-2 font-mono text-zinc-500 dark:text-zinc-400 text-xs">
+                          {preventivo.tasse === 0 ? "-": `${preventivo.tasse.toFixed(2)}€`}
                         </td>
-                        <td className="text-center pt-4 pb-2 font-mono text-zinc-500 dark:text-zinc-400 text-lg">
+                        <td className="text-center pt-4 pb-2 font-mono text-zinc-500 dark:text-zinc-400 text-xs">
                           {preventivo.iva.toFixed(2)}€
                         </td>
                       </>
                     )}
-                    <td className="text-right pt-4 pb-2 font-black font-mono text-lg text-herbalife-1 dark:text-herbalife-2">
+                    <td className="text-right pt-4 pb-2 font-black font-mono text-xs text-herbalife-1 dark:text-herbalife-2">
                       {isCliente
                         ? preventivo.venditaCliente.toFixed(2)
                         : preventivo.totale.toFixed(2)}
