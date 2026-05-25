@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Minus, Plus, Trash } from "lucide-react";
 import { useState } from "react";
@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import calcoloPrezzo from "./calcoloPrezzo";
 import { pushEvent } from "../utils/gtm";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Riga({
   prodotto,
@@ -16,10 +17,11 @@ export default function Riga({
   usoDistributore,
   livelloMarketing,
   onAggiungi,
+  isCliente,
 }) {
   const [isZoomOpen, setIsZoomOpen] = useState(false);
 
-  // funzioni per gestire l'input quantità con i pulsanti + e - 
+  // funzioni per gestire l'input quantità con i pulsanti + e -
   const incrementa = () => onInputChange(prodotto.ID, quantita + 1);
   const decrementa = () => {
     if (quantita > 0) onInputChange(prodotto.ID, quantita - 1);
@@ -79,12 +81,50 @@ export default function Riga({
 
   return (
     <>
-      <tr className="bg-white odd:bg-odd dark:bg-p dark:odd:bg-[#2e2e2e] dark:text-white">
+      <motion.tr
+        initial={
+          isCliente
+            ? {
+                opacity: 0,
+                y: -20,
+                scaleY: 0.8,
+                transformOrigin: "top",
+              }
+            : false
+        }
+        animate={
+          isCliente
+            ? {
+                opacity: 1,
+                y: 0,
+                scaleY: 1,
+              }
+            : false
+        }
+        exit={
+          isCliente
+            ? {
+                opacity: 0,
+                y: -20, // Rientra verso l'alto, scomparendo sotto la categoria
+                scaleY: 0.8,
+                transition: { duration: 0.15 }, // Uscita leggermente più rapida per dare un feeling scattante
+              }
+            : false
+        }
+        transition={{
+          type: "spring",
+          stiffness: 350,
+          damping: 28,
+        }}
+        className="bg-white dark:bg-zinc-950 hover:bg-zinc-50/80 dark:hover:bg-zinc-900/40 transition-colors duration-150 border-b border-zinc-100 dark:border-zinc-900"
+      >
         {/* id prodotto */}
-        <td className="px-4 py-2 font-semibold text-center">{prodotto.ID}</td>
+        <td className="px-4 py-4 text-center font-mono text-xs text-zinc-400 dark:text-zinc-500">
+          {prodotto.ID}
+        </td>
 
         {/* nome prodotto */}
-        <td className="p-4 flex flex-col sm:flex-row justify-start items-center gap-6 sm:gap-12 capitalize h-full">
+        <td className="p-4 flex items-center gap-6 capitalize">
           <div className="relative min-w-25 max-w-25 sm:max-w-36 sm:max-h-full aspect-3/4 sm:aspect-square flex justify-center">
             <Image
               src={`/immagini/prodotti/${prodotto.ID}.webp`}
@@ -108,75 +148,77 @@ export default function Riga({
           </div>
 
           <div className="w-full">
-            <p className="line-clamp-2 sm:line-clamp-2 truncate text-balance text-left text-ellipsis mb-4">
-              {prodotto.Prodotto}
+            <p className="text-zinc-900 dark:text-zinc-100 font-medium text-base mb-1 tracking-tight">
+              {prodotto.Prodotto.toLowerCase()}
             </p>
             {ruolo !== "cliente" && (
-              <div className="text-gray-400 text-sm flex flex-col w-full">
-                <p className="mb-2">
-                  prezzo di listino: {(prodotto.PrezzoListino || 0).toFixed(2)}{" "}
-                  €
-                </p>
-                <p className="mb-2">
-                  punti volume: {(prodotto.PuntiVolume || 0).toFixed(2)}
-                </p>
+              <div className="flex gap-4 text-zinc-400 dark:text-zinc-500 font-mono text-[11px]">
+                <span>
+                  Listino:{" "}
+                  <strong className="text-zinc-600 dark:text-zinc-400">
+                    {(prodotto.PrezzoListino || 0).toFixed(2)}€
+                  </strong>
+                </span>
+                <span>
+                  PV:{" "}
+                  <strong className="text-zinc-600 dark:text-zinc-400">
+                    {(prodotto.PuntiVolume || 0).toFixed(2)}
+                  </strong>
+                </span>
               </div>
             )}
           </div>
         </td>
 
         {/* input quantità */}
-        <td className="p-4 capitalize">
-          <div className="flex flex-col items-center justify-between">
-            {/* INPUT CO TASTI - E + */}
-            <div className="flex items-center">
+        <td className="p-4">
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center bg-zinc-100 dark:bg-zinc-900 p-0.5 rounded-lg border border-zinc-200/50 dark:border-zinc-800 dark:text-white">
               <button
                 type="button"
                 onClick={decrementa}
-                className="w-10 h-10 flex items-center cursor-pointer justify-center border-2 border-herbalife-1 dark:border-herbalife-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 active:scale-95 transition-all duration-[0] rounded-l-md"
+                className="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 rounded-md transition-colors cursor-pointer active:scale-90"
               >
-                <Minus size={18} />
+                <Minus size={14} />
               </button>
               <input
                 type="number"
                 min="0"
                 value={quantita}
                 onChange={handleInput}
-                className="w-10 h-10 text-center border-y-2 border-herbalife-1 dark:border-herbalife-2 bg-white dark:bg-gray-800 dark:text-white font-bold focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                className="w-10 text-center bg-transparent text-sm font-bold focus:outline-none dark:text-wite [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
               <button
                 type="button"
                 onClick={incrementa}
-                className="w-10 h-10 flex items-center cursor-pointer justify-center border-2 border-herbalife-1 dark:border-herbalife-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 active:scale-95 transition-all duration-[0] rounded-r-md"
+                className="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 rounded-md transition-colors cursor-pointer active:scale-90"
               >
-                <Plus size={18} />
+                <Plus size={14} />
               </button>
             </div>
-            {/* BOTTONI AZIONE AGGIUNGI E CANCELLA */}
-            <div className="flex flex-col w-full mt-3 gap-2">
+
+            <div className="flex gap-2 w-full max-w-30">
               <button
-                type="button"
                 onClick={handleAggiungi}
-                className="flex items-center justify-center gap-2 w-full py-2 px-3  bg-herbalife-1 hover:bg-green-700 text-white text-xs font-bold uppercase tracking-wider rounded-md transition-colors cursor-pointer shadow-sm"
+                className="flex-1 py-1 px-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-900 text-white text-[10px] font-bold uppercase tracking-wider rounded transition-colors cursor-pointer shadow-sm "
               >
-                <Plus size={16} strokeWidth={2} /> Aggiungi
+                aggiungi
               </button>
-              <button
-                type="button"
+              <button 
                 onClick={handleRimuovi}
-                className="flex items-center justify-center gap-2 w-full py-2 px-3 border-2 border-red-500 text-red-500 hover:bg-red-100 dark:bg-red-900/20 text-xs font-bold uppercase tracking-wider rounded-md transition-colors cursor-pointer"
-              >
-                <Trash size={16} strokeWidth={2} /> Rimuovi
+                className="p-1 text-zinc-400 hover:text-red-500 border border-zinc-200 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 rounded transition-colors cursor-pointer"
+                >
+                <Trash size={14} />
               </button>
             </div>
           </div>
         </td>
 
         {/* prezzo prodotto */}
-        <td className="px-4 py-2 capitalize text-center font-semibold">
-          <div>{`${(Number(prezzoUnitario) || 0).toFixed(2)} €`}</div>
+        <td className="px-6 py-4 text-right font-semibold text-zinc-950 dark:text-zinc-50 font-mono text-base">
+          <div>{`${(Number(prezzoUnitario) || 0).toFixed(2)}€`}</div>
         </td>
-      </tr>
+      </motion.tr>
     </>
   );
 }

@@ -8,11 +8,11 @@ import UltimaModifica from "@/components/UltimaModifica/UltimaModifica";
 import Tabella from "@/components/tabellaPreventivo/tabella";
 import axios from "axios";
 import Papa from "papaparse";
-import Riepilogo from "@/components/tabellaPreventivo/riepilogoDesktop";
+import Riepilogo from "@/components/tabellaPreventivo/riepilogo";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 export default function PreventivoClient() {
-  const [ruolo, setRuolo] = useState("cliente"); // cliente | CP | DS
+  const [ruolo, setRuolo] = useState(""); // Default vuoto: "" | cliente | CP | DS
   const [livelloMarketing, setLivelloMarketing] = useState("");
   const [usoDistributore, setUsoDistributore] = useState("");
   const [search, setSearch] = useState("");
@@ -63,6 +63,13 @@ export default function PreventivoClient() {
     });
   }, []);
 
+  // reset dei filtri secondari quando cambia il ruolo principale
+  const handleRuoloChange = (e) => {
+    setRuolo(e.target.value);
+    setLivelloMarketing("");
+    setUsoDistributore("");
+  };
+
   // filtro ricerca
   const prodottiFiltrati = prodotti
     .map((categoria) => ({
@@ -95,7 +102,7 @@ export default function PreventivoClient() {
         baseSconto: prodotto.BaseSconto,
         puntiVolumeUnitario: pv,
         iva: prodotto.Iva,
-        totale: roundToTwo(qta * prezzo),
+        totale: Math.round((qta * prezzo + Number.EPSILON) * 100) / 100,
       };
 
       const idx = prev.findIndex((p) => String(p.id) === id);
@@ -114,24 +121,20 @@ export default function PreventivoClient() {
     );
   };
 
-  // utility locale per arrotondare (se vuoi usarla anche altrove)
-  function roundToTwo(num) {
-    return Math.round((num + Number.EPSILON) * 100) / 100;
-  }
-
   return (
     <>
       <h2>genera un preventivo gratuito per i tuoi prodotti</h2>
 
-      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start px-4">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start sm:px-4">
         <div className="lg:col-span-8 w-full max-w-4xl mx-auto">
           {/* input */}
           <div className="flex flex-col gap-4 items-center mb-10 w-full">
             <InputPreventivo
               title="ruolo"
               value={ruolo}
-              onChange={(e) => setRuolo(e.target.value)}
+              onChange={handleRuoloChange}
               option={[
+                { name: "-- seleziona ruolo --", optionValue: "" },
                 { name: "cliente", optionValue: "cliente" },
                 { name: "cliente privilegiato", optionValue: "CP" },
                 { name: "distributore", optionValue: "DS" },
@@ -161,7 +164,7 @@ export default function PreventivoClient() {
                   value={livelloMarketing}
                   onChange={(e) => setLivelloMarketing(e.target.value)}
                   option={[
-                    { name: "-- seleziona --", optionValue: "" },
+                    { name: "-- seleziona livello --", optionValue: "" },
                     { name: "distributore (25%)", optionValue: 25 },
                     { name: "senior consultant (35%)", optionValue: 35 },
                     { name: "qualifier producer (42%)", optionValue: 42 },
@@ -173,7 +176,7 @@ export default function PreventivoClient() {
                   value={usoDistributore}
                   onChange={(e) => setUsoDistributore(e.target.value)}
                   option={[
-                    { name: "-- seleziona --", optionValue: "" },
+                    { name: "-- seleziona tipologia uso --", optionValue: "" },
                     { name: "uso personale", optionValue: "uso personale" },
                     {
                       name: "vendita occasionale",
@@ -193,29 +196,35 @@ export default function PreventivoClient() {
             )}
           </div>
 
-          {/* barra di ricerca */}
-          <Input
-            type={"search"}
-            placeholder={"ricerca prodotto"}
-            onChange={(e) => setSearch(e.target.value)}
-          >
-            <div className="h-full aspect-square flex items-center justify-center text-herbalife-1 font-bold">
-              <Search size={30} />
-            </div>
-          </Input>
+          {ruolo !== "" && (
+            <>
+              <div className="mb-6">
+                {/* barra di ricerca */}
+                <Input
+                  type={"search"}
+                  placeholder={"ricerca prodotto..."}
+                  onChange={(e) => setSearch(e.target.value)}
+                >
+                  <div className="h-full aspect-square flex items-center justify-center text-herbalife-1 font-bold">
+                    <Search size={24} />
+                  </div>
+                </Input>
+              </div>
 
-          {/* tabella */}
-          <UltimaModifica />
-          <div className="lg:h-[80vh] max-w-4xl overflow-x-auto shadow-nav sticky top-nav">
-            <Tabella
-              prodotti={prodottiFiltrati}
-              isLoading={loading}
-              ruolo={ruolo}
-              usoDistributore={usoDistributore}
-              livelloMarketing={livelloMarketing}
-              handleAggiungiProdotto={handleAggiungiProdotto}
-            />
-          </div>
+              {/* tabella */}
+              <UltimaModifica />
+              <div className="lg:h-[80vh] max-w-4xl overflow-x-auto shadow-nav sticky top-nav rounded-lg">
+                <Tabella
+                  prodotti={prodottiFiltrati}
+                  isLoading={loading}
+                  ruolo={ruolo}
+                  usoDistributore={usoDistributore}
+                  livelloMarketing={livelloMarketing}
+                  handleAggiungiProdotto={handleAggiungiProdotto}
+                />
+              </div>
+            </>
+          )}
         </div>
 
         {/* riepilogo costi */}

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -31,7 +31,7 @@ export default function ProdottiConsigliati({ pagina }) {
               nuovoProdotto:
                 String(prodotto.nuovoProdotto).toUpperCase() === "TRUE",
               prezzoPubblico: parseFloat(
-                prodotto.prezzoPubblico.replace(",", ".")
+                prodotto.prezzoPubblico.replace(",", "."),
               ),
             }));
 
@@ -82,53 +82,11 @@ export default function ProdottiConsigliati({ pagina }) {
     },
   };
 
-  // customizzazione delle frecce e dei punti di navigazione
-  // freccia sinistra
-  const CustomLeftArrow = ({ onClick }) => (
-    <button
-      type="button"
-      aria-label="torna indietro"
-      title="torna indietro"
-      onClick={onClick}
-      className="absolute left-2 z-10 p-2 bg-herbalife-1 hover:bg-herbalife-2 text-herbalife-2 hover:text-herbalife-1 hover:border rounded-full"
-    >
-      <ChevronLeft size={40} />
-    </button>
-  );
-
-  //freccia destra
-  const CustomRightArrow = ({ onClick }) => (
-    <button
-      type="button"
-      aria-label="avanti"
-      title="avanti"
-      onClick={onClick}
-      className="absolute right-2 z-10 p-2 bg-herbalife-1 hover:bg-herbalife-2 text-herbalife-2 hover:text-herbalife-1 hover:border rounded-full"
-    >
-      <ChevronRight size={40} />
-    </button>
-  );
-
-  // pallini di navigazione
-  const CustomDot = ({ onClick, active }) => {
-    return (
-      <button
-        className={`w-3 h-3 mx-1 mb-1 rounded-full transition-all cursor-pointer border ${
-          active ? "bg-herbalife-1 scale-125" : "bg-herbalife-2 "
-        }`}
-        onClick={() => onClick()}
-      ></button>
-    );
-  };
-
-  //impostazione per il cursore da grab a grabbing
-  // const [isGrabbing, setIsGrabbing] = useState(false);
-
   return (
     <>
       <Carousel
         responsive={responsive}
-        showDots={false}
+        showDots={true}
         partialVisible={true}
         centerMode={false}
         focusOnSelect={false}
@@ -163,3 +121,39 @@ export default function ProdottiConsigliati({ pagina }) {
     </>
   );
 }
+// customizzazione delle frecce e dei punti di navigazione
+// freccia sinistra
+const CustomLeftArrow = ({ onClick }) => (
+  <button
+    type="button"
+    aria-label="torna indietro"
+    title="torna indietro"
+    onClick={onClick}
+    className="absolute left-2 z-10 p-2 bg-herbalife-1 hover:bg-herbalife-2 text-herbalife-2 hover:text-herbalife-1 hover:border rounded-full"
+  >
+    <ChevronLeft size={40} />
+  </button>
+);
+
+//freccia destra
+const CustomRightArrow = ({ onClick }) => (
+  <button
+    type="button"
+    aria-label="avanti"
+    title="avanti"
+    onClick={onClick}
+    className="absolute right-2 z-10 p-2 bg-herbalife-1 hover:bg-herbalife-2 text-herbalife-2 hover:text-herbalife-1 hover:border rounded-full"
+  >
+    <ChevronRight size={40} />
+  </button>
+);
+
+// pallini di navigazione
+const CustomDot = ({ onClick, active }) => {
+  <button
+    className={`w-3 h-3 mx-1 mb-1 rounded-full transition-all cursor-pointer border ${
+      active ? "bg-herbalife-1 scale-125" : "bg-herbalife-2 "
+    }`}
+    onClick={() => onClick()}
+  ></button>;
+};

@@ -21,7 +21,6 @@ export default function riepilogoTelefono({
   setIsOpenMobile,
   isOpenMobile,
   onRimuoviProdotto,
-  handleCopySKU,
   openModal,
 }) {
   const content = (
@@ -45,13 +44,13 @@ export default function riepilogoTelefono({
           <p className="dark:text-white relative cursor-pointer">
             <ShoppingBag size={30} />
             {preventivo.sommaProdotti > 0 && (
-              <div className="absolute bottom-4 -right-3 w-6.5 bg-herbalife-1 text-herbalife-2 aspect-square rounded-full flex items-center justify-center">
+              <span className="absolute bottom-4 -right-3 w-6.5 bg-herbalife-1 text-herbalife-2 aspect-square rounded-full flex items-center justify-center">
                 <span className="text-sm">
                   {preventivo.sommaProdotti < 100
                     ? preventivo.sommaProdotti
                     : "+99"}
                 </span>
-              </div>
+              </span>
             )}
           </p>
         </div>
@@ -114,7 +113,7 @@ export default function riepilogoTelefono({
                 <button
                   onClick={() => {
                     setIsOpenMobile(false);
-                    ruolo === "cliente" ? openModal(true) : handleCopySKU(true);
+                    openModal(true);
                   }}
                   className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white rounded-md transition-all text-sm font-bold uppercase tracking-wider shadow-md"
                 >

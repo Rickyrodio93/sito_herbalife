@@ -1,3 +1,11 @@
+export const getScontoUnitario = (baseSconto, livelloMarketing, usoDistributore) => {
+  const livello = (usoDistributore === "abituale <6410" || usoDistributore === "abituale >6410")
+    ? 0.5
+    : (Number(livelloMarketing) || 0) / 100;
+
+  return Math.round((Number(baseSconto) * livello + Number.EPSILON) * 100) / 100;
+};
+
 export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, livelloMarketing) {
 
   // variabili generali
@@ -24,12 +32,12 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
     ? 0.5
     : (Number(livelloMarketing) || 0) / 100;
 
-    // funzione per arrotondare alla seconda cifra decimale
+  // funzione per arrotondare alla seconda cifra decimale
   function roundToTwo(num) {
     return Math.round((num + Number.EPSILON) * 100) / 100;
   }
 
-// calcoli prezzi
+  // calcoli prezzi
   prodotti.forEach((p) => {
     const q = Number(p.quantita) || 0;
     if (!q) return;
@@ -39,7 +47,7 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
     const baseSconto = Number(p.baseSconto) || 0;
     const pv = Number(p.puntiVolumeUnitario) || 0;
 
-    const scontoUnitario = roundToTwo(baseSconto * livello);
+    const scontoUnitario = getScontoUnitario(baseSconto, livelloMarketing, usoDistributore);
 
     // subtotale e sconto
     subtotale += roundToTwo(prezzoListino * q);
@@ -66,7 +74,7 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
       ivaSpedizione = roundToTwo(spedizione * (prodottiIva / sommaProdotti));
       ivaProdotti += roundToTwo((prezzoListino - scontoUnitario) * ivaUnitaria * q)
       iva = roundToTwo(ivaProdotti + ivaSpedizione)
-    } else if (ruolo=== "DS" && usoDistributore !== "uso personale") {
+    } else if (ruolo === "DS" && usoDistributore !== "uso personale") {
       prodottiIva += roundToTwo(q * ivaUnitaria);
       ivaSpedizione = roundToTwo(spedizione * (prodottiIva / sommaProdotti));
       ivaProdotti += roundToTwo((prezzoListino) * ivaUnitaria * q)
@@ -82,8 +90,8 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
       tasse += roundToTwo((scontoUnitario) * ritenuta * q);
     } else if (usoDistributore === "abituale <6410") {
       tasse += (scontoUnitario * ritenuta - scontoUnitario * 0.22) * q;
-          } else if (usoDistributore === "abituale >6410") {
-            tasse += (scontoUnitario * ritenuta - scontoUnitario * 0.22 + scontoUnitario * INPS) * q;
+    } else if (usoDistributore === "abituale >6410") {
+      tasse += (scontoUnitario * ritenuta - scontoUnitario * 0.22 + scontoUnitario * INPS) * q;
 
     }
   });
@@ -103,6 +111,8 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
     puntiVolume,
     venditaCliente,
     guadagnoNetto,
-    sommaProdotti
+    sommaProdotti,
+    ivaProdotti
   };
 }
+
