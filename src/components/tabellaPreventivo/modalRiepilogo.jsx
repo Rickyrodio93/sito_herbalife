@@ -88,7 +88,7 @@ export default function ModalRiepilogo({
               <h3 className="uppercase tracking-wider font-bold text-zinc-900 dark:text-zinc-50 text-lg mb-0">
                 riepilogo ordine{" "}
                 <span className="">
-                  ({ruolo} - {!isCliente ? livelloMarketing : ""}%){" "}
+                  ({ruolo} {!isCliente ? `- ${livelloMarketing}%` : ""}){" "}
                 </span>
               </h3>
               <button
@@ -234,29 +234,29 @@ export default function ModalRiepilogo({
                       const ivaSpedizione =
                         preventivo.spedizione *
                         (sommaIvaUnit / preventivo.sommaProdotti);
-                        return(
-
-                          <tr className="bg-zinc-50 dark:bg-zinc-900/50 border-t border-zinc-200">
-                        <td className="text-center py-3 px-2 text-xs text-zinc-400 flex items-center justify-center">
-                          <MdLocalShipping size={16}/>
-                        </td>
-                        <td className="text-left py-3 px-2 font-medium">
-                          Spedizione
-                        </td>
-                        <td className="text-center py-3 px-2 font-mono text-red-500">
-                          {preventivo.spedizione.toFixed(2)}€
-                        </td>
-                        <td className="text-center py-3 px-2">-</td>
-                        <td className="text-center py-3 px-2">-</td>
-                        <td className="text-center py-3 px-2">-</td>
-                        {/* IVA Spedizione calcolata in CalcoloPreventivo */}
-                        <td className="text-center py-3 px-2 text-xs">
-                          {ivaSpedizione.toFixed(2)}€
-                        </td>
-                        <td className="text-right py-3 px-2 font-bold">
-                          {(preventivo.spedizione + ivaSpedizione).toFixed(2)}€
-                        </td>
-                      </tr>
+                      return (
+                        <tr className="bg-zinc-50 dark:bg-zinc-900/50 border-t border-zinc-200 text-zinc-800 dark:text-zinc-100">
+                          <td className="text-center py-3.5 px-2 text-xs text-zinc-400 dark:text-zinc-500 flex items-center justify-center">
+                            <MdLocalShipping size={16} />
+                          </td>
+                          <td className="text-left py-3.5 px-2 font-medium max-w-55 tracking-tight text">
+                            Spedizione
+                          </td>
+                          <td className="text-center py-3 px-2 font-mono text-red-500">
+                            {preventivo.spedizione.toFixed(2)}€
+                          </td>
+                          <td className="text-center py-3 px-2">-</td>
+                          <td className="text-center py-3 px-2">-</td>
+                          <td className="text-center py-3 px-2">-</td>
+                          {/* IVA Spedizione calcolata in CalcoloPreventivo */}
+                          <td className="text-center py-3.5 px-2 font-medium text-zinc-500 dark:text-zinc-400">
+                            {ivaSpedizione.toFixed(2)}€
+                          </td>
+                          <td className="text-right py-3.5 px-2 font-semibold font-mono text-zinc-950 dark:text-zinc-50">
+                            {(preventivo.spedizione + ivaSpedizione).toFixed(2)}
+                            €
+                          </td>
+                        </tr>
                       );
                     })()}
                 </tbody>
@@ -274,9 +274,15 @@ export default function ModalRiepilogo({
                     </td>
                     {!isCliente && (
                       <>
-                        <td className="pt-4 pb-2"></td>
-                        <td className="pt-4 pb-2"></td>
-                        <td className="pt-4 pb-2"></td>
+                        <td className="text-center pt-4 pb-2 font-mono text-green-500 dark:text-green-400 text-lg">
+                          -{preventivo.sconto.toFixed(2)}€
+                        </td>
+                        <td className="text-center pt-4 pb-2 font-mono text-zinc-500 dark:text-zinc-400 text-lg">
+                          {preventivo.tasse.toFixed(2)}€
+                        </td>
+                        <td className="text-center pt-4 pb-2 font-mono text-zinc-500 dark:text-zinc-400 text-lg">
+                          {preventivo.iva.toFixed(2)}€
+                        </td>
                       </>
                     )}
                     <td className="text-right pt-4 pb-2 font-black font-mono text-lg text-herbalife-1 dark:text-herbalife-2">
