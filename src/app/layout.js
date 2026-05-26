@@ -78,7 +78,7 @@ export default function RootLayout({ children }) {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 
   return (
-    <html lang="it-IT" dir="ltr" data-theme="light">
+    <html lang="it-IT" dir="ltr">
       <head>
         <Script
           id="gtm-script"
