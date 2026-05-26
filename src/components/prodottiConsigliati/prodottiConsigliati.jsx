@@ -92,21 +92,22 @@ export default function ProdottiConsigliati({ pagina }) {
         focusOnSelect={false}
         infinite={true}
         removeArrowOnDeviceType={["tablet", "mobile"]}
-        customLeftArrow={<CustomLeftArrow aria-hidden="true" />}
-        customRightArrow={<CustomRightArrow aria-hidden="true" />}
+        customLeftArrow={<CustomLeftArrow aria-hidden="false" />}
+        customRightArrow={<CustomRightArrow aria-hidden="false" />}
         customDot={<CustomDot />}
         className="max-w-300 mx-5 lg:mx-auto mb-25 py-10 rounded-lg"
       >
-        {prodotti.map((prodotto, index) => (
-          <CardProdotti
-            key={index}
-            id={prodotto.id}
-            titolo={prodotto.titolo}
-            descrizione={prodotto.descrizione}
-            nuovoProdotto={prodotto.nuovoProdotto}
-            prezzo={prodotto.prezzoPubblico}
-            OpenModal={OpenModal}
-          />
+        {prodotti.map((prodotto) => (
+          <div key={prodotto.id} className="px-2 pb-4 h-full">
+            <CardProdotti
+              id={prodotto.id}
+              titolo={prodotto.titolo}
+              descrizione={prodotto.descrizione}
+              nuovoProdotto={prodotto.nuovoProdotto}
+              prezzo={prodotto.prezzoPubblico}
+              OpenModal={OpenModal}
+            />
+          </div>
         ))}
       </Carousel>
       {selectedProduct && (

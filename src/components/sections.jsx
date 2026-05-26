@@ -82,9 +82,9 @@ export const SECTIONHOME = [
     title: "i prodotti e le soluzioni herbalife offrono:",
     text: (
       <>
-        <div className="flex flex-wrap flex-row content-center items-center justify-center mb-24 gap-10 text-center">
-          {CARDSHOME.map((card, index) => (
-            <Card key={index} {...card} />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-5xl mx-auto mb-24 gap-6 sm:gap-8 px-4">
+          {CARDSHOME.map((card) => (
+            <Card key={card.link} {...card} />
           ))}
         </div>
         <p>

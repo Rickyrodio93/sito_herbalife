@@ -72,7 +72,7 @@ export default function MobMenu({
                 </Link>
                 {hasSubMenu && (
                   <motion.ul
-                    key={name}
+                    key={i}
                     initial="exit"
                     animate={isClicked ? "enter" : "exit"}
                     variants={subMenuDrawer}

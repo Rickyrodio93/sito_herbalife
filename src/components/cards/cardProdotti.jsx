@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function CardProdotti({
   id,
   titolo,
@@ -8,43 +10,41 @@ export default function CardProdotti({
 }) {
   return (
     <>
-      <div className=" rounded-2xl mx-2 pb-3 bg-white dark:bg-[#272727] border border-gray-400 dark:border-gray-600 shadow-prodotti">
-        <div
-          key={id}
-          className="aspect-[7/9] lg:aspect-[3/4] rounded-t-2xl flex flex-col justify-center"
-        >
-          <div className="max-h-full flex items-center justify-center">
-            <img
-              src={`immagini/prodotti/${id}.webp`}
-              className="h-full max-w-full p-4"
-              alt={titolo}
+      <div className="relative w-full h-full bg-white dark:bg-zinc-900 border border-gray-600 shadow-prodotti flex flex-col justify-between overflow-hidden rounded-2xl pb-4">
+        <div className="relative w-full h-52 flex items-center justify-center bg-gray-50/50 dark:bg-zinc-800/30 p-4">
+          <div className="relative w-full h-full flex items-center justify-center">
+            <Image
+              src={`/immagini/prodotti/${id}.webp`}
+              alt={`confezione di ${titolo}`}
+              fill={true}
+              className="object-contain p-2 transition-transform duration-300 hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={false}
             />
-
-            <div className="absolute top-3 flex justify-between w-[calc(100%-2.5rem)]">
-              {/* badge prezzo */}
-              <div className="text-herbalife-2 bg-herbalife-1 dark:bg-herbalife-3 text-xs lg:text-base py-1 px-2 rounded-lg capitalize shadow-[1px_1px_3px_rgba(0,0,0,0.5)]">
-                {`${prezzo.toFixed(2)} €`}
-              </div>
-              {/* badge nuovo prodotto */}
-              {nuovoProdotto === true ? (
-                <div className="bg-red-500 text-xs lg:text-base text-white py-1 px-2 rounded-lg capitalize shadow-[1px_1px_3px_rgba(0,0,0,0.5)]">
-                  nuovo prodotto
-                </div>
-              ) : (
-                ""
-              )}
+          </div>
+          {/* badge */}
+          <div className="absolute top-3 left-3 right-3 flex justify-between items-center pointer-events-none">
+            {/* prezzo */}
+            <div className="text-herbalife-2 bg-herbalife-1 dark:bg-herbalife-3 text-xs lg:text-sm font-bold py-1 px-2.5 rounded-lg shadow-md pointer-events-auto">
+              {typeof prezzo === "number" ? `${prezzo.toFixed(2)} €` : "0.00 €"}
             </div>
+            {/* nuovo prodotto */}
+            {nuovoProdotto && (
+              <div className="bg-red-500 text-xs lg:text-sm text-white font-bold py-1 px-2.5 rounded-lg uppercase tracking-wider shadow-md pointer-events-auto">
+                nuovo
+              </div>
+            )}
           </div>
         </div>
 
-        <div className=" px-4 flex flex-col h-[150px] justify-between">
-          <h4 className="text-herbalife-1 dark:text-green-600 font-bold text-base py-4 capitalize">
+        <div className="px-4 flex flex-col justify-between grow pt-3">
+          <h4 className="text-herbalife-1 dark:text-green-500 font-bold text-base line-clamp-2 min-h-12 flex items-center capitalize mb-3">
             {titolo}
           </h4>
           <div className="w-full flex items-center justify-center">
             <button
               type="button"
-              className="cursor-pointer bg-black hover:bg-[#333333] dark:hover:bg-[#131313] text-white px-4 py-2 rounded-full mx-auto"
+              className="w-full cursor-pointer bg-zinc-950 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-semibold px-4 py-2.5 rounded-xl transition-colors text-sm uppercase tracking-wider"
               onClick={() => OpenModal(id, titolo, descrizione)}
             >
               dettagli

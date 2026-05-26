@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Section({ children }) {
   return (
-    <section className="bg-gray-200 even:bg-odd dark:bg-(--dark-1) dark:even:bg-(--dark-2) px-7 md:px-14 pb-14 text-center group">
+    <section className="bg-gray-200 even:bg-odd dark:bg-(--dark-1) dark:even:bg-(--dark-2) px-7 md:px-14 pb-14 text-center">
       <motion.div
         initial={{ translateX: "-5%", opacity: 0 }}
         whileInView={{ translateX: 0, opacity:1 }}
