@@ -5,13 +5,6 @@ import Footer from "@/components/footer/Footer";
 import Script from "next/script";
 import DisclaimerPopup from "@/components/DisclaimerPopup";
 
-// export const viewport = {
-//   themeColor: [
-//     { media: '(prefers-color-scheme: light)', color: '#266431' },
-//     { media: '(prefers-color-scheme: dark)', color: '#09090b' },  // Grigio quasi nero (es. zinc-950) per la Dark Mode
-//   ],
-// }
-
 export const metadata = {
   title: {
     default: "Riccardo Rodio | Distributore Indipendente Herbalife",
@@ -81,25 +74,39 @@ export default function RootLayout({ children }) {
     <html lang="it-IT" dir="ltr">
       <head>
         <Script
-        id="theme-color"
-        strategy="beforeInteractive"
+          id="theme-color"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-          (function(){
-            function updateThemeColor() {
-            var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            var meta = document.querySelector('meta[name="theme-color"]');
-            if (!meta) {
+      (function () {
+        function updateThemeColor() {
+          // 1. Controlla l'attributo data-theme sull'elemento <html> o le preferenze di sistema
+          var currentTheme = document.documentElement.getAttribute('data-theme');
+          var isDark = currentTheme === 'dark' || (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          
+          // 2. Trova o crea il meta tag theme-color
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (!meta) {
             meta = document.createElement('meta');
             meta.name = 'theme-color';
             document.head.appendChild(meta);
-            }
-            meta.content = isDark ? '#09090b' : '#266431';
-            }
-            updateThemeColor();
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeColor);
-          })();
-          `,
+          }
+          
+          // 3. Applica il colore corretto alla barra del browser
+          meta.content = isDark ? '#09090b' : '#266431';
+        }
+        
+        // Esegui subito al caricamento iniziale
+        updateThemeColor();
+        
+        // Ascolta i cambiamenti di sistema operativo
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeColor);
+        
+        // Osserva i cambi dinamici dell'attributo data-theme (quando l'utente usa il toggle sul sito)
+        var observer = new MutationObserver(updateThemeColor);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      })();
+    `,
           }}
         />
         <Script
