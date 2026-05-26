@@ -5,12 +5,12 @@ import Footer from "@/components/footer/Footer";
 import Script from "next/script";
 import DisclaimerPopup from "@/components/DisclaimerPopup";
 
-export const viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#266431' },
-    { media: '(prefers-color-scheme: dark)', color: '#09090b' },  // Grigio quasi nero (es. zinc-950) per la Dark Mode
-  ],
-}
+// export const viewport = {
+//   themeColor: [
+//     { media: '(prefers-color-scheme: light)', color: '#266431' },
+//     { media: '(prefers-color-scheme: dark)', color: '#09090b' },  // Grigio quasi nero (es. zinc-950) per la Dark Mode
+//   ],
+// }
 
 export const metadata = {
   title: {
@@ -80,7 +80,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="it-IT" dir="ltr">
       <head>
-        <script
+        <Script
+        id="theme-color"
+        strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
           (function(){
@@ -96,7 +98,7 @@ export default function RootLayout({ children }) {
             }
             updateThemeColor();
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeColor);
-          })(),
+          })();
           `,
           }}
         />
