@@ -80,6 +80,26 @@ export default function RootLayout({ children }) {
   return (
     <html lang="it-IT" dir="ltr">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          (function(){
+            function updateThemeColor() {
+            var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (!meta) {
+            meta = document.createElement('meta');
+            meta.name = 'theme-color';
+            document.head.appendChild(meta);
+            }
+            meta.content = isDark ? '#09090b' : '#266431';
+            }
+            updateThemeColor();
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeColor);
+          })(),
+          `,
+          }}
+        />
         <Script
           id="gtm-script"
           strategy="afterInteractive"
