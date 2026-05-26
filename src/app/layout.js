@@ -5,6 +5,13 @@ import Footer from "@/components/footer/Footer";
 import Script from "next/script";
 import DisclaimerPopup from "@/components/DisclaimerPopup";
 
+export const viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#266431' },
+    { media: '(prefers-color-scheme: dark)', color: '#09090b' },  // Grigio quasi nero (es. zinc-950) per la Dark Mode
+  ],
+}
+
 export const metadata = {
   title: {
     default: "Riccardo Rodio | Distributore Indipendente Herbalife",
@@ -15,10 +22,6 @@ export const metadata = {
   authors: [{ name: "Riccardo Rodio", url: "https://www.riccardorodio.com" }],
   creator: "Riccardo Rodio",
   publisher: "Riccardo Rodio",
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#266431' },
-    { media: '(prefers-color-scheme: dark)', color: '#09090b' },  // Grigio quasi nero (es. zinc-950) per la Dark Mode
-  ],
   robots: {
     index: true,
     follow: true,
