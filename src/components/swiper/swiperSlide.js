@@ -15,7 +15,7 @@ export const slides = [
         src:"/immagini/swiperImmagini/Gels_Social_Asset_06.webp",
         title:"herbalife gels",
         description:"Herbalife Gels è la linea di prodotti che fornisce nutrienti essenziali, supportati dalla scienza e realizzati in un innovativo formato di gel masticabile per te e per i tuoi bambini.",
-        linkTo:"https://riccardorodio.goherbalife.com/Catalog/Product/Details/it-IT/"
+        linkTo:"https://riccardorodio.goherbalife.com/Catalog/Product/Details/it-IT/369K"
     },
     {
         src:"/immagini/swiperImmagini/prolong.webp",
@@ -33,6 +33,6 @@ export const slides = [
         src: "/immagini/swiperImmagini/active_mind_complex_pc.webp",
         title: "active mind complex",
         description: "Prenditi cura ogni giorno del tuo benessere cognitivo con l'Active Mind Complex: nutrizione intelligente per il tuo cervello.",
-        linkTo: "https://riccardorodio.goherbalife.com/Catalog/Product/Details/it-IT/"
+        linkTo: "https://riccardorodio.goherbalife.com/Catalog/Product/Details/it-IT/243K"
     }
 ]

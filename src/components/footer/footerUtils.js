@@ -28,12 +28,12 @@ export const footerGrid = [
                 link: "/ricette"
             },
             {
-                name: "catalogo on/line",
-                link: "https://riccardorodio.goherbalife.com/Catalog/Home/Index/it-IT"
+                name: "catalogo on-line",
+                link: "chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://assets.herbalifenutrition.com/content/dam/regional/emea/it_it/consumable_content/marketing_materials/brochure/2022/03-Mar/product-brochure-it.pdf/_jcr_content/renditions/original."
             },
             {
-                name: "etichette prodotti",
-                link: "https://productinfo.herbalife.com/productlabels/labels-it_IT.html?/"
+                name: "preventivo prodotti",
+                link: "/preventivo"
             },
         ]
     },
