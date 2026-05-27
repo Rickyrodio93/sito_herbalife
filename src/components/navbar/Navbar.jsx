@@ -26,31 +26,33 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="h-(--spacing-nav) text-[15px] sticky z-99999 inset-0 flex items-center shadow-(--shadow-nav) bg-white dark:bg-gray-800">
-      <div className="px-3.5 flex items-center justify-between w-full max-w-7xl mx-auto">
-        <Link href="/" title="Home" className="max-w-lg">
+    <nav className="h-nav text-[15px] sticky z-50 top-0 left-0 right-0 flex items-center border-b border-zinc-200/60 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md transition-colors duration-300">
+      <div className="px-4 flex items-center justify-between w-full max-w-7xl mx-auto">
+        <Link href="/" title="Home" className="flex items-center">
           <Image
             src="/immagini/distributore_indipendente_orizzontale.png"
-            height={80}
-            width={300}
+            height={60}
+            width={240}
             alt="logo orizzontale"
-            className="h-8 sm:h-15 w-auto object-contain"
+            className="h-8 sm:h-12 w-auto object-contain transition-opacity hover:opacity-90"
             onClick={closeAll}
+            priority
           />
         </Link>
 
         {/* menus */}
         {/* Desktop menu */}
-        <ul className="lg:flex lg:items-center hidden gap-x-1 z-999 text-black dark:text-white">
+        <ul className="hidden lg:flex lg:items-center gap-x-1 text-zinc-700 dark:text-zinc-200 font-medium">
           {Menus.map((menu) => (
             <DesktopMenu menu={menu} key={menu.name} />
           ))}
         </ul>
-        <div className="flex items-center gap-x-3">
+
+        <div className="flex items-center gap-x-4">
           <DarkMode />
 
           {/* mobile menu */}
-          <div className="lg:hidden text-black dark:text-white z-999">
+          <div className="lg:hidden flex items-center">
             <MobMenu
               Menus={Menus}
               closeAll={closeAll}

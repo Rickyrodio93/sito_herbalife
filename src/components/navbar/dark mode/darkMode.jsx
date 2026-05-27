@@ -43,11 +43,11 @@ export default function DarkMode() {
 
   // Se il componente non è ancora montato sul client, evitiamo di renderizzare icone instabili
   if (!mounted) {
-    return <div className="md:w-16 w-8 h-8 bg-gray-300 rounded-full opacity-50" />; 
+    return <div className="w-14 h-8 bg-zinc-200 dark:bg-zinc-800 rounded-full opacity-50 animate-pulse" />; 
   }
 
   return (
-    <label className="flex items-center gap-2 cursor-pointer">
+    <label className="flex items-center cursor-pointer select-none">
       <input
         type="checkbox"
         id="darkmode"
@@ -55,13 +55,13 @@ export default function DarkMode() {
         onChange={() => setIsDarkMode(!isDarkMode)}
         className="hidden"
       />
-      <span className="md:w-16 w-8 h-8 bg-gray-300 dark:bg-herbalife-1 rounded-full flex items-center p-1 transition">
+      <span className="w-14 h-8 bg-zinc-200 dark:bg-zinc-800 rounded-full flex items-center p-1 transition-colors duration-300">
         <span
-          className={`w-6 h-6 flex justify-center items-center p-1 bg-white dark:bg-herbalife-2 rounded-full shadow-md transition-transform ${
-            isDarkMode ? "md:translate-x-8" : ""
+          className={`w-6 h-6 flex justify-center items-center p-1 bg-white dark:bg-zinc-950 text-zinc-700 dark:text-zinc-200 rounded-full shadow-sm transition-transform duration-300 ${
+            isDarkMode ? "translate-x-6 text-green-400" : ""
           }`}
         >
-          {isDarkMode ? <Moon /> : <Sun />}
+          {isDarkMode ? <Moon size={14}/> : <Sun size={14} />}
         </span>
       </span>
     </label>
