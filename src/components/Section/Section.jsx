@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 
 export default function Section({ children }) {
   return (
-    <section className="bg-gray-200 even:bg-odd dark:bg-(--dark-1) dark:even:bg-(--dark-2) px-7 md:px-14 pb-14 text-center">
+    <section className="bg-white even:bg-zinc-50/50 dark:bg-zinc-950 dark:even:bg-zinc-900/30 px-6 md:px-16 py-16 text-center borde-b border-zinc-100 dark:border-zinc-900 last:border-0">
       <motion.div
-        initial={{ translateX: "-5%", opacity: 0 }}
-        whileInView={{ translateX: 0, opacity:1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
+        initial={{x: -20, opacity:0}}
+        whileInView={{x:0, opacity: 1}}
+        viewport={{once: true, margin: "-100px"}}
+        transition={{type: "spring", stiffness:100, damping: 20, delay: 0.1}}
       >
         {children}
       </motion.div>

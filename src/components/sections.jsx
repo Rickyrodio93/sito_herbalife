@@ -30,9 +30,9 @@ function calcolaEta(dataDiNascitaStringa) {
 }
 
 const miaDataDiNascita = "1993-07-07";
-const inizioAttivita = "2016-06-20"
+const inizioAttivita = "2016-06-20";
 const etaDinamica = calcolaEta(miaDataDiNascita);
-const etaHerbalife = calcolaEta(inizioAttivita)
+const etaHerbalife = calcolaEta(inizioAttivita);
 
 const message = "Salve, vorrei saperne di più sul piano marketing herbalife";
 const messageContact =
@@ -57,7 +57,7 @@ export const CARDSHOME = [
   },
   {
     icon: Trophy,
-    title: "alimentazione specifica per sportivi",
+    title: "integrazione per sportivi",
     link: "/sport",
   },
   {
@@ -138,6 +138,44 @@ export const SECTIONHOME = [
             scopri di più
           </Link>
         </span>
+      </>
+    ),
+  },
+  {
+    title: "Herbalife e la Scienza del Futuro",
+    text: (
+      <>
+        <strong>
+          Non immaginiamo il futuro del benessere. Lo stiamo costruendo.
+        </strong>{" "}
+        Herbalife continua a rivoluzionare il mercato globale della nutrizione
+        investendo nelle tecnologie scientifiche più avanzate. Le recenti
+        collaborazioni e acquisizioni strategiche segnano una nuova era per la
+        tua salute:
+        <br />
+        <ul className="list-disc list-inside">
+          <li>
+            <strong>BIONIQ | Integrazione su Misura:</strong> Grazie alla
+            partnership con Bioniq, uniamo l'intelligenza artificiale e
+            l'analisi dei biomarcatori ematici per offrirti, in futuro, una
+            nutrizione personalizzata basata sulle reali ed esatte esigenze del
+            tuo corpo.
+          </li>
+          <li>
+            <strong>PRO2COL | Validazione Clinica:</strong> Con l'integrazione
+            dei laboratori di ricerca Pro2Col, ogni formula viene testata
+            secondo rigorosi standard scientifici per garantirti massima
+            efficacia, sicurezza e assorbimento cellulare.
+          </li>
+        </ul>
+        <br />
+        <i>
+          Scegliere Herbalife oggi significa affidarsi a un brand che unisce la
+          natura alla scienza medica più avanzata.
+        </i>{" "}
+        <Link href="/scienza" className="section-a">
+          scopri la nostra scienza
+        </Link>
       </>
     ),
   },
@@ -753,6 +791,85 @@ export const SECTIONSPORT = [
 ];
 
 export const SECTIONSCIENZA = [
+  {
+    title:
+      "Herbalife entra nell'era della nutrizione personalizzata con Bioniq",
+    image: "/immagini/scienza/herbalife-bioniq.webp",
+    text: (
+      <>
+        Negli ultimi anni, la scienza della nutrizione ha chiarito un concetto
+        fondamentale: non esiste una dieta o un integratore che vada bene per
+        tutti in modo universale. Ognuno di noi ha un metabolismo e carenze
+        biochimiche uniche. È per rispondere a questa esigenza che l'azienda ha
+        stretto una partnership e investito strategicamente in Bioniq, azienda
+        leader globale nelle soluzioni di salute personalizzate basate
+        sull'intelligenza artificiale.
+        <br />
+        <ul className="list-disc list-inside">
+          <li>
+            <strong>Che cos'è Bioniq?</strong> Bioniq è una piattaforma di
+            salute d'avanguardia che analizza i biomarcatori (attraverso esami
+            del sangue mirati e questionari approfonditi) e, grazie a un potente
+            algoritmo proprietario, crea formule di integrazione personalizzate
+            al 100%.
+          </li>
+          <li>
+            <strong>Cosa significa per il futuro di Herbalife?</strong> Questa
+            sinergia unisce la capillarità e la qualità dei prodotti Herbalife
+            con la precisione scientifica di Bioniq. L'obiettivo è permettere ai
+            consumatori e ai distributori di avere accesso a soluzioni
+            nutrizionali guidate dai dati scientifici del proprio corpo. Non si
+            tratta più di scegliere un integratore standard, ma di formulare il
+            carburante esatto di cui le tue cellule hanno bisogno per
+            ottimizzare energia, longevità e performance sportive.
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    title: "Più vicini alla scienza medica con l'acquisizione di Pro2Col",
+    image: "/immagini/scienza/cristiano-ronaldo-pro2col.webp",
+    text: (
+      <>
+        La credibilità di un brand nutrizionale si misura attraverso i fatti, i
+        laboratori e le pubblicazioni scientifiche. Con l'acquisizione
+        strategica di <strong>Pro2Col</strong>, l'azienda accelera il suo
+        percorso di transizione verso una validazione scientifica di livello
+        medico-farmaceutico.
+        <ul className="list-disc list-inside">
+          <li>
+            <strong>Chi è Pro2Col e cosa fa?</strong> Pro2Col è una realtà
+            d'eccellenza specializzata nella ricerca clinica, nello sviluppo di
+            protocolli scientifici e nella gestione di studi traslazionali. In
+            parole semplici, è il motore che permette di testare in laboratorio
+            e su gruppi di studio reali l'efficacia biologica dei nutrienti.
+          </li>
+          <li>
+            <strong>L'impatto sulla sicurezza e sull'efficacia:</strong>Grazie a
+            questa acquisizione, lo sviluppo dei nuovi prodotti Herbalife
+            beneficerà di test clinici interni ancora più rigorosi. Questo si
+            traduce in tre vantaggi fondamentali per i clienti:
+            <ul className="list-decimal list-inside">
+              <li>
+                <strong>Maggiore biodisponibilità:</strong> Certezza assoluta
+                che i nutrienti vengano assorbiti dal corpo in modo ottimale.
+              </li>
+              <li>
+                <strong>Standard di sicurezza elevatissimi:</strong> Controllo
+                totale della filiera scientifica.
+              </li>
+              <li>
+                <strong>Innovazione contro l'invecchiamento:</strong> Nuove
+                formule mirate alla salute cellulare, supportate da dati clinici
+                inattaccabili.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </>
+    ),
+  },
   {
     title: "ricerca e sviluppo",
     video: "https://youtu.be/j-SdPY9XSrs",
