@@ -72,46 +72,46 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="it-IT" dir="ltr">
-      <head>
+      <body>
         <Script
           id="theme-color"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-      (function () {
-        function updateThemeColor() {
-          // 1. Controlla l'attributo data-theme sull'elemento <html> o le preferenze di sistema
-          var currentTheme = document.documentElement.getAttribute('data-theme');
-          var isDark = currentTheme === 'dark' || (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            (function () {
+              function updateThemeColor() {
+                // 1. Controlla l'attributo data-theme sull'elemento <html> o le preferenze di sistema
+                var currentTheme = document.documentElement.getAttribute('data-theme');
+                var isDark = currentTheme === 'dark' || (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+                // 2. Trova o crea il meta tag theme-color
+                var meta = document.querySelector('meta[name="theme-color"]');
+                if (!meta) {
+                  meta = document.createElement('meta');
+                  meta.name = 'theme-color';
+                  document.head.appendChild(meta);
+                }
           
-          // 2. Trova o crea il meta tag theme-color
-          var meta = document.querySelector('meta[name="theme-color"]');
-          if (!meta) {
-            meta = document.createElement('meta');
-            meta.name = 'theme-color';
-            document.head.appendChild(meta);
-          }
-          
-          // 3. Applica il colore corretto alla barra del browser
-          meta.content = isDark ? '#09090b' : '#266431';
-        }
+                // 3. Applica il colore corretto alla barra del browser
+                meta.content = isDark ? '#09090b' : '#266431';
+              }
         
-        // Esegui subito al caricamento iniziale
-        updateThemeColor();
-        
-        // Ascolta i cambiamenti di sistema operativo
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeColor);
-        
-        // Osserva i cambi dinamici dell'attributo data-theme (quando l'utente usa il toggle sul sito)
-        var observer = new MutationObserver(updateThemeColor);
-        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-      })();
-    `,
+              // Esegui subito al caricamento iniziale
+              updateThemeColor();
+
+              // Ascolta i cambiamenti di sistema operativo
+              window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeColor);
+
+              // Osserva i cambi dinamici dell'attributo data-theme (quando l'utente usa il toggle sul sito)
+              var observer = new MutationObserver(updateThemeColor);
+              observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+              })();
+          `,
           }}
         />
         <Script
           id="gtm-script"
-          strategy="lazyOnLoad"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
                 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -122,8 +122,6 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-      </head>
-      <body>
         {gtmId && (
           <noscript>
             <iframe
