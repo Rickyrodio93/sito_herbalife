@@ -215,7 +215,7 @@ export default function ModalRiepilogo({
                           {/* totale riga */}
                           <td className="text-right py-3.5 px-2 font-semibold font-mono text-zinc-950 dark:text-zinc-50">
                             {isCliente
-                              ? cad * p.quantita
+                              ? (cad * p.quantita).toFixed(2)
                               : totaleRiga.toFixed(2)}
                             €
                           </td>
