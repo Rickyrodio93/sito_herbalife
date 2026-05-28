@@ -20,6 +20,12 @@ export const metadata = {
             }
         ]
     },
+    alternates: {
+    canonical: "https://www.riccardorodio.com/ricette",
+    languages: {
+      "it-IT": "https://www.riccardorodio.com"
+    }
+  },
 }
 
 export default function Ricette() {

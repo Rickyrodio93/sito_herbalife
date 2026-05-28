@@ -528,5 +528,12 @@ export const ricette = [
         prodotti: [
             "pro 20 select"
         ]
+    },
+    {
+        id: 65,
+        titolo: "fondente al cioccolato",
+        prodotti: [
+            "rebuind strength"
+        ]
     }
 ]

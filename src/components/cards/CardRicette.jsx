@@ -1,45 +1,51 @@
+"use client";
 import { motion } from "framer-motion";
 
 export default function CardRicette({ titolo, id }) {
   // formattazione per caricare correttamente le immagini e i file
-  const formatID = (id) => {
-    if (!id) return "000";
-    if (id.toString().length == 1) return `00${id}`;
-    if (id.toString().length == 2) return `0${id}`;
-    return id.toString();
-  };
+  const formatID = (num) => String(num ?? 0).padStart(3, "0");
 
   //varianti per animazione
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 100, damping: 15 },
+    },
+  };
 
+  const formattedId = formatID(id);
   return (
     <>
       <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0, y: 100 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-        }}
-        className="w-full p-4 aspect-3/4 lg:aspect-7/9 bg-white dark:bg-[#333333] rounded-lg"
+        variants={cardVariants}
+        className="w-full bg-white dark:bg:zinc-900/50 border border-zinc-150 dark:border-zinc-800/80 rounded-2xl p-3 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 group"
       >
-        <div
-          className="h-3/4 bg-no-repeat bg-center bg-cover flex justify-center items-center rounded-md"
-          style={{
-            backgroundImage: `url(/immagini/ricette/fotoRicette/${formatID(
-              id
-            )}.webp)`,
-          }}
-        ></div>
-        <div className="h-37.5 flex flex-col justify-between items-center">
-          <h3 className="text-herbalife-1 capitalize font-bold text-xl">
+        {/* immagine */}
+        <div className="w-full aspect-4/3 sm:aspect-square overflow-hidden rounded-xl relative bg-zinc-100 dark:bg-zinc-800">
+          <div
+          className="absolute inset-0 bg-no-repeat bg-center bg-cover transition-transform duration-500 group-hover:scale-105"
+            style={{
+              backgroundImage: `url(/immagini/ricette/fotoRicette/${formattedId}.webp)`,
+            }}
+          />
+
+          <div />
+        </div>
+
+        {/* sfumatura decorativa */}
+        <div className="flex flex-col gap-4 pt-4 px-1 grow justify-between">
+          <h3 className="text-zinc-800 dark:text-zinc-100 font-bold text-lg leading-snug line-clamp-2 capitalize group-hover:text-herbalife-1 dark:group-hover:text-green-400 transition-colors duration-200">
             {titolo}
           </h3>
           <a
-            className="bg-black text-white px-4 py-2 rounded-full hover:bg-[#333333] dark:hover:bg-[#131313]"
-            href={`/documenti/ricette/${formatID(id)}.pdf`}
+            href={`/documenti/ricette/${formattedId}.pdf`}
             target="_blank"
+            rel="noopener noreferrer"
+            className="w-full text-center text-sm font-semibold tracking-wide text-zinc-700 dark:text-zinc-300 bg-zinc-100 hover:bg-herbalife-1 dark:bg-zinc-800 dark:hover:bg-green-500 hover:text-white dark:hover:text-zinc-950 py-3 rounded-xl transition-all duration-300 active:scale-98"
           >
-            scopri di più
+            visualizza ricetta
           </a>
         </div>
       </motion.div>
