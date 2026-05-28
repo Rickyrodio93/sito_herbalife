@@ -13,13 +13,13 @@ export default function ProgressBar() {
         style={{
           scaleX,
           position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
+          bottom: 4,
+          left: 24,
+          right: 24,
           height: 3,
           originX: 0,
         }}
-        className="bg-herbalife-1 dark:bg-herbalife-3 z-50"
+        className="bg-herbalife-1 dark:bg-herbalife-3 z-50 rounded-full"
       ></motion.div>
     </>
   );

@@ -22,7 +22,7 @@ export const metadata = {
 export default function Preventivo() {
     return (
         <>
-            <main className="pb-25 px-5 lg:px-10 text-balance">
+            <main className="pt-28 md:pt-32 px-6 sm:p-16">
                 <PreventivoWrapper />
             </main>
         </>

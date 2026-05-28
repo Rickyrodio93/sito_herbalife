@@ -23,7 +23,7 @@ export default function SwiperCard() {
   };
 
   return (
-    <div className="relative w-full h-[calc(100dvh-var(--spacing-nav))] mt-15 overflow-hidden">
+    <div className="relative w-full h-dvh mt-15 overflow-hidden">
       <Swiper
         spaceBetween={0}
         centeredSlides={true}
@@ -41,7 +41,6 @@ export default function SwiperCard() {
           [&_.swiper-button-next::after]:text-lg [&_.swiper-button-prev::after]:text-lg
           [&_.swiper-navigation-icon]:w-4!
           [&_.swiper-pagination-bullet-active]:bg-herbalife-2! [&_.swiper-pagination-bullet]:bg-zinc-300!"
-        // className="mySwiper w-full h-full mt-15 overflow-hidden"
       >
         {slides.map((slide, index) => (
           <SwiperSlide

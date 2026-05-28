@@ -26,7 +26,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="h-nav text-[15px] sticky z-50 top-0 left-0 right-0 flex items-center border-b border-zinc-200/60 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md transition-colors duration-300">
+    <nav className="h-nav text-[15px] fixed z-50 top-0 lg:top-4 left-0 right-0 mx-auto max-w-5xl rounded-full flex items-center border border-zinc-200/60 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md transition-colors duration-300">
       <div className="px-4 flex items-center justify-between w-full max-w-7xl mx-auto">
         <Link href="/" title="Home" className="flex items-center">
           <Image
