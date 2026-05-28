@@ -80,19 +80,13 @@ export default function Tabella({
                 </SkeletonTheme>
               ))
             : prodotti.map((categoria, index) => {
-                const isCliente = ruolo === "cliente";
-                const isAperta = isCliente
-                  ? !!categorieAperte[categoria.title]
-                  : true;
+                const isAperta = !!categorieAperte[categoria.title];
+
                 return (
                   <React.Fragment key={index}>
                     <tr
-                      onClick={() =>
-                        isCliente && toggleCategoria(categoria.title)
-                      }
-                      className={
-                        isCliente ? "cursor-pointer group select-none " : ""
-                      }
+                      onClick={() => toggleCategoria(categoria.title)}
+                      className="cursor-pointer group select-none "
                     >
                       <td
                         colSpan={tableThead.length}
@@ -101,15 +95,16 @@ export default function Tabella({
                         <div className="flex items-center justify-between w-full">
                           <span className="text-sm font-black uppercase tracking-wider text-herbalife-1 dark:text-herbalife-2">
                             {categoria.title}
-                            <span className="text-sm text-zinc-400 dark:text-zinc-500 font-bold font-mono ml-2 bg-zinc-200 dark:bg-zinc-800 px-2 py-0.5 rounded-full">{categoria.data.length} prodotti</span>
+                            <span className="text-sm text-zinc-400 dark:text-zinc-500 font-bold font-mono ml-2 bg-zinc-200 dark:bg-zinc-800 px-2 py-0.5 rounded-full">
+                              {categoria.data.length} prodotti
+                            </span>
                           </span>
 
-                          {isCliente &&
-                            (isAperta ? (
-                              <ChevronUp size={16} />
-                            ) : (
-                              <ChevronDown size={16} />
-                            ))}
+                          {isAperta ? (
+                            <ChevronUp size={16} />
+                          ) : (
+                            <ChevronDown size={16} />
+                          )}
                         </div>
                       </td>
                     </tr>
@@ -126,7 +121,6 @@ export default function Tabella({
                             usoDistributore={usoDistributore}
                             livelloMarketing={livelloMarketing}
                             onAggiungi={handleAggiungiProdotto}
-                            isCliente={isCliente}
                           />
                         ))}
                     </AnimatePresence>

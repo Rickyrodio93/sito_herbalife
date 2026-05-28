@@ -1,12 +1,28 @@
 "use client"
-import Background from "@/components/background/background";
-import FloatingCallCTA from "@/components/FoatingCallCTA";
-import ProdottiConsigliati from "@/components/prodottiConsigliati/prodottiConsigliati";
-import Section from "@/components/Section/Section";
-import SectionComponent from "@/components/Section/SectionComponent";
-import { SECTIONHOME } from "@/components/sections";
+
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { SECTIONHOME } from "@/components/sections";
+import Background from "@/components/background/background";
+import Section from "@/components/Section/Section";
+
+const SectionComponentDinamico = dynamic(
+  () => import("@/components/Section/SectionComponent"),
+  {ssr: true}
+)
+// import SectionComponent from "@/components/Section/SectionComponent";
+// import FloatingCallCTA from "@/components/FoatingCallCTA";
+// import ProdottiConsigliati from "@/components/prodottiConsigliati/prodottiConsigliati";
+
+const ProdottiConsigliatiDinamici = dynamic(
+  () => import("@/components/prodottiConsigliati/prodottiConsigliati"),
+  { 
+    ssr: false, // Se caricano dati lato client o usano localizzazioni/storage
+    loading: () => <div className="h-60 w-full bg-zinc-100 dark:bg-zinc-900 animate-pulse rounded-2xl" /> 
+  }
+);
+const FloatingCallCTA = dynamic(() => import("@/components/FoatingCallCTA"), { ssr: false });
 
 
 export default function Home() {
@@ -59,16 +75,16 @@ export default function Home() {
           // se è presente un title --> wrapper <Section />
           return (
             <Section key={index}>
-              <SectionComponent index={index} section={section} />
+              <SectionComponentDinamico index={index} section={section} />
             </Section>
           );
         })}
 
         <Section>
           <h3 className="text-herbalife-1 dark:text-green-600 text-2xl font-semibold capitalize py-10">prodotti consigliati</h3>
-          <ProdottiConsigliati pagina="prodottiHome1" />
+          <ProdottiConsigliatiDinamici pagina="prodottiHome1" />
           <h3 className="text-herbalife-1 dark:text-green-600 text-2xl font-semibold capitalize py-10">i più venduti</h3>
-          <ProdottiConsigliati pagina="prodottiHome2" />
+          <ProdottiConsigliatiDinamici pagina="prodottiHome2" />
         </Section>
       </main>
       <FloatingCallCTA />

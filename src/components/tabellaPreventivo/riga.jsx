@@ -17,7 +17,6 @@ export default function Riga({
   usoDistributore,
   livelloMarketing,
   onAggiungi,
-  isCliente,
 }) {
   const [isZoomOpen, setIsZoomOpen] = useState(false);
 
@@ -82,35 +81,23 @@ export default function Riga({
   return (
     <>
       <motion.tr
-        initial={
-          isCliente
-            ? {
-                opacity: 0,
-                y: -20,
-                scaleY: 0.8,
-                transformOrigin: "top",
-              }
-            : false
-        }
-        animate={
-          isCliente
-            ? {
-                opacity: 1,
-                y: 0,
-                scaleY: 1,
-              }
-            : false
-        }
-        exit={
-          isCliente
-            ? {
-                opacity: 0,
-                y: -20, // Rientra verso l'alto, scomparendo sotto la categoria
-                scaleY: 0.8,
-                transition: { duration: 0.15 }, // Uscita leggermente più rapida per dare un feeling scattante
-              }
-            : false
-        }
+        initial={{
+          opacity: 0,
+          y: -20,
+          scaleY: 0.8,
+          transformOrigin: "top",
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          scaleY: 1,
+        }}
+        exit={{
+          opacity: 0,
+          y: -20, // Rientra verso l'alto, scomparendo sotto la categoria
+          scaleY: 0.8,
+          transition: { duration: 0.15 }, // Uscita leggermente più rapida per dare un feeling scattante
+        }}
         transition={{
           type: "spring",
           stiffness: 350,
@@ -204,10 +191,10 @@ export default function Riga({
               >
                 aggiungi
               </button>
-              <button 
+              <button
                 onClick={handleRimuovi}
                 className="p-1 text-zinc-400 hover:text-red-500 border border-zinc-200 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 rounded transition-colors cursor-pointer"
-                >
+              >
                 <Trash size={14} />
               </button>
             </div>

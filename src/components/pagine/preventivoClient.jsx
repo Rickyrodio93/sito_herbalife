@@ -10,7 +10,6 @@ import axios from "axios";
 import Papa from "papaparse";
 import Riepilogo from "@/components/tabellaPreventivo/riepilogo";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
-import Section from "../Section/Section";
 
 export default function PreventivoClient() {
   const [ruolo, setRuolo] = useState(""); // Default vuoto: "" | cliente | CP | DS
@@ -201,35 +200,31 @@ export default function PreventivoClient() {
               )}
             </div>
 
-            {ruolo !== "" && (
-              <>
-                <div className="mb-6">
-                  {/* barra di ricerca */}
-                  <Input
-                    type={"search"}
-                    placeholder={"ricerca prodotto..."}
-                    onChange={(e) => setSearch(e.target.value)}
-                  >
-                    <div className="h-full aspect-square flex items-center justify-center text-herbalife-1 font-bold">
-                      <Search size={24} />
-                    </div>
-                  </Input>
+            <div className="mb-6">
+              {/* barra di ricerca */}
+              <Input
+                type={"search"}
+                placeholder={"ricerca prodotto..."}
+                onChange={(e) => setSearch(e.target.value)}
+              >
+                <div className="h-full aspect-square flex items-center justify-center text-herbalife-1 font-bold">
+                  <Search size={24} />
                 </div>
+              </Input>
+            </div>
 
-                {/* tabella */}
-                <UltimaModifica />
-                <div className="lg:h-[80vh] max-w-4xl overflow-x-auto shadow-nav sticky top-nav rounded-lg">
-                  <Tabella
-                    prodotti={prodottiFiltrati}
-                    isLoading={loading}
-                    ruolo={ruolo}
-                    usoDistributore={usoDistributore}
-                    livelloMarketing={livelloMarketing}
-                    handleAggiungiProdotto={handleAggiungiProdotto}
-                  />
-                </div>
-              </>
-            )}
+            {/* tabella */}
+            <UltimaModifica />
+            <div className="lg:h-[80vh] max-w-4xl overflow-x-auto shadow-nav sticky top-nav rounded-lg">
+              <Tabella
+                prodotti={prodottiFiltrati}
+                isLoading={loading}
+                ruolo={ruolo}
+                usoDistributore={usoDistributore}
+                livelloMarketing={livelloMarketing}
+                handleAggiungiProdotto={handleAggiungiProdotto}
+              />
+            </div>
           </div>
 
           {/* riepilogo costi */}
