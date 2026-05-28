@@ -22,7 +22,7 @@ const ProdottiConsigliatiDinamici = dynamic(
     loading: () => <div className="h-60 w-full bg-zinc-100 dark:bg-zinc-900 animate-pulse rounded-2xl" /> 
   }
 );
-const FloatingCallCTA = dynamic(() => import("@/components/FoatingCallCTA"), { ssr: false });
+const FloatingCallCTA = dynamic(() => import("@/components/FloatingCallCTA"), { ssr: false });
 
 
 export default function Home() {

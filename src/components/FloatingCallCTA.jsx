@@ -14,7 +14,7 @@ export default function FloatingCallCTA({isOpenMobile = false}) {
         opacity: isOpenMobile ? 0 : 1 
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed bottom-6 left-6 z-999 pointer-events-none"
+      className="fixed bottom-6 left-6 z-49 pointer-events-none"
     >
         <motion.a
           href={`tel:${phoneNumber}`}

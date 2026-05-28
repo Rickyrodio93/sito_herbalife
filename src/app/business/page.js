@@ -1,5 +1,5 @@
 import Background from "@/components/background/background";
-import FloatingCallCTA from "@/components/FoatingCallCTA";
+import FloatingCallCTA from "@/components/FloatingCallCTA";
 import Section from "@/components/Section/Section"
 import SectionComponent from "@/components/Section/SectionComponent"
 import { SECTIONBUSINESS } from "@/components/sections";
