@@ -1072,13 +1072,18 @@ export const SECTIONBUSINESS = [
     ),
   },
   {
-    title: "herbalife nel 2025",
+    title: `herbalife nel ${new Date().getFullYear() - 1}`,
     text: (
       <>
         <TableBrand dati={Dati} bg={"bg-herbalife-1"} />
-        <FatturatoChart />
       </>
     ),
+  },
+  {
+    title: `fatturato herbalife (1980 - ${new Date().getFullYear() - 1})`,
+    text: (
+    <FatturatoChart />
+    )
   },
   {
     title: "perchè scegliere l'attività herbalife?",
@@ -1184,7 +1189,6 @@ export const SECTIONBUSINESS = [
   {
     title: "il tuo starter pack",
     image: "/immagini/business/herbalife-member-pack.webp",
-    square: true,
     text: (
       <>
         Sottoscrivi il contratto da Incaricato alle vendite Herbalife Nutrition

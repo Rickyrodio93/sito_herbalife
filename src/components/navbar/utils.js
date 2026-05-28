@@ -86,7 +86,7 @@ export const Menus = [
                 icon: Network
             },
             {
-                name: "candidati",
+                name: "entra nel team",
                 desc: "compila il form ed entra a far parte del mio team",
                 link: "https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305",
                 icon: LetterText
