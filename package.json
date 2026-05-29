@@ -23,6 +23,7 @@
     "react-multi-carousel": "^2.8.6",
     "react-player": "^3.4.0",
     "recharts": "^3.8.1",
+    "resend": "^6.12.4",
     "swiper": "^12.1.4"
   },
   "devDependencies": {

@@ -4,6 +4,7 @@ import ClientLogic from "@/components/clientLogic";
 import Footer from "@/components/footer/Footer";
 import Script from "next/script";
 import DisclaimerPopup from "@/components/DisclaimerPopup";
+import AssistantChat from "@/components/assistantChat/AssistantChat";
 
 export const metadata = {
   title: {
@@ -138,6 +139,7 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
         <DisclaimerPopup />
+        <AssistantChat />
       </body>
     </html>
   );
