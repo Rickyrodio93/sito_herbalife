@@ -69,7 +69,7 @@ export default function FormBusiness() {
 
       <AnimatePresence>
         {/* step 1 */}
-        {step === 1 && (
+        {/* {step === 1 && ( */}
           <motion.div
             key="step1"
             initial={{ opacity: 0, x: -20 }}
@@ -154,10 +154,10 @@ export default function FormBusiness() {
               Continua <ArrowRight size={16} />
             </button>
           </motion.div>
-        )}
+        {/* )} */}
 
         {/* step 2 */}
-        {step === 2 && (
+        {/* {step === 2 && ( */}
           <motion.div
             key="step2"
             initial={{ opacity: 0, x: -20 }}
@@ -220,10 +220,10 @@ export default function FormBusiness() {
               </button>
             </div>
           </motion.div>
-        )}
+        {/* )} */}
         {/* step 3 */}
 
-        {step === 3 && (
+        {/* {step === 3 && ( */}
           <motion.div
             key="step3"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -247,7 +247,7 @@ export default function FormBusiness() {
               mail di conferma con i primi video informativi sull'attività.
             </div>
           </motion.div>
-        )}
+        {/* )} */}
       </AnimatePresence>
     </div>
   );

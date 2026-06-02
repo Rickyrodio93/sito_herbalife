@@ -16,7 +16,7 @@ export default function Background({ src, titolo, children }) {
   return (
     <div
       ref={ref}
-      className="min-h-[70dvh] w-full grid grid-cols-1 lg:grid-cols-12 bg-zinc-100 dark:bg-zinc-900"
+      className="min-h-[70dvh] w-full grid grid-cols-1 lg:grid-cols-12 bg-zinc-200 dark:bg-zinc-900"
     >
       {/* colonna sinistra */}
       <div className="lg:col-span-5 flex flex-col justify-center p-8 md:p-16 z-20 order-2 lg:order-1">
@@ -40,7 +40,7 @@ export default function Background({ src, titolo, children }) {
             className="object-cover"
           />
         </motion.div>
-        <div className="hidden lg:block absolute inset-y-0 left-0 w-24 bg-linear-to-r from-zinc-100 dark:from-zinc-900 to-transparent"/>
+        <div className="hidden lg:block absolute inset-y-0 left-0 w-24 bg-linear-to-r from-zinc-200 dark:from-zinc-900 to-transparent"/>
       </div>
     </div>
   );

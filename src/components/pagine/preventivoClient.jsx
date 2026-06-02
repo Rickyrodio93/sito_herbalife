@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import InputPreventivo from "@/components/tabellaPreventivo/inputPreventivo";
 import Input from "@/components/Inputs/Input";
-import { Search } from "lucide-react";
+import { ArrowBigDown, ArrowDown, ChevronDown, Search } from "lucide-react";
 import UltimaModifica from "@/components/UltimaModifica/UltimaModifica";
 import Tabella from "@/components/tabellaPreventivo/tabella";
 import axios from "axios";
@@ -130,72 +130,159 @@ export default function PreventivoClient() {
           <div className="lg:col-span-8 w-full max-w-4xl mx-auto">
             {/* input */}
             <div className="flex flex-col gap-4 items-center mb-10 w-full">
-              <InputPreventivo
-                title="ruolo"
+              <Input
+                as="select"
+                name="ruolo"
                 value={ruolo}
                 onChange={handleRuoloChange}
-                option={[
-                  { name: "-- seleziona ruolo --", optionValue: "" },
-                  { name: "cliente", optionValue: "cliente" },
-                  { name: "cliente privilegiato", optionValue: "CP" },
-                  { name: "distributore", optionValue: "DS" },
-                ]}
-              />
+                iconaDestra={<ChevronDown size={18} />}
+              >
+                <option
+                  value=""
+                  className="dark:bg-zinc-900 text-zinc-400"
+                  disabled
+                >
+                  -- seleziona ruolo --
+                </option>
+                <option
+                  value="cliente"
+                  className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                >
+                  Cliente
+                </option>
+                <option
+                  value="CP"
+                  className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                >
+                  Cliente Privilegiato
+                </option>
+                <option
+                  value="DS"
+                  className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                >
+                  Distributore
+                </option>
+              </Input>
 
               {/* se cliente privilegiato */}
               {ruolo === "CP" && (
-                <InputPreventivo
-                  title="livello"
+                <Input
+                  as="select"
+                  name="livello"
                   value={livelloMarketing}
                   onChange={(e) => setLivelloMarketing(e.target.value)}
-                  option={[
-                    { name: "-- seleziona --", optionValue: "" },
-                    { name: "bronze (22%)", optionValue: 25 },
-                    { name: "silver (31%)", optionValue: 35 },
-                    { name: "gold (42%)", optionValue: 42 },
-                  ]}
-                />
+                  iconaDestra={<ChevronDown size={18} />}
+                >
+                  <option
+                    value=""
+                    className="dark:bg-zinc-900 text-zinc-400"
+                    disabled
+                  >
+                    -- seleziona livello --
+                  </option>
+                  <option
+                    value="25"
+                    className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                  >
+                    bronze (22%)
+                  </option>
+                  <option
+                    value="35"
+                    className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                  >
+                    silver (31%)
+                  </option>
+                  <option
+                    value="42"
+                    className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                  >
+                    gold (38%)
+                  </option>
+                </Input>
               )}
 
               {/* se distributore */}
               {ruolo === "DS" && (
                 <>
-                  <InputPreventivo
-                    title="livello"
+                  <Input
+                    as="select"
+                    name="livello"
                     value={livelloMarketing}
                     onChange={(e) => setLivelloMarketing(e.target.value)}
-                    option={[
-                      { name: "-- seleziona livello --", optionValue: "" },
-                      { name: "distributore (25%)", optionValue: 25 },
-                      { name: "senior consultant (35%)", optionValue: 35 },
-                      { name: "qualifier producer (42%)", optionValue: 42 },
-                      { name: "supervisore o oltre (50%)", optionValue: 50 },
-                    ]}
-                  />
-                  <InputPreventivo
-                    title="tipologia"
+                    iconaDestra={<ChevronDown size={18} />}
+                  >
+                    <option
+                      value=""
+                      className="dark:bg-zinc-900 text-zinc-400"
+                      disabled
+                    >
+                      -- seleziona livello --
+                    </option>
+                    <option
+                      value="25"
+                      className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                    >
+                      distributore (25%)
+                    </option>
+                    <option
+                      value="35"
+                      className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                    >
+                      senior consultant (35%)
+                    </option>
+                    <option
+                      value="42"
+                      className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                    >
+                      qualifier producer (42%)
+                    </option>
+                    <option
+                      value="50"
+                      className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                    >
+                      supervisore o oltre (50%)
+                    </option>
+                  </Input>
+
+                  <Input
+                    as="select"
+                    name="tipologia"
                     value={usoDistributore}
                     onChange={(e) => setUsoDistributore(e.target.value)}
-                    option={[
-                      {
-                        name: "-- seleziona tipologia uso --",
-                        optionValue: "",
-                      },
-                      { name: "uso personale", optionValue: "uso personale" },
-                      {
-                        name: "vendita occasionale",
-                        optionValue: "vendita occasionale",
-                      },
-                      {
-                        name: "Vendita abituale ( fino a 6410€/anno)",
-                        optionValue: "abituale <6410",
-                      },
-                      {
-                        name: "Vendita abituale ( oltre 6410€/anno)",
-                        optionValue: "abituale >6410",
-                      },
-                    ]}
-                  />
+                    iconaDestra={<ChevronDown size={18} />}
+                  >
+                    <option
+                      value=""
+                      className="dark:bg-zinc-900 text-zinc-400"
+                      disabled
+                    >
+                      -- seleziona tipologia uso --
+                    </option>
+                    <option
+                      value="uso personale"
+                      className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                    >
+                      uso personale
+                    </option>
+                    <option
+                      value="vendita occasionale"
+                      className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                    >
+                      vendita occasionale
+                    </option>
+                    <option
+                      value="abituale <6410"
+                      className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                    >
+                      Vendita abituale ( fino a 6410€/anno)
+                    </option>
+                    <option
+                      value="abituale >6410"
+                      className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
+                    >
+                      Vendita abituale ( oltre 6410€/anno)
+                    </option>
+                  </Input>
                 </>
               )}
             </div>
@@ -203,14 +290,16 @@ export default function PreventivoClient() {
             <div className="mb-6">
               {/* barra di ricerca */}
               <Input
-                type={"search"}
-                placeholder={"ricerca prodotto..."}
+                as="input"
+                type="search"
+                placeholder="ricerca prodotto..."
                 onChange={(e) => setSearch(e.target.value)}
-              >
-                <div className="h-full aspect-square flex items-center justify-center text-herbalife-1 font-bold">
-                  <Search size={24} />
-                </div>
-              </Input>
+                iconaDestra={
+                  <div className="text-herbalife-1 font-bold">
+                    <Search size={24} />
+                  </div>
+                }
+              />
             </div>
 
             {/* tabella */}
