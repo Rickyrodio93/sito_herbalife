@@ -73,7 +73,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="it-IT" dir="ltr">
-      <body>
+      <body className="bg-gray-200 dark:bg-p selection:bg-herbalife-3 dark:selection:bg-herbalife-1 selection:text-white">
         <Script
           id="theme-color"
           strategy="beforeInteractive"
