@@ -1020,7 +1020,7 @@ export const SECTIONBUSINESS = [
         esplorare nuove fonti di guadagno. Per conoscere le entrate medie
         mensili più comuni, consulta il nostro{" "}
         <a
-          href="/documenti/guadagni/guadagni-tipici.pdf"
+          href="https://www.herbalife.com/content/dam/global-reusable-assets/documents/pd-statement-typical-distributor-earnings-it-it.pdf"
           className="section-a"
           target="_blank"
         >

@@ -20,7 +20,7 @@ export default function ModalRiepilogo({
   const modalThead = isCliente
     ? ["id", "prodotto", "cad.", "q.tà", "totale"]
     : ["id", "prodotto", "cad.", "q.tà", "sconto", "tasse", "iva", "totale"];
-  const phoneNumber = "+393496635371";
+  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
   const calcolaPrezzoFinito = (prodotto) => {
     return calcoloPrezzo(

@@ -27,7 +27,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed z-50 top-0 left-0 right-0 transition-all duration-300 h-nav ${
+      className={`fixed z-50 top-0 left-0 right-0 transition-all duration-300 h-nav shadow-nav ${
         isOpen
           ? "top-0 mx-0 max-w-full rounded-none bg-white dark:bg-zinc-950 border-b border-zinc-100 dark:border-zinc-900"
           : "top-2 mx-2 lg:mx-auto max-w-5xl rounded-full border border-zinc-300/60 dark:border-zinc-700/90 bg-white/90 dark:bg-zinc-900/80 backdrop-blur-md text-[15px]"

@@ -3,7 +3,7 @@ import { Phone } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function FloatingCallCTA({isOpenMobile = false}) {
-  const phoneNumber = "+393496635371";
+  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
   return (
     <>

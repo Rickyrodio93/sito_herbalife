@@ -11,9 +11,6 @@ const SectionComponentDinamico = dynamic(
   () => import("@/components/Section/SectionComponent"),
   {ssr: true}
 )
-// import SectionComponent from "@/components/Section/SectionComponent";
-// import FloatingCallCTA from "@/components/FoatingCallCTA";
-// import ProdottiConsigliati from "@/components/prodottiConsigliati/prodottiConsigliati";
 
 const ProdottiConsigliatiDinamici = dynamic(
   () => import("@/components/prodottiConsigliati/prodottiConsigliati"),

@@ -28,6 +28,8 @@ export default function Input({
     attributiSicuri.type = type;
   }
 
+  const isSelectPlaceholder = as === "select" && (value === "" || !value);
+
   return (
     <div className={`relative flex items-center w-full max-w-5xl mx-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/50 backdrop-blur-md focus-within:border-herbalife-1 dark:focus-within:border-green-500 focus-within:ring-2 focus-within:ring-herbalife-1/20 dark:focus-within:ring-green-500/20 shadow-sm transition-all duration-300 group ${
       as === "textarea" ? "h-auto py-2" : "h-14"
@@ -35,8 +37,14 @@ export default function Input({
       
       <ComponenteTag
         {...attributiSicuri}
-        className={`w-full h-full bg-transparent pl-5 pr-12 text-base text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 font-medium outline-none border-none appearance-none ${
+        className={`w-full h-full bg-transparent pl-5 pr-12 text-base text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 font-medium outline-none border-none focus:ring-0 appearance-none cursor-text ${
+          as === "select" ? "cursor-pointer" : ""
+        } ${
           as === "textarea" ? "h-32 pt-2 resize-none" : ""
+        } ${
+          isSelectPlaceholder
+          ? "text-zinc-400! dark:text-zinc-500!"
+          : "text-zinc-900! dark:text-zinc-100!"
         }`}
       >
         {/* I children (<option>) vengono inseriti SOLO se il tag è effettivamente una select */}
@@ -44,11 +52,11 @@ export default function Input({
       </ComponenteTag>
 
       {/* Icona decorativa a destra */}
-      {(iconaDestra || as === "select") && (
-        <div className={`absolute right-4 flex items-center justify-center pointer-events-none text-zinc-400 group-focus-within:text-herbalife-1 dark:group-within:text-green-400 transition-colors duration-300 ${
+      {iconaDestra && (
+        <div className={`absolute right-4 flex items-center justify-center pointer-events-none text-zinc-400 group-focus-within:text-herbalife-1 dark:group-focus-within:text-green-400 transition-colors duration-300 ${
           as === "textarea" ? "top-4" : ""
         }`}>
-          {iconaDestra ? iconaDestra : <span className="text-xs">▼</span>}
+          {iconaDestra}
         </div>
       )}
     </div>
