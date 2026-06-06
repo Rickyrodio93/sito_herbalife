@@ -53,9 +53,8 @@ export default function Home() {
             className="w-full sm:w-auto"
           >
             <Link
-              // href="https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305"
-              href="/candidati"
-              // target="_blank"
+              href="https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305"
+              target="_blank"
               className="block text-center text-zinc-900 dark:text-white bg-transparent hover:bg-zinc-900/5 text-base md:text-lg uppercase font-bold tracking-wider px-8 py-4 rounded-xl border-2 border-zinc-900 dark:border-white transition-all duration-300"
 
             >

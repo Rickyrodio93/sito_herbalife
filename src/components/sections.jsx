@@ -13,6 +13,7 @@ import { Dati } from "../components/tableBrand/datiHL";
 import Card from "../components/cards/cardHome";
 import SwiperCard from "../components/swiper/swiperCard";
 import Link from "next/link";
+import FormSelezionabile from "./forms/FormSelezionabile";
 
 const phoneNumber = "+393496635371";
 
@@ -116,9 +117,7 @@ export const SECTIONHOME = [
         milioni di persone in tutto il mondo che hanno già detto sì a Herbalife
         Nutrition.{" "}
         <span>
-          <Link href="/panoramica" className="section-a">
-            scopri di più
-          </Link>
+          <Link href="/panoramica">scopri di più</Link>
         </span>
       </>
     ),
@@ -134,9 +133,7 @@ export const SECTIONHOME = [
         globale nell'ambito del benessere nata per supportarti nel vivere la tua
         vita al meglio.{" "}
         <span>
-          <Link href="/business" className="section-a">
-            scopri di più
-          </Link>
+          <Link href="/business">scopri di più</Link>
         </span>
       </>
     ),
@@ -173,9 +170,7 @@ export const SECTIONHOME = [
           Scegliere Herbalife oggi significa affidarsi a un brand che unisce la
           natura alla scienza medica più avanzata.
         </i>{" "}
-        <Link href="/scienza" className="section-a">
-          scopri la nostra scienza
-        </Link>
+        <Link href="/scienza">scopri la nostra scienza</Link>
       </>
     ),
   },
@@ -202,6 +197,10 @@ export const SECTIONHOME = [
         part-time.
       </>
     ),
+  },
+  {
+    title: "come iniziare",
+    text: <FormSelezionabile />,
   },
 ];
 
@@ -236,10 +235,7 @@ export const SECTIONCONTROLLOPESO = [
         prodotti Herbalife Nutrition e che la rende l'azienda n° 1 al mondo per
         i sostituti del pasto.{" "}
         <span>
-          <a
-            href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1816"
-            className="section-a"
-          >
+          <a href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1816">
             scopri i prodotti
           </a>
         </span>
@@ -259,10 +255,7 @@ export const SECTIONCONTROLLOPESO = [
         barrette e snack ti aiuterà a raggiungere i tuoi obiettivi nutrizionali
         e a rimanere in linea con il tuo piano alimentare.{" "}
         <span>
-          <a
-            href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1818"
-            className="section-a"
-          >
+          <a href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1818">
             scopri i prodotti
           </a>
         </span>
@@ -280,10 +273,7 @@ export const SECTIONCONTROLLOPESO = [
         prodotti sono formulati per supportare una dieta a basso contenuto
         calorico.{" "}
         <span>
-          <a
-            href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1709"
-            className="section-a"
-          >
+          <a href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1709">
             scopri i prodotti
           </a>
         </span>
@@ -366,10 +356,7 @@ export const SECTIONOTTIMIZZA = [
         obiettivi di benessere. Se sei alla ricerca di un piano alimentare sano
         ed equilibrato, Herbalife Nutrition può darti una mano.{" "}
         <span>
-          <a
-            href="https://riccardorodio.goherbalife.com/Catalog/Categories/List/it-IT/1687"
-            className="section-a"
-          >
+          <a href="https://riccardorodio.goherbalife.com/Catalog/Categories/List/it-IT/1687">
             scopri i prodotti
           </a>
         </span>
@@ -389,10 +376,7 @@ export const SECTIONOTTIMIZZA = [
         integratori alimentari possono aiutarti a raggiungere la quantità
         giornaliera raccomandata.{" "}
         <span>
-          <a
-            href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1703"
-            className="section-a"
-          >
+          <a href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1703">
             scopri i prodotti
           </a>
         </span>
@@ -412,10 +396,7 @@ export const SECTIONOTTIMIZZA = [
         *Sostituire i grassi saturi con grassi insaturi nella dieta contribuisce
         al mantenimento di normali livelli di colesterolo.{" "}
         <span>
-          <a
-            href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1701"
-            className="section-a"
-          >
+          <a href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1701">
             scopri i prodotti
           </a>
         </span>
@@ -433,10 +414,7 @@ export const SECTIONOTTIMIZZA = [
         Per aiutarti a raggiungere la quantità giornaliera raccomandata, ti
         offriamo una serie di soluzioni ricche di fibre e integratori.{" "}
         <span>
-          <a
-            href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1700"
-            className="section-a"
-          >
+          <a href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1700">
             scopri i prodotti
           </a>
         </span>
@@ -456,10 +434,7 @@ export const SECTIONOTTIMIZZA = [
         migliorare l'assunzione proteica giornaliera e a soddisfare il tuo
         fabbisogno quotidiano.{" "}
         <span>
-          <a
-            href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1705"
-            className="section-a"
-          >
+          <a href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1705">
             scopri i prodotti
           </a>
         </span>
@@ -477,10 +452,7 @@ export const SECTIONOTTIMIZZA = [
         prodotti sono formulati per supportare una dieta a basso contenuto
         calorico.{" "}
         <span>
-          <a
-            href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1709"
-            className="section-a"
-          >
+          <a href="https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/1709">
             scopri i prodotti
           </a>
         </span>
@@ -523,7 +495,6 @@ export const SECTIONSKIN = [
           <a
             href="http://www.hlskin.ai/customer/68d8040a900d82b0b94c0c33"
             target="_blank"
-            className="section-a"
           >
             scansiona la tua pelle
           </a>
@@ -561,7 +532,6 @@ export const SECTIONSKIN = [
           <a
             href="https://riccardorodio.goherbalife.com/Catalog/Categories/List/it-IT/1688"
             target="_blank"
-            className="section-a"
           >
             scopri i prodotti
           </a>
@@ -579,7 +549,7 @@ export const SECTIONSKIN = [
         della pelle. Sono realizzati con ingredienti di qualità, prodotti
         botanici ed estratti per arricchire la tua pelle.{" "}
         <span>
-          <a href={`${ProductsList}1660`} target="_blank" className="section-a">
+          <a href={`${ProductsList}1660`} target="_blank">
             scopri i prodotti
           </a>
         </span>
@@ -596,7 +566,7 @@ export const SECTIONSKIN = [
         arricchiti con aloe vera naturale, i prodotti della linea Herbal Aloe
         migliorano e idratano i capelli e la pelle.{" "}
         <span>
-          <a href={`${ProductsList}1713`} target="_blank" className="section-a">
+          <a href={`${ProductsList}1713`} target="_blank">
             scopri i prodotti
           </a>
         </span>
@@ -621,7 +591,6 @@ export const SECTIONSKIN = [
           <a
             href="https://riccardorodio.goherbalife.com/Catalog/Product/Details/it-IT/076K"
             target="_blank"
-            className="section-a"
           >
             scopri collagene skin
           </a>
@@ -680,11 +649,7 @@ export const SECTIONSPORT = [
         una nutrizione senza compromessi.{" "}
         <span>
           visita il sito{" "}
-          <a
-            href="https://sport.wetestyoutrust.com/"
-            className="section-a"
-            target="_blank"
-          >
+          <a href="https://sport.wetestyoutrust.com/" target="_blank">
             informed sport
           </a>
         </span>
@@ -706,7 +671,6 @@ export const SECTIONSPORT = [
           <a
             href="https://riccardorodio.goherbalife.com/Catalog/Categories/List/it-IT/1684"
             target="_blank"
-            className="section-a"
           >
             scopri i prodotti
           </a>
@@ -725,7 +689,7 @@ export const SECTIONSPORT = [
         idratando ed energizzando il tuo corpo con il nostro integratore
         alimentare Lift Off®.{" "}
         <span>
-          <a href={`${ProductsList}1699`} target="_blank" className="section-a">
+          <a href={`${ProductsList}1699`} target="_blank">
             scopri i prodotti
           </a>
         </span>
@@ -743,7 +707,7 @@ export const SECTIONSPORT = [
         Herbalife24® Prolong, ideale per supportare i tuoi allenamenti
         quotidiani e aiutarti a dare il meglio.{" "}
         <span>
-          <a href={`${ProductsList}1696`} target="_blank" className="section-a">
+          <a href={`${ProductsList}1696`} target="_blank">
             scopri i prodotti
           </a>
         </span>
@@ -762,7 +726,7 @@ export const SECTIONSPORT = [
         Scopri la nostra gamma di prodotti realizzata per aiutarti a rigenerarti
         dopo gli allenamenti.{" "}
         <span>
-          <a href={`${ProductsList}1698`} target="_blank" className="section-a">
+          <a href={`${ProductsList}1698`} target="_blank">
             scopri i prodotti
           </a>
         </span>
@@ -781,7 +745,7 @@ export const SECTIONSPORT = [
         Scopri la nostra gamma di prodotti realizzata per aiutarti a rigenerarti
         dopo gli allenamenti.{" "}
         <span>
-          <a href={`${ProductsList}1708`} target="_blank" className="section-a">
+          <a href={`${ProductsList}1708`} target="_blank">
             scopri i prodotti
           </a>
         </span>
@@ -1020,7 +984,6 @@ export const SECTIONBUSINESS = [
         mensili più comuni, consulta il nostro{" "}
         <a
           href="https://www.herbalife.com/content/dam/global-reusable-assets/documents/pd-statement-typical-distributor-earnings-it-it.pdf"
-          className="section-a"
           target="_blank"
         >
           Prospetto dei Guadagni Tipici.
@@ -1059,7 +1022,6 @@ export const SECTIONBUSINESS = [
             mensili di prodotti o requisiti per l'acquisto di strumenti di
             vendita o commerciali.{" "}
             <a
-              className="section-a"
               href={`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeMessageContact}`}
               target="_blank"
             >
@@ -1110,7 +1072,6 @@ export const SECTIONBUSINESS = [
           <li className="not-last:mb-8">
             <a
               href="https://assets.herbalifenutrition.com/content/dam/regional/emea/it_it/consumable_content/policy-and-compliance/2021/05-May/SAGC_it-IT.pdf/_jcr_content/renditions/original"
-              className="section-a"
               target="_blank"
             >
               Piano compensi
@@ -1175,7 +1136,6 @@ export const SECTIONBUSINESS = [
         di crescita che premia l'impegno, i risultati e la passione.{" "}
         <a
           href={`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeMessage}`}
-          className="section-a"
           target="_blank"
         >
           Contattami per iniziare
