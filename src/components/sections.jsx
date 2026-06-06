@@ -988,14 +988,13 @@ export const SECTIONBUSINESS = [
       <>
         scansiona il QR Code per poterti registrare e avviare il tuo business
         nel mio team Herbalife. Ti basterà seguire le istruzioni e potrai
-        iniziare il tuo percorso. Se non riesci a scansionare, clicca
-        direttamente{" "}
+        iniziare il tuo percorso. Se non riesci a scansionare,{" "}
         <a
           href="https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305"
-          className="section-a"
           target="_blank"
+          rel="noopener noreferrer"
         >
-          qui.
+          registrarti direttamente da questo link
         </a>
       </>
     ),
@@ -1081,9 +1080,7 @@ export const SECTIONBUSINESS = [
   },
   {
     title: `fatturato herbalife (1980 - ${new Date().getFullYear() - 1})`,
-    text: (
-    <FatturatoChart />
-    )
+    text: <FatturatoChart />,
   },
   {
     title: "perchè scegliere l'attività herbalife?",

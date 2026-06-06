@@ -1,3 +1,6 @@
+import { Mail, MessageSquare, Phone, User } from "lucide-react";
+import Input from "../Inputs/Input";
+
 export const AccordionData = [
   {
     id: 1,
@@ -223,173 +226,173 @@ export const ContattiData = [
     id: 1,
     title: "telefono",
     content: (
-      <p className="text-center pt-10 text-2xl">
+      <div className="flex justify-center">
         <a
-          href="tel:0393496635371"
-          className="text-blue-600 hover:text-blue-700 hover:underline"
+          href={`tel:${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+          className="w-full sm:w-auto text-center bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 hover:bg-herbalife-1 hover:text-white dark:hover:bg-green-500 dark:hover:text-zinc-900 px-6 py-3 rounded-xl font-bold text-lg shadow-sm transition-all duration-300"
         >
           (+39)349-6635371
         </a>
-      </p>
+      </div>
     ),
   },
   {
     id: 2,
     title: "mail",
     content: (
-      <p className="text-center pt-10 text-2xl">
+      <div className="flex justify-center">
         <a
           target="_blank"
           href="rodioriccardo@gmail.com&subject=info%20Herbalife"
-          className="text-blue-600 hover:text-blue-700 hover:underline"
+          className="w-full sm:w-auto text-center bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 hover:bg-herbalife-1 hover:text-white dark:hover:bg-green-500 dark:hover:text-zinc-900 px-6 py-3 rounded-xl font-bold text-lg shadow-sm transition-all duration-300"
         >
           rodioriccardo@gmail.com
         </a>
-      </p>
+      </div>
     ),
   },
   {
     id: 3,
     title: "whatsApp",
     content: (
-      <p className="text-center pt-10 text-2xl">
+      <div className="flex justify-center">
         <a
           target="_blank"
-          className="text-blue-600 hover:text-blue-700 hover:underline"
+          className="w-full sm:w-auto text-center bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 hover:bg-herbalife-1 hover:text-white dark:hover:bg-green-500 dark:hover:text-zinc-900 px-6 py-3 rounded-xl font-bold text-lg shadow-sm transition-all duration-300"
           href="https://wa.me/+393496635371"
         >
           wa.me/+393496635371
         </a>
-      </p>
+      </div>
     ),
   },
   {
     id: 4,
     title: "telegram",
     content: (
-      <p className="text-center pt-10 text-2xl">
+      <div className="flex justify-center">
         <a
           target="_blank"
-          className="text-blue-600 hover:text-blue-700 hover:underline"
+          className="w-full sm:w-auto text-center bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 hover:bg-herbalife-1 hover:text-white dark:hover:bg-green-500 dark:hover:text-zinc-900 px-6 py-3 rounded-xl font-bold text-lg shadow-sm transition-all duration-300"
           href="https://t.me/RickyCoach24"
         >
           t.me/RickyCoach24
         </a>
-      </p>
+      </div>
     ),
   },
   {
     id: 5,
     title: "facebook",
     content: (
-      <p className="text-center pt-10 text-2xl">
+      <div className="flex justify-center">
         <a
           target="_blank"
-          className="text-blue-600 hover:text-blue-700 hover:underline"
+          className="w-full sm:w-auto text-center bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 hover:bg-herbalife-1 hover:text-white dark:hover:bg-green-500 dark:hover:text-zinc-900 px-6 py-3 rounded-xl font-bold text-lg shadow-sm transition-all duration-300"
           href="https://www.facebook.com/Ricky.rh24coach/"
         >
           Ricky.rh24coach
         </a>
-      </p>
+      </div>
     ),
   },
   {
     id: 6,
     title: "instagram",
     content: (
-      <p className="text-center pt-10 text-2xl">
+      <div className="flex justify-center">
         <a
           target="_blank"
-          className="text-blue-600 hover:text-blue-700 hover:underline"
+          className="w-full sm:w-auto text-center bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 hover:bg-herbalife-1 hover:text-white dark:hover:bg-green-500 dark:hover:text-zinc-900 px-6 py-3 rounded-xl font-bold text-lg shadow-sm transition-all duration-300"
           href="https://www.instagram.com/riccardo_rodio_wellness_coach/"
         >
           riccardo_rodio_wellness_coach
         </a>
-      </p>
+      </div>
     ),
   },
   {
     id: 7,
     title: "linkedIn",
     content: (
-      <p className="text-center pt-10 text-2xl">
+      <div className="flex justify-center">
         <a
           target="_blank"
-          className="text-blue-600 hover:text-blue-700 hover:underline"
+          className="w-full sm:w-auto text-center bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 hover:bg-herbalife-1 hover:text-white dark:hover:bg-green-500 dark:hover:text-zinc-900 px-6 py-3 rounded-xl font-bold text-lg shadow-sm transition-all duration-300"
           href="https://www.linkedin.com/in/riccardo-rodio-593517120/"
         >
           Riccardo Rodio
         </a>
-      </p>
+      </div>
     ),
   },
   {
     id: 8,
     title: "pinterest",
     content: (
-      <p className="text-center pt-10 text-2xl">
+      <div className="flex justify-center">
         <a
           target="_blank"
-          className="text-blue-600 hover:text-blue-700 hover:underline"
+          className="w-full sm:w-auto text-center bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 hover:bg-herbalife-1 hover:text-white dark:hover:bg-green-500 dark:hover:text-zinc-900 px-6 py-3 rounded-xl font-bold text-lg shadow-sm transition-all duration-300"
           href="https://www.pinterest.it/riccardorodio/_saved/"
         >
           riccardorodio
         </a>
-      </p>
+      </div>
     ),
   },
   {
     id: 9,
     title: "lascia un messaggio",
     content: (
-      <p className="text-center pt-10 text-2xl">
-        <form
-          action="https://formsubmit.co/33bded7bb2b0f311323c25d896b09823"
-          method="POST"
-        >
-          <input
-            className="border border-gray-950 dark:border-white mb-2.5 placeholder:text-gray-700 dark:placeholder:text-gray-400 rounded-lg h-8 w-full px-3"
-            type="text"
-            name="nome e cognome"
-            placeholder="nome e cognome"
-            required
-          />
-          <input
-            className="border border-gray-950 dark:border-white mb-2.5 placeholder:text-gray-700 dark:placeholder:text-gray-400 rounded-lg h-8 w-full px-3"
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-          />
-          <input
-            className="border border-gray-950 dark:border-white mb-2.5 placeholder:text-gray-700 dark:placeholder:text-gray-400 rounded-lg h-8 w-full px-3"
-            type="tel"
-            name="numero di whatsapp"
-            placeholder="numero di whatsapp"
-            required
-          />
-          <textarea
-            className="border border-gray-950 dark:border-white mb-2.5 placeholder:text-gray-700 dark:placeholder:text-gray-400 rounded-lg h-24 w-full px-3"
-            name="messaggio"
-            placeholder="scrivi qui la tua richiesta"
-            required
-          />
-          <div className="flex gap-2.5">
-            <button
-              className="w-1/2 bg-herbalife-1 hover:bg-herbalife-4 text-white px-4 py-2 rounded-lg hover:cursor-pointer"
-              type="submit"
-            >
-              Invia
-            </button>
-            <button
-              className="w-1/2 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg hover:cursor-pointer"
-              type="reset"
-            >
-              reset
-            </button>
-          </div>
-        </form>
-      </p>
+      <form
+        action="https://formsubmit.co/33bded7bb2b0f311323c25d896b09823"
+        method="POST"
+        className="flex flex-col gap-3 pt-2"
+      >
+        <Input
+          type="text"
+          name="nome e cognome"
+          placeholder="nome e cognome"
+          iconaDestra={<User size={18} />}
+          required
+        />
+        <Input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          iconaDestra={<Mail size={18} />}
+        />
+        <Input
+          type="tel"
+          name="numero di whatsapp"
+          placeholder="numero di whatsapp"
+          iconaDestra={<Phone size={18} />}
+          required
+        />
+        <Input
+          as="textarea"
+          name="messaggio"
+          placeholder="scrivi qui la tua richiesta"
+          iconaDestra={<MessageSquare size={18} />}
+          required
+        />
+        <div className="flex gap-3 pt-2">
+          <button
+            className="w-1/2 bg-herbalife-1 dark:bg-green-600 hover:opacity-90 text-white px-4 py-3 rounded-xl font-bold text-sm shadow-md transition-all cursor-pointer"
+            type="submit"
+          >
+            Invia
+          </button>
+          <button
+            className="w-1/2 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-700 px-4 py-3 rounded-xl font-bold text-sm transition-all cursor-pointer"
+            type="reset"
+          >
+            reset
+          </button>
+        </div>
+      </form>
     ),
   },
 ];

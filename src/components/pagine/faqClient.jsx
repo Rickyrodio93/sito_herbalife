@@ -5,10 +5,10 @@ import AccordionItem from "@/components/accordion/AccordionItem";
 import { useState } from "react";
 
 export default function FAQClient() {
-    const [expandedId, setExpandedId] = useState(null);
-    const toggleExpand = (id) => {
-      setExpandedId(expandedId === id ? null : id);
-    };
+  const [expandedId, setExpandedId] = useState(null);
+  const toggleExpand = (id) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -66,13 +66,12 @@ export default function FAQClient() {
   return (
     <>
       <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
-      <main>
-        <section className="max-w-4xl mx-auto mb-10">
-          <h2 className="text-3xl font-bold mb-4">
-            Domande Frequenti sull&apos;Attività Herbalife
-          </h2>
 
-          <p className="section-p text-lg leading-relaxed">
+      <main className="pt-32 pb-20 min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col justify-center transition-colors duration-300">
+        <section className="max-w-3xl mx-auto mb-12 text-center sm:text-left">
+          <h2>Domande Frequenti sull&apos;Attività Herbalife</h2>
+
+          <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg leading-relaxed text-justify sm:text-left">
             In questa guida rispondo alle domande più frequenti su come iniziare
             un&apos;attività Herbalife, quanto si può guadagnare, quanto tempo è
             necessario dedicare e quali sono i vantaggi concreti. Troverai
@@ -80,7 +79,8 @@ export default function FAQClient() {
             opportunità nel settore benessere è adatta a te.
           </p>
         </section>
-        <ol className="flex flex-col gap-3 max-w-lg mx-auto my-25">
+
+        <div className="flex flex-col gap-4 w-full max-w-xl mx-auto mb-16">
           {AccordionData.map((item) => (
             <AccordionItem
               key={item.id}
@@ -89,34 +89,52 @@ export default function FAQClient() {
               onToggle={() => toggleExpand(item.id)}
             />
           ))}
-        </ol>
-        <section className="max-w-4xl mx-auto mb-12 bg-white dark:bg-[#333333] text-black dark:text-white p-6 rounded-xl">
-          <h3 className="text-xl font-semibold mb-4">In breve</h3>
-          <ul className="list-disc list-inside space-y-2">
-            <li>Attività flessibile part-time o full-time</li>
-            <li>Possibilità di reddito extra o principale</li>
-            <li>Formazione online e supporto continuo</li>
-            <li>Basso costo di avviamento</li>
-            <li>Recesso possibile secondo condizioni contrattuali</li>
+        </div>
+        <section className="w-full max-w-3xl mx-auto mb-16 border border-zinc-200/80 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/50 backdrop-blur-md p-6 sm:p-8 rounded-2xl shadow-sm">
+          <h3 className="text-xl font-bold mb-4 text-zinc-900 dark:text-zinc-100 tracking-wide uppercase">
+            In sintesi
+          </h3>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none p-0 m-0 text-zinc-600 dark:text-zinc-400 font-medium text-sm sm:text-base">
+            <li className="flex items-center gap-2.5">
+              <span className="h-2 w-2 rounded-full bg-herbalife-1 dark:bg-green-500 shrink-0" />
+              Attività flessibile part-time o full-time
+            </li>
+            <li className="flex items-center gap-2.5">
+              <span className="h-2 w-2 rounded-full bg-herbalife-1 dark:bg-green-500 shrink-0" />
+              Possibilità di reddito extra o principale
+            </li>
+            <li className="flex items-center gap-2.5">
+              <span className="h-2 w-2 rounded-full bg-herbalife-1 dark:bg-green-500 shrink-0" />
+              Formazione online e supporto continuo
+            </li>
+            <li className="flex items-center gap-2.5">
+              <span className="h-2 w-2 rounded-full bg-herbalife-1 dark:bg-green-500 shrink-0" />
+              Basso costo di avviamento
+            </li>
+            <li className="flex items-center gap-2.5 sm:col-span-2">
+              <span className="h-2 w-2 rounded-full bg-herbalife-1 dark:bg-green-500 shrink-0" />
+              Recesso possibile secondo condizioni contrattuali
+            </li>
           </ul>
         </section>
-        <section className="max-w-4xl mx-auto my-12 text-center text-black dark:text-white">
-          <h3 className="text-2xl font-bold mb-4">
+
+        <section className="max-w-2xl mx-auto text-center px-4">
+          <h3 className="text-2xl sm:text-3xl font-extrabold mb-3 text-zinc-900 dark:text-zinc-100 tracking-tight">
             Vuoi capire se questa attività è adatta a te?
           </h3>
-
-          <p className="mb-6">
+          <p className="mb-8 text-zinc-600 dark:text-zinc-400 font-medium">
             Scrivimi su WhatsApp e ti spiego senza impegno tutti i dettagli.
           </p>
-
-          <a
-            href="https://wa.me/+393496635371"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold"
-          >
-            Scrivimi su WhatsApp
-          </a>
+          <div className="flex justify-center">
+            <a 
+              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-herbalife-4 dark:bg-herbalife-1 text-white hover:opacity-95 px-8 py-4 rounded-xl font-bold text-base shadow-md transition-all duration-300 cursor-pointer hover:shadow-lg active:scale-98"
+            >
+              scrivimi su whatsapp
+            </a>
+          </div>
         </section>
       </main>
     </>

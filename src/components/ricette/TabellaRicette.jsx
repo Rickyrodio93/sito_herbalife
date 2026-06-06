@@ -25,7 +25,7 @@ const isSearching = searchQuery.trim() !== "";
 
   return (
     <>
-      <div className="w-full p-4 max-w-5xl mx-auto mb-20">
+      <div className="w-full py-4 max-w-5xl mx-auto mb-20">
         {ricetteInvertite.length > 0 ? (
           <motion.div
             initial={isSearching ? "hidden" : "visible"}

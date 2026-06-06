@@ -1,11 +1,8 @@
 "use client";
 
-import PreventivoDettaglio from "./preventivoDettaglio";
 import CalcoloPreventivo from "./calcoloPreventivo";
 import RiepilogoTelefono from "./riepilogoTelefono";
 import { useState } from "react";
-import PreventivoLista from "./preventivoLista";
-import { ClipboardCopy } from "lucide-react";
 import ModalRiepilogo from "./modalRiepilogo";
 import { AnimatePresence } from "framer-motion";
 import RiepilogoDesktop from "./riepilogoDesktop";
@@ -30,7 +27,6 @@ export default function Riepilogo({
   const openModal = () => {
     setShowModal(true);
   };
-  console.log("Cliccato! Stato showModal prima:", showModal);
 
   return (
     <>
@@ -58,7 +54,7 @@ export default function Riepilogo({
         openModal={openModal}
       />
 
-      {/* MODALI DI CONFERMA / COPIA */}
+      {/* MODALE DI CONFERMA */}
       <AnimatePresence mode="wait">
         {showModal && (
           <ModalRiepilogo

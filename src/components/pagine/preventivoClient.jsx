@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import InputPreventivo from "@/components/tabellaPreventivo/inputPreventivo";
 import Input from "@/components/Inputs/Input";
-import { ArrowBigDown, ArrowDown, ChevronDown, Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import UltimaModifica from "@/components/UltimaModifica/UltimaModifica";
 import Tabella from "@/components/tabellaPreventivo/tabella";
 import axios from "axios";
@@ -85,7 +84,7 @@ export default function PreventivoClient() {
     setProdottiSelezionati((prev) => {
       const id = String(prodotto.ID);
       const qta = Number(quantita) || 0;
-      const prezzo = Number(prezzoUnitario) || 0;
+      const prezzo = Number(prezzoUnitario) || "sold out";
       const pv = Number(prodotto.PuntiVolume) || 0;
 
       // quantità 0 -> rimuovi

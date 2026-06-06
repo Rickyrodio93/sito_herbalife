@@ -52,16 +52,17 @@ h2 {
     @apply text-2xl md:text-4xl text-left font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight capitalize border-l-4 border-herbalife-1 dark:border-green-500 pl-4 mb-2
 }
 
+@layer base {
+    section a {
+        @apply font-bold underline underline-offset-4 transition-colors duration-200;
+        @apply text-herbalife-1 hover:text-emerald-600;
+        @apply dark:text-herbalife-4 dark:hover:text-green-300;
+    }
+
+}
+
 @layer utilities {
-    .section-p {
-        @apply text-justify hyphens-auto text-p dark:text-white text-[1pc] leading-9 first-letter:text-7xl first-letter:font-bold first-letter:capitalize first-letter:mr-3 first-letter:tracking-wider first-letter:float-left
-    }
-
-    .section-a {
-        @apply text-blue-700 underline capitalize hover:text-blue-800
-    }
-
-    .paper::before {
+        .paper::before {
         content: "";
         top: -7px;
         rotate: 180deg;

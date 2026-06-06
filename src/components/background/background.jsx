@@ -16,7 +16,7 @@ export default function Background({ src, titolo, children }) {
   return (
     <div
       ref={ref}
-      className="min-h-dvh w-full grid grid-cols-1 lg:grid-cols-12 bg-zinc-200 dark:bg-zinc-900"
+      className="min-h-[40dvh] w-full grid grid-cols-1 lg:grid-cols-12 bg-zinc-200 dark:bg-zinc-900"
     >
       {/* colonna sinistra */}
       <div className="lg:col-span-5 flex flex-col justify-center p-8 md:p-16 z-20 order-2 lg:order-1">
@@ -30,7 +30,7 @@ export default function Background({ src, titolo, children }) {
       </div>
 
       {/* colonna destra */}
-      <div className="lg:col-span-7 relative h-[50dvh] lg:h-auto overflow-hidden order-1 lg:order-2">
+      <div className="lg:col-span-7 relative h-[35dvh] lg:h-auto overflow-hidden order-1 lg:order-2">
         <motion.div style={{y}} className="absolute w-full h-[120%] top-[-10%]">
           <Image
             src={src}
