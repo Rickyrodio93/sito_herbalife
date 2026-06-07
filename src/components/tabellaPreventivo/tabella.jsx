@@ -46,8 +46,8 @@ export default function Tabella({
 
   return (
     <div className="w-full ">
-      <table className="w-full overflow-x-auto table-auto border-collapse">
-        <thead className="text-zinc-400 dark:text-zinc-500 bg-zinc-900 dark:bg-zinc-950 sticky text-xs top-0 h-11 uppercase tracking-wider border-b border-zinc-800 z-20">
+      <table className="w-full block lg:table table-auto border-collapse">
+        <thead className="hidden lg:table-header-group text-zinc-400 dark:text-zinc-500 bg-zinc-900 dark:bg-zinc-950 sticky text-xs top-0 h-11 uppercase tracking-wider border-b border-zinc-800 z-20">
           <tr>
             {tableThead.map((nameCol, index) => (
               <th
@@ -60,7 +60,7 @@ export default function Tabella({
           </tr>
         </thead>
 
-        <tbody>
+        <tbody className="w-full block lg:table-row-group">
           {isLoading
             ? Array.from({ length: 3 }).map((_, i) => (
                 <SkeletonTheme
@@ -68,8 +68,8 @@ export default function Tabella({
                   baseColor="#f4f4f5"
                   highlightColor="#e4e4e7"
                 >
-                  <tr>
-                    <td colSpan={tableThead.length} className="px-6 py-4">
+                  <tr className="block lg:table-row">
+                    <td colSpan={tableThead.length} className="px-6 py-4 block lg:table-cell">
                       <Skeleton className="h-8 w-48 rounded-md" />
                     </td>
                   </tr>
@@ -97,16 +97,16 @@ export default function Tabella({
                   <React.Fragment key={index}>
                     <tr
                       onClick={() => toggleCategoria(categoria.title)}
-                      className="cursor-pointer group select-none "
+                      className="cursor-pointer group select-none block lg:table-row"
                     >
                       <td
                         colSpan={tableThead.length}
-                        className="bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 lg:sticky lg:top-10.5 z-15 py-3.5 px-6 border-b border-zinc-200 dark:border-zinc-800 shadow-sm"
+                        className="bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 lg:sticky lg:top-10.5 z-15 py-3.5 px-6 border-b border-zinc-200 dark:border-zinc-800 shadow-sm block lg:table-cell"
                       >
                         <div className="flex items-center justify-between w-full">
                           <span className="text-sm font-black uppercase tracking-wider text-herbalife-1 dark:text-herbalife-2">
                             {categoria.title}
-                            <span className="text-sm text-zinc-400 dark:text-zinc-500 font-bold font-mono ml-2 bg-zinc-200 dark:bg-zinc-800 px-2 py-0.5 rounded-full">
+                            <span className="text-sm text-zinc-400 dark:text-zinc-500 font-bold font-mono ml-2 bg-zinc-200 dark:bg-zinc-800 px-2 py-0.5 rounded-full whitespace-nowrap inline-block">
                               {categoria.data.length} prodotti
                             </span>
                           </span>

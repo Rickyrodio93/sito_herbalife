@@ -103,62 +103,128 @@ export default function Riga({
           stiffness: 350,
           damping: 28,
         }}
-        className="bg-white dark:bg-zinc-950 hover:bg-zinc-50/80 dark:hover:bg-zinc-900/40 transition-colors duration-150 border-b border-zinc-100 dark:border-zinc-900"
+        className="bg-white dark:bg-zinc-950 hover:bg-zinc-50/80 dark:hover:bg-zinc-900/40 transition-colors duration-150 border-b border-zinc-100 dark:border-zinc-900 flex flex-col p-4 gap-3 lg:table-row lg:p-0 lg:gap-0 relative"
       >
-        {/* id prodotto */}
-        <td className="px-4 py-4 text-center font-mono text-xs text-zinc-400 dark:text-zinc-500">
+        {/* 🌟 1. ID PRODOTTO: Diventa un'etichetta fluttuante nell'angolo su mobile */}
+        <td className="text-left font-mono text-[10px] text-zinc-400 dark:text-zinc-500 lg:table-cell lg:px-4 lg:py-4 lg:text-center lg:text-xs">
+          <span className="lg:hidden bg-zinc-100 dark:bg-zinc-900 px-2 py-0.5 rounded font-bold mr-1">
+            ID:
+          </span>
           {prodotto.ID}
         </td>
 
-        {/* nome prodotto */}
-        <td className="p-4 flex items-center gap-6 capitalize">
-          <div className="relative min-w-25 max-w-25 sm:max-w-36 sm:max-h-full aspect-3/4 sm:aspect-square flex justify-center">
-            <Image
-              src={`/immagini/prodotti/${prodotto.ID}.webp`}
-              alt={prodotto.Prodotto}
-              fill
-              sizes="(max-w-640px) 100px, 144px"
-              className="sm:m-auto object-contain cursor-zoom-in"
-              onClick={(e) => {
-                e.preventDefault();
-                setIsZoomOpen(true);
-              }}
-            />
-            <AnimatePresence>
-              {isZoomOpen && (
-                <ZoomImage
-                  src={`/immagini/prodotti/${prodotto.ID}.webp`}
-                  onClose={() => setIsZoomOpen(false)}
-                />
-              )}
-            </AnimatePresence>
-          </div>
+        {/* 🌟 2. CORPO PRODOTTO (IMMAGINE + NOME) */}
+        <td className="p-0 block lg:table-cell lg:p-4 lg:align-middle capitalize">
+          <div className="flex items-center gap-4 lg:gap-6">
+            {/* Box Immagine bilanciato per mobile */}
+            <div className="relative min-w-20 max-w-20 sm:min-w-24 sm:max-w-24 aspect-square flex justify-center bg-zinc-50 dark:bg-zinc-900/30 rounded-lg p-1">
+              <Image
+                src={`/immagini/prodotti/${prodotto.ID}.webp`}
+                alt={prodotto.Prodotto}
+                fill
+                sizes="(max-w-640px) 80px, 144px"
+                className="m-auto object-contain cursor-zoom-in"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsZoomOpen(true);
+                }}
+              />
+              <AnimatePresence>
+                {isZoomOpen && (
+                  <ZoomImage
+                    src={`/immagini/prodotti/${prodotto.ID}.webp`}
+                    onClose={() => setIsZoomOpen(false)}
+                  />
+                )}
+              </AnimatePresence>
+            </div>
 
-          <div className="w-full">
-            <p className="text-zinc-900 dark:text-zinc-100 font-medium text-base mb-1 tracking-tight">
-              {prodotto.Prodotto.toLowerCase()}
-            </p>
-            {ruolo !== "cliente" && (
-              <div className="flex gap-4 text-zinc-400 dark:text-zinc-500 font-mono text-[11px]">
-                <span>
-                  Listino:{" "}
-                  <strong className="text-zinc-600 dark:text-zinc-400">
-                    {(prodotto.PrezzoListino || 0).toFixed(2)}€
-                  </strong>
-                </span>
-                <span>
-                  PV:{" "}
-                  <strong className="text-zinc-600 dark:text-zinc-400">
-                    {(prodotto.PuntiVolume || 0).toFixed(2)}
-                  </strong>
-                </span>
-              </div>
-            )}
+            {/* Info Testuali */}
+            <div className="w-full">
+              <p className="text-zinc-900 dark:text-zinc-100 font-semibold text-sm sm:text-base mb-1 tracking-tight leading-tight">
+                {prodotto.Prodotto.toLowerCase()}
+              </p>
+              {ruolo !== "cliente" && (
+                <div className="flex gap-3 text-zinc-400 dark:text-zinc-500 font-mono text-[10px] sm:text-[11px]">
+                  <span>
+                    Listino:{" "}
+                    <strong className="text-zinc-600 dark:text-zinc-400">
+                      {(prodotto.PrezzoListino || 0).toFixed(2)}€
+                    </strong>
+                  </span>
+                  <span>
+                    PV:{" "}
+                    <strong className="text-zinc-600 dark:text-zinc-400">
+                      {(prodotto.PuntiVolume || 0).toFixed(2)}
+                    </strong>
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
         </td>
 
+        {/* 🌟 SEZIONE COMFORT: Prezzo e Controlli uniti su Mobile */}
+        <div className="flex flex-row-reverse items-center justify-between mt-2 pt-2 border-t border-dashed border-zinc-100 dark:border-zinc-900 lg:contents">
+          {/* 🌟 3. CONTROLLI QUANTITÀ (Viene prima nel codice -> Perfetto per Desktop. Su Mobile va a destra grazie a flex-row-reverse) */}
+          <td className="p-0 block lg:table-cell lg:p-4">
+            <div className="flex items-center gap-2 justify-end flex-col lg:items-center">
+              {/* Selettore +/- */}
+              <div className="flex items-center bg-zinc-100 dark:bg-zinc-900 p-0.5 rounded-lg border border-zinc-200/50 dark:border-zinc-800 dark:text-white">
+                <button
+                  type="button"
+                  onClick={decrementa}
+                  className="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 rounded-md transition-colors cursor-pointer active:scale-90"
+                >
+                  <Minus size={14} />
+                </button>
+                <input
+                  type="number"
+                  min="0"
+                  value={quantita}
+                  onChange={handleInput}
+                  className="w-8 text-center bg-transparent text-sm font-bold focus:outline-none dark:text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                />
+                <button
+                  type="button"
+                  onClick={incrementa}
+                  className="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 rounded-md transition-colors cursor-pointer active:scale-90"
+                >
+                  <Plus size={14} />
+                </button>
+              </div>
+
+              {/* Pulsanti Azione (Aggiungi / Cestino) */}
+              <div className="flex gap-1.5 items-center">
+                <button
+                  onClick={handleAggiungi}
+                  className="py-2 px-3 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-900 text-white text-[10px] font-bold uppercase tracking-wider rounded transition-colors cursor-pointer shadow-sm h-9 flex items-center justify-center"
+                >
+                  aggiungi
+                </button>
+                <button
+                  onClick={handleRimuovi}
+                  className="p-2 text-zinc-400 hover:text-red-500 border border-zinc-200 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 rounded transition-colors cursor-pointer h-9 w-9 flex items-center justify-center"
+                >
+                  <Trash size={14} />
+                </button>
+              </div>
+            </div>
+          </td>
+
+          {/* 🌟 4. PREZZO FINALE (Viene dopo nel codice -> Fine della riga su Desktop. Su Mobile va a sinistra) */}
+          <td className="p-0 text-left lg:table-cell lg:px-6 lg:py-4 lg:text-right font-semibold text-zinc-950 dark:text-zinc-50 font-mono text-base">
+            <span className="text-xs text-zinc-400 block lg:hidden font-sans font-normal mb-0.5">
+              Prezzo calcolato:
+            </span>
+            <div className="text-lg lg:text-base text-herbalife-1 lg:text-zinc-950 lg:dark:text-zinc-50 font-bold">
+              {`${(Number(prezzoUnitario) || 0).toFixed(2)}€`}
+            </div>
+          </td>
+        </div>
+
         {/* input quantità */}
-        <td className="p-4">
+        {/* <td className="p-4">
           <div className="flex flex-col items-center gap-2">
             <div className="flex items-center bg-zinc-100 dark:bg-zinc-900 p-0.5 rounded-lg border border-zinc-200/50 dark:border-zinc-800 dark:text-white">
               <button
@@ -199,12 +265,12 @@ export default function Riga({
               </button>
             </div>
           </div>
-        </td>
+        </td> */}
 
         {/* prezzo prodotto */}
-        <td className="px-6 py-4 text-right font-semibold text-zinc-950 dark:text-zinc-50 font-mono text-base">
+        {/* <td className="px-6 py-4 text-right font-semibold text-zinc-950 dark:text-zinc-50 font-mono text-base">
           <div>{`${(Number(prezzoUnitario) || 0).toFixed(2)}€`}</div>
-        </td>
+        </td> */}
       </motion.tr>
     </>
   );

@@ -277,9 +277,10 @@ export default function AssistantChat() {
       </AnimatePresence>
 
       <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
+        aria-label="assistente virtuale"
         className="bg-herbalife-4 hover:bg-herbalife-1 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition-colors"
       >
         {isOpen ? <X size={24} /> : <BotMessageSquare size={24} />}
