@@ -4,10 +4,15 @@ export const metadata = {
     title: "preventivo prodotti",
     description: "Richiedi un preventivo personalizzato e gratuito per i tuoi prodotti Herbalife. Scopri i prezzi e ricevi una consulenza su misura per i tuoi obiettivi con Riccardo Rodio.",
 
+    alternates: {
+        canonical: "https://www.riccardorodio.com/preventivo"
+    },
+
     openGraph: {
         title: "preventivo prodotti | Riccardo Rodio - sito web ufficiale",
         description: "Richiedi un preventivo personalizzato e gratuito per i tuoi prodotti Herbalife. Scopri i prezzi e ricevi una consulenza su misura per i tuoi obiettivi con Riccardo Rodio.",
         url: "https://www.riccardorodio.com/preventivo",
+        type: "website",
         images: [
             {
                 url: "https://riccardorodio.com/immagini/og_image/preventivo.png",
