@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Riga from "./riga";
@@ -13,10 +13,21 @@ export default function Tabella({
   usoDistributore,
   livelloMarketing,
   handleAggiungiProdotto,
+  isSearching,
 }) {
   const tableThead = ["ID", "Prodotto", "Quantità", "Prezzo"];
   const [quantities, setQuantities] = useState({});
   const [categorieAperte, setCategorieAperte] = useState({});
+
+  useEffect(() => {
+    if (isSearching) {
+      const categorieSpalancate = prodotti.reduce((acc, categoria) => {
+        acc[categoria.title] = true;
+        return acc;
+      }, {});
+      setCategorieAperte(categorieSpalancate);
+    }
+  }, [isSearching, prodotti]);
 
   // gestire il cambiamento di input
   const handleInputChange = (id, value) => {

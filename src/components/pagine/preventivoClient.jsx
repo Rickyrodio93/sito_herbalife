@@ -15,6 +15,7 @@ export default function PreventivoClient() {
   const [livelloMarketing, setLivelloMarketing] = useState("");
   const [usoDistributore, setUsoDistributore] = useState("");
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [prodotti, setProdotti] = useState([]);
   const [loading, setLoading] = useState(true);
   const [prodottiSelezionati, setProdottiSelezionati] = useState([]);
@@ -69,12 +70,21 @@ export default function PreventivoClient() {
     setUsoDistributore("");
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [search]);
+
   // filtro ricerca
   const prodottiFiltrati = prodotti
     .map((categoria) => ({
       ...categoria,
       data: categoria.data.filter((prodotto) =>
-        prodotto.Prodotto?.toLowerCase().includes(search.toLowerCase()),
+        prodotto.Prodotto?.toLowerCase().includes(
+          debouncedSearch.toLowerCase(),
+        ),
       ),
     }))
     .filter((categoria) => categoria.data.length > 0);
@@ -311,6 +321,7 @@ export default function PreventivoClient() {
                 usoDistributore={usoDistributore}
                 livelloMarketing={livelloMarketing}
                 handleAggiungiProdotto={handleAggiungiProdotto}
+                isSearching={debouncedSearch.trim().length > 0}
               />
             </div>
           </div>
