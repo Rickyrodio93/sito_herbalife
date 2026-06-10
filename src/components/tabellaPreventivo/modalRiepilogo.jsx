@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Share, Store, X } from "lucide-react";
@@ -119,16 +119,17 @@ export default function ModalRiepilogo({
                 <tbody className="divide-y divide-zinc-100 dark:divide-zinc-900">
                   {prodotti.length > 0 &&
                     prodotti.map((p) => {
-                      const prezzoUnitario = calcolaPrezzoFinito(p);
+                      const prezzoUnitario = Number(calcolaPrezzoFinito(p)) || 0;
                       const cad = isCliente
                         ? `${prezzoUnitario.toFixed(2)}`
-                        : `${p.PrezzoListino.toFixed(2)}`;
+                        : `${(Number(p.PrezzoListino) || 0).toFixed(2)}`;
 
-                      const scontoUnitario = getScontoUnitario(
+                      const scontoUnitarioRaw = getScontoUnitario(
                         p.baseSconto || p.BaseSconto,
                         livelloMarketing,
                         usoDistributore,
                       );
+                      const scontoUnitario = Number(scontoUnitarioRaw) || 0;
                       const scontoTotaleRiga = scontoUnitario * p.quantita;
 
                       const q = Number(p.quantita) || 0;
@@ -152,6 +153,7 @@ export default function ModalRiepilogo({
                       } else {
                         ivaRiga = prezzoListino * ivaUnitaria * q;
                       }
+                      ivaRiga = Number(ivaRiga) || 0;
 
                       // 2. Calcolo TASSE riga (rispecchia la tua logica condizionale)
                       let tasseRiga = 0;
@@ -170,6 +172,8 @@ export default function ModalRiepilogo({
                             q;
                         }
                       }
+                      tasseRiga = Number(tasseRiga) || 0;
+
                       const totaleRiga =
                         prezzoListino * q -
                         scontoUnitario * q +
@@ -204,7 +208,9 @@ export default function ModalRiepilogo({
                               </td>
                               {/* tasse */}
                               <td className="text-center py-3.5 px-2 font-medium text-zinc-500 dark:text-zinc-400">
-                                {tasseRiga=== 0 ?"-":`${tasseRiga.toFixed(2)}€`}
+                                {tasseRiga === 0
+                                  ? "-"
+                                  : `${tasseRiga.toFixed(2)}€`}
                               </td>
                               {/* iva */}
                               <td className="text-center py-3.5 px-2 font-medium text-zinc-500 dark:text-zinc-400">
@@ -279,7 +285,9 @@ export default function ModalRiepilogo({
                           -{preventivo.sconto.toFixed(2)}€
                         </td>
                         <td className="text-center pt-4 pb-2 font-mono text-zinc-500 dark:text-zinc-400 text-xs">
-                          {preventivo.tasse === 0 ? "-": `${preventivo.tasse.toFixed(2)}€`}
+                          {preventivo.tasse === 0
+                            ? "-"
+                            : `${preventivo.tasse.toFixed(2)}€`}
                         </td>
                         <td className="text-center pt-4 pb-2 font-mono text-zinc-500 dark:text-zinc-400 text-xs">
                           {preventivo.iva.toFixed(2)}€
