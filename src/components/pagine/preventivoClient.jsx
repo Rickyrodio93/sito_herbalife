@@ -243,7 +243,7 @@ export default function PreventivoClient() {
                       value="42"
                       className="dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100"
                     >
-                      qualifier producer (42%)
+                      success builder (42%)
                     </option>
                     <option
                       value="50"
