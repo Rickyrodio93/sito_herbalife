@@ -1,4 +1,4 @@
-import { Store, TrendingDown, Trophy, ChefHat, Banana, Bath, BookOpen, Calculator, Network, LetterText, Microscope, ScanLine } from "lucide-react";
+import { Store, TrendingDown, Trophy, ChefHat, Banana, Bath, BookOpen, Calculator, Network, LetterText, Microscope, ScanLine, Users } from "lucide-react";
 
 export const Menus = [
     {
@@ -42,7 +42,7 @@ export const Menus = [
             {
                 name: "skin AI",
                 desc: "consulenza personalizzata con IA per la pelle del viso",
-                link:"https://www.hlskin.ai/customer/68d8040a900d82b0b94c0c33",
+                link: "https://www.hlskin.ai/customer/68d8040a900d82b0b94c0c33",
                 icon: ScanLine
             },
             {
@@ -90,6 +90,12 @@ export const Menus = [
                 desc: "compila il form ed entra a far parte del mio team",
                 link: "https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305",
                 icon: LetterText
+            },
+            {
+                name: "il mio team",
+                desc: "le storie delle persone che collaborano con me",
+                link: "/team",
+                icon: Users
             }
         ], gridCols: 1
     }
