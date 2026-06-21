@@ -1,139 +1,68 @@
 import { Plus, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import {configRuoli, teamMembri} from "./teamConfig"
 
 
 export default function Team() {
 
-    const prioritaRuoli = {
-        PT: 1,
-        "MT7.5K": 2,
-        MT: 3,
-        "GET2.5K": 4,
-        GET: 5,
-        WT: 6,
-        SV: 7,
-        DS: 8
-    }
-    const coloriRuoli = {
+    /* const configRuoli = {
         DS: {
+            nomeEsteso: "distributore",
+            priorita: 8,
             card: "bg-zinc-100 dark:bg-zinc-900 border-zinc-300 dark:border-zinc-700 hover:shadow-zinc-300/60 dark:hover:shadow-zinc-950",
             badge: "bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200",
         },
         SV: {
+            nomeEsteso: "supervisore",
+            priorita: 7,
             card: "bg-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-700 hover:shadow-slate-300/60 dark:hover:shadow-zinc-950",
             badge: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300",
         },
         WT: {
-            card: "bg-blue-100 dark:bg-blue-950/40 border-blue-200 dark:border-blue-900/40 hover:shadow-blue-200/50 dark:hover:shadow-zinc-950",
+            nomeEsteso: "world team",
+            priorita: 6,
+            card: "bg-gray-200 dark:bg-gray-950/40 border-gray-700/50 dark:border-gray-900/40 hover:shadow-gray-400/50 dark:hover:shadow-zinc-950",
             badge: "bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-200",
         },
-        GET: {
+        "GET": {
+            nomeEsteso: "global expansion team",
+            priorita: 5,
             card: "bg-rose-100 dark:bg-rose-950/40 border-rose-200 dark:border-rose-900/40 hover:shadow-rose-200/50 dark:hover:shadow-rose-950/30",
             badge: "bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-200",
         },
         "GET2.5K": {
+            nomeEsteso: "get team 2500",
+            priorita: 4,
             card: "bg-amber-100 dark:bg-amber-950/40 border-amber-200 dark:border-amber-900/40 hover:shadow-amber-200/50 dark:hover:shadow-amber-950/30",
             badge: "bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200",
         },
-        MT: {
-            card: "bg-emerald-100 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-900/40 hover:shadow-emerald-200/50 dark:hover:shadow-emerald-950/30",
-            badge: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200",
+        "MT": {
+            nomeEsteso: "millionaire team",
+            priorita: 3,
+            card: "bg-emerald-100/70 dark:bg-emerald-900/80 border-emerald-200 dark:border-emerald-900/40 hover:shadow-emerald-200/50 dark:hover:shadow-emerald-950/30",
+            badge: "bg-emerald-200 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200",
         },
         "MT7.5K": {
+            nomeEsteso: "millionaire team 7500",
+            priorita: 2,
             card: "bg-sky-100 dark:bg-sky-950/40 border-sky-200 dark:border-sky-900/40 hover:shadow-sky-200/50 dark:hover:shadow-sky-950/30",
             badge: "bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-200",
         },
-        PT: {
-            card: "bg-gradient-to-b from-amber-100/70 to-indigo-50 dark:from-zinc-900 dark:to-indigo-950/30 border-indigo-200 dark:border-indigo-900/50 hover:shadow-indigo-200/50 dark:hover:shadow-indigo-950/30",
+        "PT": {
+            nomeEsteso: "president's team",
+            priorita: 1,
+            card: "bg-gradient-to-b from-amber-200/70 to-indigo-50 dark:from-zinc-900 dark:to-indigo-950/30 border-indigo-200 dark:border-indigo-900/50 hover:shadow-indigo-200/50 dark:hover:shadow-indigo-950/30",
             badge: "bg-gradient-to-r from-amber-200 to-indigo-200 text-indigo-900 dark:from-zinc-800 dark:to-indigo-950/60 dark:text-indigo-200",
         }
-    };
-
-    const teamMembri = [
-        {
-            id: 1,
-            nome: "Saverio d.",
-            ruolo: "distributore",
-            descrizione: "Appassionato di nutrizione e benessere. Aiuta il team a crescere ogni giorno con energia e determinazione.",
-            immagine: "",
-            spilla: "DS",
-        },
-        {
-            id: 2,
-            nome: "Marco Rossi",
-            ruolo: "supervisore",
-            descrizione: "Appassionato di nutrizione e benessere. Aiuta il team a crescere ogni giorno con energia e determinazione.",
-            immagine: "/immagini/profilo_1.webp",
-            spilla: "SV",
-        },
-        {
-            id: 3,
-            nome: "Marco Rossi",
-            ruolo: "word team",
-            descrizione: "Appassionato di nutrizione e benessere. Aiuta il team a crescere ogni giorno con energia e determinazione.",
-            immagine: "/immagini/profilo_1.webp",
-            spilla: "WT",
-        },
-        {
-            id: 4,
-            nome: "Marco Rossi",
-            ruolo: "global expantion team",
-            descrizione: "Appassionato di nutrizione e benessere. Aiuta il team a crescere ogni giorno con energia e determinazione.",
-            immagine: "/immagini/profilo_1.webp",
-            spilla: "GET",
-        },
-        {
-            id: 5,
-            nome: "Marco Rossi",
-            ruolo: "global expantion team 2500",
-            descrizione: "Appassionato di nutrizione e benessere. Aiuta il team a crescere ogni giorno con energia e determinazione.",
-            immagine: "/immagini/profilo_1.webp",
-            spilla: "GET2.5K",
-        },
-        {
-            id: 6,
-            nome: "Marco Rossi",
-            ruolo: "millionaire team",
-            descrizione: "Appassionato di nutrizione e benessere. Aiuta il team a crescere ogni giorno con energia e determinazione.",
-            immagine: "/immagini/profilo_1.webp",
-            spilla: "MT",
-        },
-        {
-            id: 7,
-            nome: "Marco Rossi",
-            ruolo: "millionaire team 7500",
-            descrizione: "Appassionato di nutrizione e benessere. Aiuta il team a crescere ogni giorno con energia e determinazione.",
-            immagine: "/immagini/profilo_1.webp",
-            spilla: "MT7.5K",
-        },
-        {
-            id: 8,
-            nome: "Marco Rossi",
-            ruolo: "president's team",
-            descrizione: "Appassionato di nutrizione e benessere. Aiuta il team a crescere ogni giorno con energia e determinazione.",
-            immagine: "/immagini/profilo_1.webp",
-            spilla: "PT",
-        },
-        {
-            id: 9,
-            nome: "Marco verdi",
-            ruolo: "world team",
-            descrizione: "Appassionato di nutrizione e benessere. Aiuta il team a crescere ogni giorno con energia e determinazione.",
-            immagine: "/immagini/profilo_1.webp",
-            spilla: "WT",
-        },
-    ];
+    }; */
 
     const membriOrdinati = [...teamMembri].sort((a, b) => {
-        const pesoA = prioritaRuoli[a.spilla] || 99;
-        const pesoB = prioritaRuoli[b.spilla] || 99;
-
-        if (pesoA !== pesoB) {
-            return pesoA - pesoB; // Ruolo più alto (peso minore) appare prima
-        }
+        const pesoA = configRuoli[a.ruolo]?.priorita || 99;
+        const pesoB = configRuoli[b.ruolo]?.priorita || 99;
+        if (pesoA !== pesoB) return pesoA - pesoB;
         return a.id - b.id;
-    })
+    });
 
     return (
         <main className="pt-28 md:pt-32 px-6 sm:p-16">
@@ -162,30 +91,40 @@ export default function Team() {
                             unisciti al team!
                         </h3>
                         <p className="mt-2 text-sm text-zinc-400 dark:text-zinc-500 max-w-50 leading-snug">
-                            Vuoi avviare la tua attività? Clicca qui e invia la tua candidatura.
+                            Vuoi avviare la tua attività? Clicca qui e crea il tuo account nel mio team.
                         </p>
                     </Link>
                     {/* card membri */}
                     {membriOrdinati.map((membro) => {
-                        const stileColore = coloriRuoli[membro.spilla] || {
+                        const infoRuolo = configRuoli[membro.ruolo] || {
+                            nomeEsteso: membro.ruolo,
                             card: "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800",
                             badge: "bg-zinc-100 text-zinc-700",
-                            testo: "text-zinc-600"
                         };
 
                         return (
                             <div
                                 key={membro.id}
-                                className={`relative border rounded-2xl p-6 shadow-sm flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${stileColore.card}`}>
+                                className={`relative border rounded-2xl p-6 shadow-sm flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${infoRuolo.card}`}>
 
                                 {/* spilla risultato */}
                                 <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full shadow-lg flex items-center justify-center text-xl transform rotate-12 hover:rotate-0 transition-transform cursor-default z-10 select-none">
-                                    <Image
-                                        src={`/immagini/spille/${membro.spilla}.webp`}
-                                        alt={membro.ruolo}
-                                        fill
-                                        className="object-contain drop-shadow-sm"
-                                    />
+                                    {membro.ruolo && membro.ruolo.trim() !== "" ? (
+
+                                        <Image
+                                            src={`/immagini/spille/${membro.ruolo}.webp`}
+                                            alt={infoRuolo.nomeEsteso}
+                                            fill
+                                            className="object-contain drop-shadow-sm"
+                                        />
+                                    ) : (
+                                        <Image
+                                            src={`/immagini/spille/DS.webp`}
+                                            alt="DS"
+                                            fill
+                                            className="object-contain drop-shadow-sm"
+                                        />
+                                    )}
                                 </div>
 
                                 <div>
@@ -204,9 +143,9 @@ export default function Team() {
                                                 <div className="p-2.5 bg-white/10 dark:bg-black/10 rounded-full backdrop-blur-sm shadow-inner animate-pulse duration-3000 mb-1">
                                                     <User size={40} className="text-white drop-shadow-sm" strokeWidth={1.5} />
                                                 </div>
-                                            
+
                                                 <span className="text-[9px] font-black tracking-widest text-emerald-100/90 uppercase text-center max-w-25 leading-tight">
-                                                    HBL Team<br />Member
+                                                    HL Team<br />Member
                                                 </span>
                                             </div>
                                         )}
@@ -214,8 +153,8 @@ export default function Team() {
 
                                     <div className="text-center">
                                         {/* ruolo */}
-                                        <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full ${stileColore.badge}`}>
-                                            {membro.ruolo}
+                                        <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full ${infoRuolo.badge}`}>
+                                            {infoRuolo.nomeEsteso}
                                         </span>
                                         {/* nome */}
                                         <h3 className="mt-3 text-lg font-bold text-zinc-900 dark:text-zinc-50 capitalize">
