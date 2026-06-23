@@ -9,14 +9,14 @@ import Section from "@/components/Section/Section";
 
 const SectionComponentDinamico = dynamic(
   () => import("@/components/Section/SectionComponent"),
-  {ssr: true}
+  { ssr: true }
 )
 
 const ProdottiConsigliatiDinamici = dynamic(
   () => import("@/components/prodottiConsigliati/prodottiConsigliati"),
-  { 
+  {
     ssr: false, // Se caricano dati lato client o usano localizzazioni/storage
-    loading: () => <div className="h-60 w-full bg-zinc-100 dark:bg-zinc-900 animate-pulse rounded-2xl" /> 
+    loading: () => <div className="h-60 w-full bg-zinc-100 dark:bg-zinc-900 animate-pulse rounded-2xl" />
   }
 );
 const FloatingCallCTA = dynamic(() => import("@/components/FloatingCallCTA"), { ssr: false });
@@ -56,7 +56,6 @@ export default function Home() {
               href="https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305"
               target="_blank"
               className="block text-center text-zinc-900 dark:text-white bg-transparent hover:bg-zinc-900/5 text-base md:text-lg uppercase font-bold tracking-wider px-8 py-4 rounded-xl border-2 border-zinc-900 dark:border-white transition-all duration-300"
-
             >
               entra nel mio team
             </Link>

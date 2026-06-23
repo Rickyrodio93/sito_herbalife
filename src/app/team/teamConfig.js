@@ -52,9 +52,16 @@ export const configRuoli = {
 export const teamMembri = [
     {
         id: 1,
+        nome: "Riccardo r.",
+        ruolo: "DS",
+        descrizione: "Mi sono laureato in scienze agrarie e sono ex sportivo agonistico, ho conosciuto Herbalife dieci anni fa superando lo scetticismo iniziale grazie a un evento informativo. Ho ritrovato la forma fisica perdendo circa 8 kg e sto costruendo un'attività autonoma e indipendente basata sulla condivisione dei prodotti e dell'opportunità economica.",
+        immagine: "/immagini/profilo_1.webp",
+    },
+    {
+        id: 2,
         nome: "Saverio d.",
         ruolo: "DS",
-        descrizione: "Parrucchiere e imprenditore, ha iniziato questa attività per il benessere della propria famiglia",
+        descrizione: "Parrucchiere e imprenditore, ha iniziato questa attività per il benessere suo e della propria famiglia",
         immagine: "",
-    }
+    },
 ]
