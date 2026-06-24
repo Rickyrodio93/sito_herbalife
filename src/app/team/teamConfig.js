@@ -1,6 +1,18 @@
 export const configRuoli = {
     DS: {
         nomeEsteso: "distributore",
+        priorita: 10,
+        card: "bg-zinc-100 dark:bg-zinc-900 border-zinc-300 dark:border-zinc-700 hover:shadow-zinc-300/60 dark:hover:shadow-zinc-950",
+        badge: "bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200",
+    },
+    SC: {
+        nomeEsteso: "senior consultant",
+        priorita:9,
+        card: "bg-zinc-100 dark:bg-zinc-900 border-zinc-300 dark:border-zinc-700 hover:shadow-zinc-300/60 dark:hover:shadow-zinc-950",
+        badge: "bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200",
+    },
+    SB: {
+        nomeEsteso: "success builder",
         priorita: 8,
         card: "bg-zinc-100 dark:bg-zinc-900 border-zinc-300 dark:border-zinc-700 hover:shadow-zinc-300/60 dark:hover:shadow-zinc-950",
         badge: "bg-zinc-200 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200",
@@ -53,7 +65,7 @@ export const teamMembri = [
     {
         id: 1,
         nome: "Riccardo r.",
-        ruolo: "DS",
+        ruolo: "SB",
         descrizione: "Mi sono laureato in scienze agrarie e sono ex sportivo agonistico, ho conosciuto Herbalife dieci anni fa superando lo scetticismo iniziale grazie a un evento informativo. Ho ritrovato la forma fisica perdendo circa 8 kg e sto costruendo un'attività autonoma e indipendente basata sulla condivisione dei prodotti e dell'opportunità economica.",
         immagine: "/immagini/profilo_1.webp",
     },
