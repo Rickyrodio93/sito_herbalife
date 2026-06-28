@@ -16,7 +16,8 @@ export default function PreventivoClient() {
   const [usoDistributore, setUsoDistributore] = useState("");
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [prodotti, setProdotti] = useState([]);
+  const [prodottiClassici, setProdottiClassici] = useState([]);
+  const [prodottiBioniq, setProdottiBioniq] = useState([]);
   const [loading, setLoading] = useState(true);
   const [prodottiSelezionati, setProdottiSelezionati] = useState([]);
 
@@ -31,32 +32,54 @@ export default function PreventivoClient() {
         dynamicTyping: false,
         transformHeader: (header) => header.trim(),
         complete: ({ data }) => {
-          const prodottiRaggruppati = data.reduce((acc, row) => {
+          const classiciRaggruppati = {};
+          const bioniqRaggruppati = {};
+
+          const parse = (val) => parseFloat((val || "").replace(",", ".")) || 0;
+
+          data.forEach((row) => {
             const categoria = row.Title || "Senza Categoria";
 
-            if (!acc[categoria]) acc[categoria] = [];
-
-            const parse = (val) =>
-              parseFloat((val || "").replace(",", ".")) || 0;
-
-            acc[categoria].push({
+            // struttura base del prodotto
+            const voceProdotto = {
               ID: row.ID,
               Prodotto: row.Prodotto,
               PrezzoListino: parse(row.PrezzoListino),
               BaseSconto: parse(row.BaseSconto),
               PuntiVolume: parse(row.PuntiVolume),
               Iva: parse(row.Iva),
-            });
+              categoria: categoria,
+            };
 
-            return acc;
-          }, {});
+            //separazione flussi dati
+            if (categoria === "formulazioni personalizzate") {
+              if (!bioniqRaggruppati[categoria])
+                bioniqRaggruppati[categoria] = [];
+              bioniqRaggruppati[categoria].push(voceProdotto);
+            } else {
+              if (!classiciRaggruppati[categoria])
+                classiciRaggruppati[categoria] = [];
+              classiciRaggruppati[categoria].push(voceProdotto);
+            }
+          });
 
-          const formattati = Object.keys(prodottiRaggruppati).map((cat) => ({
-            title: cat,
-            data: prodottiRaggruppati[cat],
-          }));
+          // formattazione per Tabella
+          const formattatiClassici = Object.keys(classiciRaggruppati).map(
+            (cat) => ({
+              title: cat,
+              data: classiciRaggruppati[cat],
+            }),
+          );
 
-          setProdotti(formattati);
+          const formattatiBioniq = Object.keys(bioniqRaggruppati).map(
+            (cat) => ({
+              title: cat,
+              data: bioniqRaggruppati[cat],
+            }),
+          );
+
+          setProdottiClassici(formattatiClassici);
+          setProdottiBioniq(formattatiBioniq);
           setLoading(false);
         },
       });
@@ -78,16 +101,20 @@ export default function PreventivoClient() {
   }, [search]);
 
   // filtro ricerca
-  const prodottiFiltrati = prodotti
-    .map((categoria) => ({
-      ...categoria,
-      data: categoria.data.filter((prodotto) =>
-        prodotto.Prodotto?.toLowerCase().includes(
-          debouncedSearch.toLowerCase(),
+  const applicaFiltroRicerca = (listaProdotti) => {
+    return listaProdotti
+      .map((categoria) => ({
+        ...categoria,
+        data: categoria.data.filter((prodotto) =>
+          prodotto.Prodotto?.toLowerCase().includes(
+            debouncedSearch.toLowerCase(),
+          ),
         ),
-      ),
-    }))
-    .filter((categoria) => categoria.data.length > 0);
+      }))
+      .filter((categoria) => categoria.data.length > 0);
+  };
+  const classiciFiltrati = applicaFiltroRicerca(prodottiClassici);
+  const bioniqFiltrati = applicaFiltroRicerca(prodottiBioniq);
 
   // aggiungi / aggiorna / rimuovi prodotto (viene chiamato anche con quantita = 0 per rimuovere)
   const handleAggiungiProdotto = (prodotto, quantita, prezzoUnitario) => {
@@ -111,6 +138,7 @@ export default function PreventivoClient() {
         baseSconto: prodotto.BaseSconto,
         puntiVolumeUnitario: pv,
         iva: prodotto.Iva,
+        categoria: prodotto.categoria,
         totale: Math.round((qta * prezzo + Number.EPSILON) * 100) / 100,
       };
 
@@ -136,9 +164,9 @@ export default function PreventivoClient() {
         <h2>genera un preventivo gratuito per i tuoi prodotti</h2>
 
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start sm:px-4">
-          <div className="lg:col-span-8 w-full max-w-4xl mx-auto">
-            {/* input */}
-            <div className="flex flex-col gap-4 items-center mb-10 w-full">
+          <div className="lg:col-span-8 w-full max-w-4xl mx-auto flex flex-col gap-10">
+            {/* input filtri */}
+            <div className="flex flex-col gap-4 items-center mb-4 w-full">
               <Input
                 as="select"
                 name="ruolo"
@@ -173,7 +201,6 @@ export default function PreventivoClient() {
                 </option>
               </Input>
 
-              {/* se cliente privilegiato */}
               {ruolo === "CP" && (
                 <Input
                   as="select"
@@ -210,7 +237,6 @@ export default function PreventivoClient() {
                 </Input>
               )}
 
-              {/* se distributore */}
               {ruolo === "DS" && (
                 <>
                   <Input
@@ -296,12 +322,11 @@ export default function PreventivoClient() {
               )}
             </div>
 
-            <div className="mb-6">
-              {/* barra di ricerca */}
+            <div className="mb-2">
               <Input
                 as="input"
                 type="search"
-                placeholder="ricerca prodotto..."
+                placeholder="ricerca in tutte le linee..."
                 onChange={(e) => setSearch(e.target.value)}
                 iconaDestra={
                   <div className="text-herbalife-1 font-bold">
@@ -311,22 +336,46 @@ export default function PreventivoClient() {
               />
             </div>
 
-            {/* tabella */}
             <UltimaModifica />
-            <div className="lg:h-[80vh] max-w-4xl overflow-x-auto shadow-nav sticky top-nav rounded-lg">
-              <Tabella
-                prodotti={prodottiFiltrati}
-                isLoading={loading}
-                ruolo={ruolo}
-                usoDistributore={usoDistributore}
-                livelloMarketing={livelloMarketing}
-                handleAggiungiProdotto={handleAggiungiProdotto}
-                isSearching={debouncedSearch.trim().length > 0}
-              />
+
+            {/* TABELLA 1: LINEA BIONIQ */}
+            <div className="flex flex-col gap-2">
+              <h3 className="text-lg font-bold uppercase tracking-wider text-herbalife-1 font-mono">
+                🧬 Linea Bioniq
+              </h3>
+              <div className="lg:max-h-[50vh] max-w-4xl overflow-x-auto shadow-nav rounded-lg border border-zinc-100 dark:border-zinc-900">
+                <Tabella
+                  prodotti={bioniqFiltrati}
+                  isLoading={loading}
+                  ruolo={ruolo}
+                  usoDistributore={usoDistributore}
+                  livelloMarketing={livelloMarketing}
+                  handleAggiungiProdotto={handleAggiungiProdotto}
+                  isSearching={debouncedSearch.trim().length > 0}
+                />
+              </div>
             </div>
+            {/* tabella 2: prodotti classici */}
+            <div className="flex flex-col gap-2">
+              <h3 className="text-lg font-bold uppercase tracking-wider text-zinc-800 dark:text-zinc-200 font-mono">
+                📦 Prodotti Integrativi Classici
+              </h3>
+              <div className="lg:max-h-[50vh] max-w-4xl overflow-x-auto shadow-nav rounded-lg border border-zinc-100 dark:border-zinc-900">
+                <Tabella
+                  prodotti={classiciFiltrati}
+                  isLoading={loading}
+                  ruolo={ruolo}
+                  usoDistributore={usoDistributore}
+                  livelloMarketing={livelloMarketing}
+                  handleAggiungiProdotto={handleAggiungiProdotto}
+                  isSearching={debouncedSearch.trim().length > 0}
+                />
+              </div>
+            </div>
+
           </div>
 
-          {/* riepilogo costi */}
+          {/* riepilogo */}
           <div className="lg:col-span-4 w-full max-w-md mx-auto lg:sticky lg:top-25 z-30">
             <Riepilogo
               prodotti={prodottiSelezionati}

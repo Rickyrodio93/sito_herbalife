@@ -1,5 +1,12 @@
 export const slides = [
     {
+        src:"/immagini/swiperImmagini/hero-bioniq.webp",
+        srcMobile:"/immagini/swiperImmagini/bioniq_phone.webp",
+        title: "BIONIQ | Nutrizione di precisione",
+        description: "L'era della nutrizione su misura è qui. Unisci l'intelligenza artificiale e l'analisi dei tuoi biomarcatori ematici per creare un'integrazione personalizzata basata sulle reali esigenze del tuo corpo.",
+        linkTo: "https://shopbioniq.com/it-IT/riccardorodio-bioniq"
+    },
+    {
         src: "/immagini/swiperImmagini/hl-skin.jpeg",
         title: "linea HL/Skin",
         description: "Scopri l'eleganza della skincare evoluta. HL/Skin unisce l'avanzata scienza coreana a ingredienti clinicamente testati, offrendoti i risultati di cui hai bisogno, senza sforzo",
@@ -28,11 +35,5 @@ export const slides = [
         title: "linea skin",
         description: "scopri la nostra linea skin per prenderti cura della tua pelle",
         linkTo: "/skin"
-    },
-    {
-        src: "/immagini/swiperImmagini/active_mind_complex_pc.webp",
-        title: "active mind complex",
-        description: "Prenditi cura ogni giorno del tuo benessere cognitivo con l'Active Mind Complex: nutrizione intelligente per il tuo cervello.",
-        linkTo: "https://riccardorodio.goherbalife.com/Catalog/Product/Details/it-IT/243K"
     }
 ]

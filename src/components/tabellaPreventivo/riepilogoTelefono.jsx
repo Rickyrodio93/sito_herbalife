@@ -22,7 +22,12 @@ export default function riepilogoTelefono({
   isOpenMobile,
   onRimuoviProdotto,
   openModal,
+  haBioniq
 }) {
+
+const haProdottiClassici = prodotti.some(p => p.categoria !== "formulazioni personalizzate" && (p.quantita || 0) > 0);
+const haOrdineMisto = preventivo.haBioniq && haProdottiClassici;
+
   const content = (
     <>
       <div
@@ -99,6 +104,7 @@ export default function riepilogoTelefono({
               <PreventivoLista
                 prodotti={prodotti}
                 onRimuoviProdotto={onRimuoviProdotto}
+                haBioniq={haBioniq}
               />
 
               <PreventivoDettaglio
@@ -111,6 +117,7 @@ export default function riepilogoTelefono({
 
               {prodotti.length > 0 && (
                 <button
+                
                   onClick={() => {
                     setIsOpenMobile(false);
                     openModal(true);

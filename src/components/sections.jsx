@@ -1,6 +1,7 @@
 import {
   Banana,
   Bath,
+  Cylinder,
   Network,
   ScanLine,
   TrendingDown,
@@ -46,6 +47,11 @@ const ProductsList =
   "https://riccardorodio.goherbalife.com/Catalog/Categories/ProductsList/it-IT/";
 
 export const CARDSHOME = [
+  {
+    icon: Cylinder,
+    title: "personalizzazione  con Bioniq",
+    link: "https://shopbioniq.com/it-it/riccardorodio-bioniq",
+  },
   {
     icon: TrendingDown,
     title: "controllo del peso",
@@ -166,11 +172,32 @@ export const SECTIONHOME = [
           </li>
         </ul>
         <br />
+        <div className="my-6 p-5 bg-emerald-500/10 dark:bg-emerald-400/5 border border-emerald-500/20 rounded-2xl text-center md:text-left md:flex md:items-center md:justify-between gap-6">
+          <div className="max-w-xl">
+            <h4 className="text-sm font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+              Scopri le tue reali esigenze
+            </h4>
+            <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400 leading-normal">
+              Inizia ora il tuo percorso verso una nutrizione di precisione. Fai
+              il test ufficiale per ricevere una valutazione del benessere
+              personalizzata.
+            </p>
+          </div>
+          <Link
+            href="https://quiz.mypro2col.com/it-IT/intro?site=riccardorodio-catalog"
+            target="_blank"
+            className="mt-4 md:mt-0 inline-flex no-underline items-center justify-center px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm transition-all duration-200 shrink-0 whitespace-nowrap"
+          >
+            Inizia la valutazione
+          </Link>
+        </div>
         <i>
           Scegliere Herbalife oggi significa affidarsi a un brand che unisce la
           natura alla scienza medica più avanzata.
         </i>{" "}
-        <Link href="/scienza">scopri la nostra scienza</Link>
+        <div className="mt-2">
+          <Link href="/scienza">scopri la nostra scienza</Link>
+        </div>
       </>
     ),
   },
@@ -180,21 +207,13 @@ export const SECTIONHOME = [
     square: true,
     text: (
       <>
-        Ciao, mi chiamo Riccardo, ho {etaDinamica} anni, e mi sono laureato
-        presso la facoltà di scienze agrarie a Milano. Sono sempre stato uno
-        sportivo a livello agonistico. Ho praticato molti sport come: basket,
-        ginnastica artistica, nuoto, calcio. Ho conosciuto Herbalife{" "}
-        {etaHerbalife} anni fa grazie a un'amica che mi ha invitato a un evento
-        informativo di 2 giorni. All'inizio ero scettico, non pensavo di avere
-        bisogno dei prodotti nè conoscevo il tipo di business, ma ho deciso lo
-        stesso di informarmi. Dopo l'evento ho capito che non sapevo nulla su
-        questa incredibile azienda, sui prodotti di altissima qualità e
-        sull'opportunità economica. In Herbalife ho trovato una meravigliosa
-        opportunità di crescita che mi ha permesso non solo di rimettermi in
-        forma perdendo circa 8 kg*, ma anche di poter costruire la mia attività
-        autonoma e indipendente condividendo con tante persone prodotti
-        incredibili e un'opportunità davvero unica che può essere svolta anche
-        part-time.
+        Ciao, mi chiamo Riccardo, ho {etaDinamica} anni, sono laureato in
+        scienze agrarie ed ex sportivo agonistico. Ho conosciuto Herbalife{" "}
+        {etaHerbalife} anni fa superando lo scetticismo iniziale grazie a un
+        evento informativo. Comprendendo il valore dell&apos;azienda, ho
+        ritrovato la forma fisica perdendo circa 8 kg* e ho costruito la mia
+        attività autonoma e indipendente basata sulla condivisione di questi
+        prodotti incredibili e dell&apos;opportunità economica.
       </>
     ),
   },

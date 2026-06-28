@@ -10,7 +10,13 @@ export default function RiepilogoDesktop({
   livelloMarketing,
   usoDistributore,
   openModal,
+  haBioniq
 }) {
+  // 🌟 Controlliamo se ci sono prodotti "classici" (non Bioniq) oltre a quelli Bioniq
+  const haProdottiClassici = prodotti.some(p => p.Title !== "formulazioni personalizzate" && (Number(p.quantita) || 0) > 0);
+  
+  // Blocco attivo se l'utente sta mischiando Bioniq con i prodotti classici
+  const haOrdineMisto = haBioniq && haProdottiClassici;
   return (
     <>
       <div className="hidden lg:block w-full">
@@ -23,6 +29,7 @@ export default function RiepilogoDesktop({
             <PreventivoLista
               prodotti={prodotti}
               onRimuoviProdotto={onRimuoviProdotto}
+              haBioniq={haBioniq}
             />
 
             <h3 className="my-4 text-xl uppercase font-mono font-bold tracking-wide border-b border-zinc-300 dark:border-zinc-700/50 pb-2">

@@ -6,7 +6,7 @@ export const getScontoUnitario = (baseSconto, livelloMarketing, usoDistributore)
   return Math.round((Number(baseSconto) * livello + Number.EPSILON) * 100) / 100;
 };
 
-export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, livelloMarketing) {
+export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, livelloMarketing, isAbbonato = false) {
 
   // variabili generali
   let subtotale = 0;
@@ -23,9 +23,15 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
 
   // spese fisse e tasse percentuali 
   const spedizionePerc = 0.035; // percentuale di spedizione del 3.5%
-  const spedizioneFissa = 3.5; // spedizione fissa di 3.50€
   const ritenuta = 0.1794; // ritenuta di imposta del 17.94%
   const INPS = 0.0877; // trattenuta INPS dell'8.77%
+
+  // Controllo se nel carrello c'è almeno un prodotto della linea Bioniq
+  const haBioniq = prodotti.some(p => p.categoria === "formulazioni personalizzate" && (Number(p.quantita) || 0) > 0);
+
+  // La spedizione fissa diventa 7.50€ per Bioniq, altrimenti resta 3.50€
+  // Se l'utente è abbonato, la spedizione fissa si azzera
+  const spedizioneFissa = isAbbonato ? 0 : (haBioniq ? 7.50 : 3.50);
 
   // se si tratta di vendita occasionale, il livello di sconto è fisso al 50%
   const livello = usoDistributore === "abituale <6410" || usoDistributore === "abituale >6410"
@@ -112,7 +118,8 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
     venditaCliente,
     guadagnoNetto,
     sommaProdotti,
-    ivaProdotti
+    ivaProdotti,
+    haBioniq,
   };
 }
 

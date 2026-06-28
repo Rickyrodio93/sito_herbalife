@@ -13,6 +13,7 @@ export default function Riepilogo({
   ruolo,
   usoDistributore,
   livelloMarketing,
+  isAbbonato = false
 }) {
   const [isOpenMobile, setIsOpenMobile] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +23,10 @@ export default function Riepilogo({
     ruolo,
     usoDistributore,
     livelloMarketing,
+    isAbbonato
   );
+
+const {haBioniq} = preventivo;
 
   const openModal = () => {
     setShowModal(true);
@@ -39,7 +43,8 @@ export default function Riepilogo({
         livelloMarketing={livelloMarketing}
         usoDistributore={usoDistributore}
         openModal={openModal}
-      />
+        haBioniq={haBioniq}
+        />
 
       {/* VERSIONE SMARTPHONE */}
       <RiepilogoTelefono
@@ -52,6 +57,7 @@ export default function Riepilogo({
         isOpenMobile={isOpenMobile}
         onRimuoviProdotto={onRimuoviProdotto}
         openModal={openModal}
+        haBioniq={haBioniq}
       />
 
       {/* MODALE DI CONFERMA */}
