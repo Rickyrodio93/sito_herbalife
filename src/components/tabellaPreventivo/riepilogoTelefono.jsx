@@ -24,6 +24,8 @@ export default function riepilogoTelefono({
   openModal,
   haBioniq,
   haOrdineMisto,
+  isAbbonato,
+  setIsAbbonato
 }) {
   const content = (
     <>
@@ -105,6 +107,8 @@ export default function riepilogoTelefono({
                 ruolo={ruolo}
                 usoDistributore={usoDistributore}
                 haOrdineMisto={haOrdineMisto}
+                isAbbonato={isAbbonato}
+                setIsAbbonato={setIsAbbonato}
               />
               {haOrdineMisto ? (
                 <p className="mb-4 font-mono tracking-wide">

@@ -12,6 +12,8 @@ export default function RiepilogoDesktop({
   openModal,
   haBioniq,
   haOrdineMisto,
+  isAbbonato,
+  setIsAbbonato
 }) {
   return (
     <>
@@ -29,6 +31,8 @@ export default function RiepilogoDesktop({
               ruolo={ruolo}
               usoDistributore={usoDistributore}
               haOrdineMisto={haOrdineMisto}
+              isAbbonato={isAbbonato}
+              setIsAbbonato={setIsAbbonato}
             />
 
             {haOrdineMisto ? (

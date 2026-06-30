@@ -1,4 +1,5 @@
-import { AlertTriangle, Truck, X } from "lucide-react";
+import { AlertTriangle, CheckSquare, Square, Truck, X } from "lucide-react";
+import Input from "../Inputs/Input";
 
 export default function PreventivoLista({
   prodotti,
@@ -6,17 +7,10 @@ export default function PreventivoLista({
   haBioniq,
   ruolo,
   usoDistributore,
-  haOrdineMisto
+  haOrdineMisto,
+  isAbbonato,
+  setIsAbbonato,
 }) {
-  // 🌟 Verifichiamo se ci sono prodotti "classici" (non Bioniq) con quantità maggiore di zero
-  // const haProdottiClassici = prodotti.some(
-  //   (p) =>
-  //     p.categoria !== "formulazioni personalizzate" &&
-  //     (Number(p.quantita) || 0) > 0,
-  // );
-
-  // // L'ordine è misto se contiene sia Bioniq sia prodotti classici
-  // const haOrdineMisto = haBioniq && haProdottiClassici;
   return (
     <>
       {haBioniq && (
@@ -49,19 +43,50 @@ export default function PreventivoLista({
             )}
 
             {/* Vantaggio della spedizione gratuita */}
-            <div className="mt-2 flex items-center gap-1.5 text-[11px] text-emerald-600 dark:text-emerald-400 font-bold border-t border-amber-500/10 pt-2">
-              <Truck size={14} className="shrink-0" />
-              <span>Abbonati per attivare la spedizione gratuita!</span>
+            <div className="mt-3 border-t border-amber-500/10 pt-2 flex flex-col gap-2">
+              <label className="flex items-center gap-2 cursor-pointer select-none group">
+                <input
+                  type="checkbox"
+                  checked={isAbbonato}
+                  onChange={(e) => setIsAbbonato(e.target.checked)}
+                  className="sr-only"
+                />
+                <div className="text-zinc-600 dark:text-zinc-400 group-hover:text-herbalife-4 dark:group-hover:text-herbalife-1 transition-colors">
+                  {isAbbonato ? (
+                    <CheckSquare
+                      size={16}
+                      className="text-emerald-600 dark:text-emerald-400"
+                    />
+                  ) : (
+                    <Square size={16} />
+                  )}
+                </div>
+                <span className="text-[11px] font-medium text-zinc-700 dark:text-zinc-300">
+                  Sono già un utente abbonato Bioniq
+                </span>
+              </label>
+              <div className="mt-2 flex items-center gap-1.5 text-[11px] text-emerald-600 dark:text-emerald-400 font-bold border-t border-amber-500/10 pt-2">
+                <Truck size={14} className="shrink-0" />
+                <span>
+                  {isAbbonato
+                    ? "Spedizione Gratuita attivata per il tuo abbonamento"
+                    : "Abbonati per attivare la spedizione gratuita!"}
+                </span>
+              </div>
             </div>
           </div>
-          {(ruolo === "DS" && usoDistributore !== "uso personale") && (
+
+          {ruolo === "DS" && usoDistributore !== "uso personale" && (
             <div className="mb-5 text-left p-3.5 rounded-xl border border-red-500/20 bg-red-500/5 dark:bg-red-500/10 text-red-950 dark:text-red-200 normal-case shadow-inner">
               <div className="flex items-start gap-2 text-xs leading-relaxed">
                 <AlertTriangle
                   size={16}
                   className="text-red-500 shrink-0 mt-0.5"
                 />
-                <p>Bioniq è acquistabile soltanto per uso personale. Si prega di selezionare uso personale per procedere</p>
+                <p>
+                  Bioniq è acquistabile soltanto per uso personale. Si prega di
+                  selezionare uso personale per procedere
+                </p>
               </div>
             </div>
           )}

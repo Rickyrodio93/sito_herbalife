@@ -6,7 +6,7 @@ export const getScontoUnitario = (baseSconto, livelloMarketing, usoDistributore)
   return Math.round((Number(baseSconto) * livello + Number.EPSILON) * 100) / 100;
 };
 
-export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, livelloMarketing, isAbbonato = false) {
+export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, livelloMarketing, isAbbonato) {
 
   // variabili generali
   let subtotale = 0;
@@ -36,7 +36,7 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
   // se si tratta di vendita occasionale, il livello di sconto è fisso al 50%
   const livello = usoDistributore === "abituale <6410" || usoDistributore === "abituale >6410"
     ? 0.5
-    : (Number(livelloMarketing) || 0) / 100;
+    : (Number(livelloMarketing) || 0);
 
   // funzione per arrotondare alla seconda cifra decimale
   function roundToTwo(num) {
@@ -53,7 +53,7 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
     const baseSconto = Number(p.baseSconto) || 0;
     const pv = Number(p.puntiVolumeUnitario) || 0;
 
-    const scontoUnitario = getScontoUnitario(baseSconto, livelloMarketing, usoDistributore);
+    const scontoUnitario = getScontoUnitario(baseSconto, livello, usoDistributore);
 
     // subtotale e sconto
     subtotale += roundToTwo(prezzoListino * q);
@@ -68,10 +68,10 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
     } else if (ruolo === "CP" || usoDistributore === "uso personale") {
       spedizione = puntiVolume < 100 ? spedizioneFissa : 0;
     } else if (ruolo === "DS" && usoDistributore !== "uso personale") {
-      spedizione = subtotale * spedizionePerc;
+      spedizione = isAbbonato ? 0 : (subtotale * spedizionePerc);
     }
     // costo cliente finale
-    venditaCliente += roundToTwo(prezzoListino * (1 + spedizionePerc) * (1 + ivaUnitaria) * q);
+    venditaCliente += roundToTwo(prezzoListino * (1 + (isAbbonato ? 0 : spedizionePerc)) * (1 + ivaUnitaria) * q);
     sommaProdotti += q;
 
     // calcolo IVA prodotti
@@ -98,7 +98,6 @@ export default function CalcoloPreventivo(prodotti, ruolo, usoDistributore, live
       tasse += (scontoUnitario * ritenuta - scontoUnitario * 0.22) * q;
     } else if (usoDistributore === "abituale >6410") {
       tasse += (scontoUnitario * ritenuta - scontoUnitario * 0.22 + scontoUnitario * INPS) * q;
-
     }
   });
 
