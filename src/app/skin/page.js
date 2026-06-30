@@ -28,16 +28,15 @@ export const metadata = {
 export default function Skin() {
     return (
         <>
-        <Background titolo={"herbalife skin"} src={"/immagini/background/skin.webp"}/>
-            <main>
+            <main className="pt-28 md:pt-30">
+                <Background titolo={"herbalife skin"} src={"/immagini/background/skin.webp"} />
                 {SECTIONSKIN.map((section, index) => (
                     <Section key={index}>
-                        <SectionComponent section={section} index={index}/>
+                        <SectionComponent section={section} index={index} />
                     </Section>
                 ))}
                 <Section>
-                    <h3 className="text-herbalife-1 dark:text-green-600 text-2xl font-semibold capitalize py-10">prodotti consigliati</h3>
-                    <ProdottiConsigliati pagina="skin" />
+                    <ProdottiConsigliati pagina="skin" title="prodotti consigliati" />
                 </Section>
             </main>
         </>

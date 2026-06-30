@@ -27,8 +27,8 @@ export const metadata = {
 export default function Scienza() {
     return (
         <>
+            <main className="pt-28 md:pt-30">
             <Background titolo={"la scienza dietro i prodotti"} src="/immagini/background/scienza.webp" />
-            <main>
                 {SECTIONSCIENZA.map((section, index) => (
                     <Section key={section}>
                         <SectionComponent index={index} section={section} />

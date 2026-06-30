@@ -8,11 +8,25 @@ import AssistantChat from "@/components/assistantChat/AssistantChat";
 
 export const metadata = {
   title: {
-    default: "Riccardo Rodio | Distributore Indipendente Herbalife",
+    default: "Acquista Prodotti Herbalife e Bioniq | Riccardo Rodio Distributore",
     template: "%s | Riccardo Rodio"
   },
-  description: "Benvenuto sul sito di Riccardo Rodio. Scopri i prodotti Herbalife e l'opportunità di collaborare con me.",
-  keywords: ["Herbalife", "Riccardo Rodio", "Controllo Peso", "Integratori Sportivi", "Herbalife24"],
+  description: "Ordina i prodotti integrativi Herbalife e la linea personalizzata Bioniq. Scopri il catalogo completo e calcola il tuo preventivo tramite Distributore Indipendente.",
+  keywords: [
+    "Herbalife",
+    "Bioniq",
+    "Herbalife Varese",
+    "Bioniq Varese",
+    "Integratori Varese",
+    "Acquista Herbalife",
+    "Bioniq Italia",
+    "Bioniq Herbalife",
+    "Riccardo Rodio",
+    "Controllo Peso",
+    "Integratori Sportivi",
+    "Integratori Personalizzati",
+    "Herbalife24"
+  ],
   authors: [{ name: "Riccardo Rodio", url: "https://www.riccardorodio.com" }],
   creator: "Riccardo Rodio",
   publisher: "Riccardo Rodio",
@@ -38,10 +52,10 @@ export const metadata = {
   },
   // open graph
   openGraph: {
-    title: "Riccardo Rodio | Distributore Indipendente Herbalife",
-    description: "Scopri i prodotti Herbalife e trasforma la tua forma fisica con una consulenza personalizzata.",
+    title: "Acquista Prodotti Herbalife e Bioniq | Riccardo Rodio",
+    description: "Ordina i prodotti Herbalife e la linea su misura Bioniq. Calcola il tuo preventivo personalizzato e trasforma il tuo benessere.",
     url: "https://www.riccardorodio.com",
-    siteName: "Riccardo Rodio Herbalife",
+    siteName: "Riccardo Rodio Herbalife & Bioniq",
     locale: "it_IT",
     type: "website",
     images: [
@@ -49,16 +63,16 @@ export const metadata = {
         url: "https://www.riccardorodio.com/immagini/background/home.webp",
         width: 1200,
         height: 630,
-        alt: "Riccardo Rodio - Distributore Indipendente Herbalife"
+        alt: "Riccardo Rodio - Distributore Indipendente Herbalife e Bioniq"
       }
     ]
   },
 
   // twitter card
   twitter: {
-    card: "summary_large_image", // Mostra la card con l'immagine grande, molto più cliccata
-    title: "Riccardo Rodio | Distributore Indipendente Herbalife",
-    description: "Scopri i prodotti Herbalife e trasforma la tua forma fisica.",
+    card: "summary_large_image",
+    title: "Acquista Prodotti Herbalife e Bioniq | Riccardo Rodio",
+    description: "Ordina i prodotti Herbalife e la linea di integratori su misura Bioniq. Calcola ora il tuo preventivo.",
     images: ["https://www.riccardorodio.com/immagini/background/home.webp"],
   },
   // favicon

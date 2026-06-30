@@ -28,8 +28,8 @@ export const metadata = {
 export default function ControlloPeso() {
     return (
         <>
-            <Background titolo="controllo del peso" src="/immagini/background/controlloPeso.webp" />
-            <main>
+            <main className="pt-28 md:pt-30">
+                <Background titolo="controllo del peso" src="/immagini/background/controlloPeso.webp" />
                 {SECTIONCONTROLLOPESO.map((section, index) => (
                     <Section key={index}>
                         <SectionComponent index={index} section={section} />
@@ -37,10 +37,7 @@ export default function ControlloPeso() {
                 ))}
 
                 <Section>
-                    <h3 className="text-herbalife-1 dark:text-green-600 text-2xl font-semibold capitalize py-10">
-                        prodotti consigliati
-                    </h3>
-                    <ProdottiConsigliati pagina="controlloPeso" />
+                    <ProdottiConsigliati pagina="controlloPeso" title="prodotti consigliati" />
                 </Section>
             </main>
         </>

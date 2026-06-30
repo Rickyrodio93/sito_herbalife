@@ -204,7 +204,7 @@ export default function AssistantChat() {
               <div>
                 <h3 className="font-bold text-sm">Ciao, sono Her-bot</h3>
                 <p className="text-xs text-zinc-100">
-                  rispondo 24 ore su 24, 7 giorni su 7
+                  come posso aiutarti?
                 </p>
               </div>
               <button

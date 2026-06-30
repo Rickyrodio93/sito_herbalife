@@ -29,25 +29,22 @@ export const metadata = {
 export default function Sport() {
     return (
         <>
-        <Background titolo={"linea h24"} src="/immagini/background/sport.webp" />
-        <main>
-            <Section>
-                <h2>collaboriamo con i campioni</h2>
-                <CardCampioni/>
-            </Section>
-            {SECTIONSPORT.map((section, index) => (
-                <Section key={index}>
-            <SectionComponent section={section} index={index} />
-          </Section>
-            ))}
+            <main className="pt-28 md:pt-30">
+                <Background titolo={"linea h24"} src="/immagini/background/sport.webp" />
+                <Section>
+                    <h2>collaboriamo con i campioni</h2>
+                    <CardCampioni />
+                </Section>
+                {SECTIONSPORT.map((section, index) => (
+                    <Section key={index}>
+                        <SectionComponent section={section} index={index} />
+                    </Section>
+                ))}
 
-            <Section>
-          <h3 className="text-herbalife-1 dark:text-green-600 text-2xl font-semibold capitalize py-10">
-            prodotti consigliati
-          </h3>
-          <ProdottiConsigliati pagina="sport" />
-        </Section>
-        </main>
+                <Section>
+                    <ProdottiConsigliati pagina="sport" title="prodotti consigliati" />
+                </Section>
+            </main>
         </>
     )
 }

@@ -63,6 +63,11 @@ export default function ModalRiepilogo({
 
   const linkEstoreCliente = `https://riccardorodio.goherbalife.com/Catalog/Product/Search/it-IT/${searchText}`;
   const linkMyHerbalifeBusiness = `https://www.myherbalife.com/it-IT/Shop/Catalog/Items/Search/${ruolo === "DS" ? "Ds" : "Mb"}?searchText=${searchText}`;
+  const linkBioniq = "https://shopbioniq.com/it-it/riccardorodio-bioniq";
+
+  const haProdottiBioniq =
+    prodotti?.some((item) => item.nome?.toLowerCase().includes("bioniq")) ||
+    false;
   const content = (
     <>
       <motion.div
@@ -88,8 +93,8 @@ export default function ModalRiepilogo({
             <div className="flex items-center shrink-0 justify-between p-5 border-b border-zinc-100 dark:border-zinc-900">
               <h3 className="uppercase tracking-wider font-bold text-zinc-900 dark:text-zinc-50 text-lg mb-0">
                 riepilogo ordine{" "}
-                <span className="">
-                  ({ruolo} {!isCliente ? `- ${livelloMarketing}%` : ""}){" "}
+                <span>
+                  ( {ruolo} {!isCliente ? `- ${livelloMarketing}%` : ""}){" "}
                 </span>
               </h3>
               <button
@@ -119,7 +124,8 @@ export default function ModalRiepilogo({
                 <tbody className="divide-y divide-zinc-100 dark:divide-zinc-900">
                   {prodotti.length > 0 &&
                     prodotti.map((p) => {
-                      const prezzoUnitario = Number(calcolaPrezzoFinito(p)) || 0;
+                      const prezzoUnitario =
+                        Number(calcolaPrezzoFinito(p)) || 0;
                       const cad = isCliente
                         ? `${prezzoUnitario.toFixed(2)}`
                         : `${(Number(p.PrezzoListino) || 0).toFixed(2)}`;
@@ -317,22 +323,35 @@ export default function ModalRiepilogo({
 
               {isCliente ? (
                 <>
-                  <a
-                    href={linkEstoreCliente}
-                    className="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-lg flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider shadow-sm transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Store size={16} /> Completa sull'e-store online
-                  </a>
-                  <a
-                    href={`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`}
-                    className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider shadow-sm transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Share size={16} /> invia ordine su whatsApp
-                  </a>
+                  {haProdottiBioniq ? (
+                    <a
+                      href={linkBioniq}
+                      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider shadow-sm transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Store size={16} /> Completa ordine Bioniq
+                    </a>
+                  ) : (
+                    <>
+                      <a
+                        href={linkEstoreCliente}
+                        className="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 px-5 py-2.5 rounded-lg flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider shadow-sm transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Store size={16} /> Completa sull&apos;e-store online
+                      </a>
+                      <a
+                        href={`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`}
+                        className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider shadow-sm transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Share size={16} /> invia ordine su whatsApp
+                      </a>
+                    </>
+                  )}
                 </>
               ) : (
                 <>

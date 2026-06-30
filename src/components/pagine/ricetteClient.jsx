@@ -9,11 +9,11 @@ export default function RicetteClient() {
   const [searchQuery, setSearchQuery] = useState("");
   return (
     <>
+        <main className="pt-28 md:pt-30">
       <Background
         titolo={"ricette"}
         src="/immagini/background/sfondoRicette.jpg"
       />
-      <main className="py-25 px-5">
         <Input
           type="search"
           placeholder="ricerca ricetta"
@@ -26,6 +26,7 @@ export default function RicetteClient() {
               <Search size={24} />
             </div>
           }
+          className="mt-8"
         >
           <div className="h-full aspect-square flex items-center justify-center text-herbalife-1 font-bold">
             <Search size={30} />

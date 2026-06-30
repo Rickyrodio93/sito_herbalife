@@ -10,13 +10,9 @@ export default function RiepilogoDesktop({
   livelloMarketing,
   usoDistributore,
   openModal,
-  haBioniq
+  haBioniq,
+  haOrdineMisto,
 }) {
-  // 🌟 Controlliamo se ci sono prodotti "classici" (non Bioniq) oltre a quelli Bioniq
-  const haProdottiClassici = prodotti.some(p => p.Title !== "formulazioni personalizzate" && (Number(p.quantita) || 0) > 0);
-  
-  // Blocco attivo se l'utente sta mischiando Bioniq con i prodotti classici
-  const haOrdineMisto = haBioniq && haProdottiClassici;
   return (
     <>
       <div className="hidden lg:block w-full">
@@ -30,23 +26,39 @@ export default function RiepilogoDesktop({
               prodotti={prodotti}
               onRimuoviProdotto={onRimuoviProdotto}
               haBioniq={haBioniq}
-            />
-
-            <h3 className="my-4 text-xl uppercase font-mono font-bold tracking-wide border-b border-zinc-300 dark:border-zinc-700/50 pb-2">
-              dettagli prodotti:
-            </h3>
-
-            <PreventivoDettaglio
               ruolo={ruolo}
-              preventivo={preventivo}
-              livelloMarketing={livelloMarketing}
               usoDistributore={usoDistributore}
+              haOrdineMisto={haOrdineMisto}
             />
+
+            {haOrdineMisto ? (
+              <p className="font-mono tracking-wide">
+                dettagli non disponibili
+              </p>
+            ) : (
+              <>
+                <h3 className="my-4 text-xl uppercase font-mono font-bold tracking-wide border-b border-zinc-300 dark:border-zinc-700/50 pb-2">
+                  dettagli prodotti:
+                </h3>
+                <PreventivoDettaglio
+                  ruolo={ruolo}
+                  preventivo={preventivo}
+                  livelloMarketing={livelloMarketing}
+                  usoDistributore={usoDistributore}
+                />
+              </>
+            )}
             {/* pulsante riepilogo */}
             {prodotti.length > 0 && (
               <button
                 onClick={openModal}
-                className="mt-6 flex items-center justify-center gap-2 w-full py-3 px-4 text-white bg-herbalife-4 hover:bg-herbalife-1 rounded-xl transition-all duration-300 text-sm font-black uppercase tracking-wider shadow-md hover:shadow-lg active:scale-[0.98]"
+                disabled={
+                  haOrdineMisto ||
+                  (haBioniq &&
+                    ruolo === "DS" &&
+                    usoDistributore !== "uso personale")
+                }
+                className="mt-6 flex items-center justify-center gap-2 w-full py-3 px-4 text-white bg-herbalife-4 hover:bg-herbalife-1 disabled:opacity-40 disabled:cursor-not-allowed rounded-xl transition-all duration-300 text-sm font-black uppercase tracking-wider shadow-md hover:shadow-lg active:scale-[0.98]"
               >
                 <ClipboardCheck size={18} />{" "}
                 {ruolo === "cliente" ? "conferma ordine" : "riepilogo ordine"}

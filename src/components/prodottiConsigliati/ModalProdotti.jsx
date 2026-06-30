@@ -69,11 +69,11 @@ export default function ModalProdotti({
                     href={`https://riccardorodio.goherbalife.com/Catalog/Product/Details/it-IT/${id}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto text-white dark:text-zinc-950 bg-zinc-950 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white font-semibold py-2.5 px-5 text-sm uppercase tracking-wider transition-colors rounded-xl shadow-md"
+                    className="w-full sm:w-auto text-white dark:text-zinc-950 bg-zinc-950 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white font-semibold py-2.5 px-5 text-sm uppercase tracking-wider transition-colors rounded-xl shadow-md no-underline"
                   >
-                    <div className="flex items-center justify-center gap-2">
+                    <div className="flex items-center justify-center gap-2 ">
                       <Store size={18}/>
-                      <span>vai all'e-commerce</span>
+                      <span>vai all&apos;e-commerce</span>
                     </div>
                   </Link>
                 </div>

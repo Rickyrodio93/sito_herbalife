@@ -27,6 +27,14 @@ export default function Riepilogo({
   );
 
 const {haBioniq} = preventivo;
+// 🌟 Controlliamo se ci sono prodotti Bioniq
+  const haBioniqReale = prodotti.some(p => p.categoria === "formulazioni personalizzate" && (Number(p.quantita) || 0) > 0)
+
+  // 🌟 Controlliamo se ci sono prodotti "classici" (non Bioniq) oltre a quelli Bioniq
+  const haProdottiClassici = prodotti.some(p => p.categoria !== "formulazioni personalizzate" && (Number(p.quantita) || 0) > 0);
+  
+  // Blocco attivo se l'utente sta mischiando Bioniq con i prodotti classici
+  const haOrdineMisto = haBioniqReale && haProdottiClassici;
 
   const openModal = () => {
     setShowModal(true);
@@ -44,6 +52,7 @@ const {haBioniq} = preventivo;
         usoDistributore={usoDistributore}
         openModal={openModal}
         haBioniq={haBioniq}
+        haOrdineMisto={haOrdineMisto}
         />
 
       {/* VERSIONE SMARTPHONE */}
@@ -58,6 +67,7 @@ const {haBioniq} = preventivo;
         onRimuoviProdotto={onRimuoviProdotto}
         openModal={openModal}
         haBioniq={haBioniq}
+        haOrdineMisto={haOrdineMisto}
       />
 
       {/* MODALE DI CONFERMA */}

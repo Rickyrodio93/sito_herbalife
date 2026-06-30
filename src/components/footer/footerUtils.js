@@ -45,6 +45,10 @@ export const footerGrid = [
                 link: "https://www.herbalife.it/"
             },
             {
+                name: "bioniq",
+                link: "https://www.bioniq.com"
+            },
+            {
                 name: "informed sport",
                 link: "https://sport.wetestyoutrust.com/"
             },

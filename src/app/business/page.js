@@ -28,11 +28,11 @@ export const metadata = {
 export default function Business() {
     return (
         <>
-            <Background
-                titolo="scopri il business herbalife"
-                src="/immagini/background/business.jpg"
-            />
-            <main>
+            <main className="pt-28 md:pt-30">
+                <Background
+                    titolo="scopri il business herbalife"
+                    src="/immagini/background/business.jpg"
+                />
                 {SECTIONBUSINESS.map((section, index) => (
                     <Section
                         key={index}>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Check,
   ChevronDown,
@@ -22,12 +22,9 @@ export default function riepilogoTelefono({
   isOpenMobile,
   onRimuoviProdotto,
   openModal,
-  haBioniq
+  haBioniq,
+  haOrdineMisto,
 }) {
-
-const haProdottiClassici = prodotti.some(p => p.categoria !== "formulazioni personalizzate" && (p.quantita || 0) > 0);
-const haOrdineMisto = preventivo.haBioniq && haProdottiClassici;
-
   const content = (
     <>
       <div
@@ -105,24 +102,37 @@ const haOrdineMisto = preventivo.haBioniq && haProdottiClassici;
                 prodotti={prodotti}
                 onRimuoviProdotto={onRimuoviProdotto}
                 haBioniq={haBioniq}
-              />
-
-              <PreventivoDettaglio
                 ruolo={ruolo}
-                preventivo={preventivo}
-                livelloMarketing={livelloMarketing}
                 usoDistributore={usoDistributore}
-                onRimuoviProdotto={onRimuoviProdotto}
+                haOrdineMisto={haOrdineMisto}
               />
+              {haOrdineMisto ? (
+                <p className="mb-4 font-mono tracking-wide">
+                  dettagli non disponibili
+                </p>
+              ) : (
+                <PreventivoDettaglio
+                  ruolo={ruolo}
+                  preventivo={preventivo}
+                  livelloMarketing={livelloMarketing}
+                  usoDistributore={usoDistributore}
+                  onRimuoviProdotto={onRimuoviProdotto}
+                />
+              )}
 
               {prodotti.length > 0 && (
                 <button
-                
+                  disabled={
+                    haOrdineMisto ||
+                    (haBioniq &&
+                      ruolo === "DS" &&
+                      usoDistributore !== "uso personale")
+                  }
                   onClick={() => {
                     setIsOpenMobile(false);
                     openModal(true);
                   }}
-                  className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white rounded-md transition-all text-sm font-bold uppercase tracking-wider shadow-md"
+                  className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-green-600 hover:bg-green-700 disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-md transition-all text-sm font-bold uppercase tracking-wider shadow-md"
                 >
                   <ClipboardCopy size={16} /> riepilogo ordine
                 </button>

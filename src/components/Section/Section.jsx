@@ -9,6 +9,7 @@ export default function Section({ children }) {
         whileInView={{x:0, opacity: 1}}
         viewport={{once: true, margin: "-100px"}}
         transition={{type: "spring", stiffness:100, damping: 20, delay: 0.1}}
+        className="max-w-7xl mx-auto"
       >
         {children}
       </motion.div>

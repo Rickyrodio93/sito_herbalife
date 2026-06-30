@@ -1,17 +1,18 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ModalProdotti from "./ModalProdotti";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import CardProdotti from "../../components/cards/cardProdotti";
 import axios from "axios";
 import Papa from "papaparse";
 
-export default function ProdottiConsigliati({ pagina }) {
+export default function ProdottiConsigliati({ pagina, title }) {
   const [modalOpen, setModalOpen] = useState(null); // stato per aprire il modal
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [prodotti, setProdotti] = useState([]);
+  const carouselRef = useRef(null);
 
   const csvUrlConsigliati =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vTCM_3vWzdtq9AefTo1Qh44lF4d1lpbrUMLVihG5SJJB1m0LfpaTf35K1FvLUG5jm_m5eyMpOqmViGJ/pub?gid=126954972&single=true&output=csv";
@@ -55,61 +56,92 @@ export default function ProdottiConsigliati({ pagina }) {
 
   const responsive = {
     superLargeDesktop: {
-      breakpoint: { max: 40000, min: 3000 },
-      items: 5,
+      breakpoint: { max: 40000, min: 1536 },
+      items: 4,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-      slidesToSlide: 3,
-    },
-    laptop: {
-      breakpoint: { max: 1024, min: 768 },
+      breakpoint: { max: 1536, min: 1024 },
       items: 3,
-      slidesToSlide: 3,
-      partialVisibilityGutter: 30,
     },
     tablet: {
-      breakpoint: { max: 768, min: 640 },
+      breakpoint: { max: 1024, min: 640 },
       items: 2,
-      slidesToSlide: 2,
       partialVisibilityGutter: 30,
     },
     mobile: {
       breakpoint: { max: 640, min: 0 },
       items: 1,
-      partialVisibilityGutter: 50,
+      partialVisibilityGutter: 40,
     },
   };
 
+  // Funzioni di navigazione collegate ai pulsanti in alto a destra
+  const handlePrev = () => {
+    if (carouselRef.current) carouselRef.current.previous();
+  };
+
+  const handleNext = () => {
+    if (carouselRef.current) carouselRef.current.next();
+  };
+
+  if (prodotti.length === 0) return null;
+
   return (
-    <>
-      <Carousel
-        responsive={responsive}
-        showDots={true}
-        partialVisible={true}
-        centerMode={false}
-        focusOnSelect={false}
-        infinite={true}
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        customLeftArrow={<CustomLeftArrow aria-hidden="false" />}
-        customRightArrow={<CustomRightArrow aria-hidden="false" />}
-        customDot={<CustomDot />}
-        className="max-w-300 mx-5 lg:mx-auto mb-25 py-10 rounded-lg"
-      >
-        {prodotti.map((prodotto) => (
-          <div key={prodotto.id} className="px-2 pb-4 h-full">
-            <CardProdotti
-              id={prodotto.id}
-              titolo={prodotto.titolo}
-              descrizione={prodotto.descrizione}
-              nuovoProdotto={prodotto.nuovoProdotto}
-              prezzo={prodotto.prezzoPubblico}
-              OpenModal={OpenModal}
-            />
-          </div>
-        ))}
-      </Carousel>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
+      <div className="flex items-end justify-between mb-6 border-b border-zinc-200 dark:border-zinc-800 pb-4">
+        <div>
+          <span className="text-xs font-bold uppercase tracking-widest text-herbalife-4 dark:text-herbalife-1">
+            {title}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handlePrev}
+            className="p-2.5 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/60 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700/50 hover:text-herbalife-4 dark:hover:text-herbalife-1 transition-all active:scale-95 shadow-sm"
+            aria-label="Prodotto precedente"
+          >
+            <ArrowLeft size={18} strokeWidth={2.5} />
+          </button>
+          <button
+            onClick={handleNext}
+            className="p-2.5 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/60 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700/50 hover:text-herbalife-4 dark:hover:text-herbalife-1 transition-all active:scale-95 shadow-sm"
+            aria-label="Prodotto successivo"
+          >
+            <ArrowRight size={18} strokeWidth={2.5} />
+          </button>
+        </div>
+      </div>
+
+      {/* struttura carosello */}
+      <div className="relative">
+        <Carousel
+          ref={carouselRef}
+          responsive={responsive}
+          arrows={false}
+          showDots={false}
+          draggable={true}
+          swipeable={true}
+          infinite={true}
+          partialVisible={true}
+          keyBoardControl={true}
+          itemClass="px-2 pb-4"
+          className="overflow-visible"
+        >
+          {prodotti.map((prodotto) => (
+            <div key={prodotto.id} className="h-full transition-all duration-300 hover:-translate-y-1">
+              <CardProdotti
+                id={prodotto.id}
+                titolo={prodotto.titolo}
+                descrizione={prodotto.descrizione}
+                nuovoProdotto={prodotto.nuovoProdotto}
+                prezzo={prodotto.prezzoPubblico}
+                OpenModal={OpenModal}
+              />
+            </div>
+          ))}
+        </Carousel>
+      </div>
+
       {selectedProduct && (
         <ModalProdotti
           id={selectedProduct.id}
@@ -119,42 +151,6 @@ export default function ProdottiConsigliati({ pagina }) {
           closeModal={closeModal}
         />
       )}
-    </>
+    </div>
   );
 }
-// customizzazione delle frecce e dei punti di navigazione
-// freccia sinistra
-const CustomLeftArrow = ({ onClick }) => (
-  <button
-    type="button"
-    aria-label="torna indietro"
-    title="torna indietro"
-    onClick={onClick}
-    className="absolute left-2 z-10 p-2 bg-herbalife-1 hover:bg-herbalife-2 text-herbalife-2 hover:text-herbalife-1 hover:border rounded-full"
-  >
-    <ChevronLeft size={40} />
-  </button>
-);
-
-//freccia destra
-const CustomRightArrow = ({ onClick }) => (
-  <button
-    type="button"
-    aria-label="avanti"
-    title="avanti"
-    onClick={onClick}
-    className="absolute right-2 z-10 p-2 bg-herbalife-1 hover:bg-herbalife-2 text-herbalife-2 hover:text-herbalife-1 hover:border rounded-full"
-  >
-    <ChevronRight size={40} />
-  </button>
-);
-
-// pallini di navigazione
-const CustomDot = ({ onClick, active }) => {
-  <button
-    className={`w-3 h-3 mx-1 mb-1 rounded-full transition-all cursor-pointer border ${
-      active ? "bg-herbalife-1 scale-125" : "bg-herbalife-2 "
-    }`}
-    onClick={() => onClick()}
-  ></button>;
-};

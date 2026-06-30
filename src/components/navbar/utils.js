@@ -1,4 +1,4 @@
-import { Store, TrendingDown, Trophy, ChefHat, Banana, Bath, BookOpen, Calculator, Network, LetterText, Microscope, ScanLine } from "lucide-react";
+import { Store, TrendingDown, Trophy, ChefHat, Banana, Bath, BookOpen, Calculator, Network, LetterText, Microscope, ScanLine, Cylinder } from "lucide-react";
 
 export const Menus = [
     {
@@ -14,6 +14,12 @@ export const Menus = [
                 desc: "acquista i prodotti online",
                 link: "https://riccardorodio.goherbalife.com/Catalog/Home/Index/it-IT",
                 icon: Store,
+            },
+            {
+                name: "formulazioni personalizzate",
+                desc: "Integratori quotidiani basati sulle tue informazioni personali e sui tuoi obiettivi di benessere",
+                link: "https://shopbioniq.com/it-it/riccardorodio-bioniq",
+                icon: Cylinder,
             },
             {
                 name: "controllo del peso",
