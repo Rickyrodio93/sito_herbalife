@@ -1,7 +1,7 @@
 export const slides = [
     {
         src:"/immagini/swiperImmagini/hero-bioniq.webp",
-        srcMobile:"/immagini/swiperImmagini/bioniq_phone.webp",
+        srcMobile:"/immagini/swiperImmagini/Bioniq_phone.webp",
         title: "BIONIQ | Nutrizione di precisione",
         description: "L'era della nutrizione su misura è qui. Unisci l'intelligenza artificiale e l'analisi dei tuoi biomarcatori ematici per creare un'integrazione personalizzata basata sulle reali esigenze del tuo corpo.",
         linkTo: "https://shopbioniq.com/it-IT/riccardorodio-bioniq"
