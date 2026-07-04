@@ -14,6 +14,9 @@ export default function Tabella({
   livelloMarketing,
   handleAggiungiProdotto,
   isSearching,
+  isAbbonato = false,
+  setIsAbbonato,
+  ...props
 }) {
   const tableThead = ["ID", "Prodotto", "Quantità", "Prezzo"];
   const [quantities, setQuantities] = useState({});
@@ -132,6 +135,8 @@ export default function Tabella({
                             usoDistributore={usoDistributore}
                             livelloMarketing={livelloMarketing}
                             onAggiungi={handleAggiungiProdotto}
+                            isAbbonato={isAbbonato}
+                            setIsAbbonato={setIsAbbonato}
                           />
                         ))}
                     </AnimatePresence>

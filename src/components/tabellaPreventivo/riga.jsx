@@ -1,6 +1,6 @@
 "use client";
 
-import { Minus, Plus, Trash } from "lucide-react";
+import { CheckSquare, Minus, Plus, Square, Trash } from "lucide-react";
 import { useState } from "react";
 import ZoomImage from "../zoomImage/ZoomImage";
 import { AnimatePresence } from "framer-motion";
@@ -17,8 +17,12 @@ export default function Riga({
   usoDistributore,
   livelloMarketing,
   onAggiungi,
+  isAbbonato,
+  setIsAbbonato,
+  ...props
 }) {
   const [isZoomOpen, setIsZoomOpen] = useState(false);
+  const isBioniqPrincipale = prodotto?.ID === "628K";
 
   // funzioni per gestire l'input quantità con i pulsanti + e -
   const incrementa = () => onInputChange(prodotto.ID, quantita + 1);
@@ -45,6 +49,7 @@ export default function Riga({
     prodotto,
     usoDistributore,
     livelloMarketing,
+    isAbbonato,
   );
 
   // quando premi aggiungi, chiedo al parent di aggiungere/sostituire/rimuovere
@@ -106,11 +111,52 @@ export default function Riga({
         className="bg-white dark:bg-zinc-950 hover:bg-zinc-50/80 dark:hover:bg-zinc-900/40 transition-colors duration-150 border-b border-zinc-100 dark:border-zinc-900 flex flex-col p-4 gap-3 lg:table-row lg:p-0 lg:gap-0 relative"
       >
         {/* 🌟 1. ID PRODOTTO: Diventa un'etichetta fluttuante nell'angolo su mobile */}
-        <td className="text-left font-mono text-[10px] text-zinc-400 dark:text-zinc-500 lg:table-cell lg:px-4 lg:py-4 lg:text-center lg:text-xs">
+        <td className="text-left font-mono text-[10px] text-zinc-400 dark:text-zinc-500 lg:table-cell lg:px-4 lg:py-4 lg:text-center lg:text-xs flex justify-between">
           <span className="lg:hidden bg-zinc-100 dark:bg-zinc-900 px-2 py-0.5 rounded font-bold mr-1">
-            ID:
+            ID: {prodotto.ID}
           </span>
-          {prodotto.ID}
+
+          <span className="hidden lg:inline">{prodotto.ID}</span>
+
+          {/* sezione abbonamento */}
+          {isBioniqPrincipale && (
+            <div
+              className="w-full lg:w-auto flex justify-start lg:justify-center mt-1 lg:mt-0"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={isAbbonato}
+                  onChange={(e) => setIsAbbonato(e.target.checked)}
+                  className="sr-only"
+                />
+
+                <div className="text-zinc-600 dark:text-zinc-400 group-hover:text-herbalife-4 dark:group-hover:text-herbalife-1 transition-colors">
+                  {isAbbonato ? (
+                    <CheckSquare
+                      size={16}
+                      className="text-emerald-600 dark:text-emerald-400"
+                    />
+                  ) : (
+                    <Square size={16} />
+                  )}
+                </div>
+
+                <span
+                  className={`text-[10px] sm:text-[11px] font-medium tracking-tight transition-colors text-balance ${
+                    isAbbonato
+                      ? "text-emerald-700 dark:text-emerald-400 font-bold"
+                      : "text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-900"
+                  }`}
+                >
+                  {isAbbonato
+                    ? `Abbonamento attivo (consegna gratuita${ruolo !== "cliente" ? "" : " e ulteriore sconto del -5%"})`
+                    : "Attiva Abbonamento"}
+                </span>
+              </label>
+            </div>
+          )}
         </td>
 
         {/* 🌟 2. CORPO PRODOTTO (IMMAGINE + NOME) */}

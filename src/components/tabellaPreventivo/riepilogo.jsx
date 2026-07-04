@@ -3,7 +3,7 @@
 import CalcoloPreventivo from "./calcoloPreventivo";
 import RiepilogoTelefono from "./riepilogoTelefono";
 import { useEffect, useState } from "react";
-import ModalRiepilogo from "./modalRiepilogo";
+import ModalRiepilogo from "./modalRiepilogo/modalRiepilogo";
 import { AnimatePresence } from "framer-motion";
 import RiepilogoDesktop from "./riepilogoDesktop";
 
@@ -13,20 +13,22 @@ export default function Riepilogo({
   ruolo,
   usoDistributore,
   livelloMarketing,
+  isAbbonato,
+  setIsAbbonato
 }) {
   const [isOpenMobile, setIsOpenMobile] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [isAbbonato, setIsAbbonato] = useState(false)
 
   useEffect(() => {
+    const carrelloHaProdotti = prodotti.length >0;
     const haBioniqNelCarrello = prodotti.some(
       (p) => p.categoria === "formulazioni personalizzate" && (Number(p.quantita) || 0) > 0
     );
 
-    if (!haBioniqNelCarrello && isAbbonato) {
+    if (carrelloHaProdotti && !haBioniqNelCarrello && isAbbonato) {
       setIsAbbonato(false)
     }
-  }, [prodotti,isAbbonato])
+  }, [prodotti])
 
   const preventivo = CalcoloPreventivo(
     prodotti,

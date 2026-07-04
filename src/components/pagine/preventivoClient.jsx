@@ -9,6 +9,7 @@ import axios from "axios";
 import Papa from "papaparse";
 import Riepilogo from "@/components/tabellaPreventivo/riepilogo";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import BarraDiRicerca from "../Inputs/barraDiRicerca";
 
 export default function PreventivoClient() {
   const [ruolo, setRuolo] = useState(""); // Default vuoto: "" | cliente | CP | DS
@@ -20,6 +21,7 @@ export default function PreventivoClient() {
   const [prodottiBioniq, setProdottiBioniq] = useState([]);
   const [loading, setLoading] = useState(true);
   const [prodottiSelezionati, setProdottiSelezionati] = useState([]);
+  const [isAbbonato, setIsAbbonato] = useState(false)
 
   useEffect(() => {
     const csvUrlProdotti =
@@ -323,7 +325,7 @@ export default function PreventivoClient() {
             </div>
 
             <div className="mb-2">
-              <Input
+              {/* <Input
                 as="input"
                 type="search"
                 placeholder="ricerca in tutte le linee..."
@@ -333,6 +335,11 @@ export default function PreventivoClient() {
                     <Search size={24} />
                   </div>
                 }
+              /> */}
+              <BarraDiRicerca
+                search={search}
+                setSearch={setSearch}
+                prodotti={[...prodottiBioniq, ...prodottiClassici]}
               />
             </div>
 
@@ -351,6 +358,8 @@ export default function PreventivoClient() {
                   livelloMarketing={livelloMarketing}
                   handleAggiungiProdotto={handleAggiungiProdotto}
                   isSearching={debouncedSearch.trim().length > 0}
+                  isAbbonato={isAbbonato}
+                  setIsAbbonato={setIsAbbonato}
                 />
               </div>
             </div>
@@ -382,6 +391,8 @@ export default function PreventivoClient() {
               ruolo={ruolo}
               usoDistributore={usoDistributore}
               livelloMarketing={livelloMarketing}
+              isAbbonato={isAbbonato}
+              setIsAbbonato={setIsAbbonato}
             />
             <ScrollToTopButton />
           </div>

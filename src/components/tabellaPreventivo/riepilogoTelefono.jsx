@@ -39,6 +39,7 @@ export default function riepilogoTelefono({
             {ruolo === "cliente"
               ? `${preventivo.venditaCliente.toFixed(2)} €`
               : `${preventivo.totale.toFixed(2)} €`}
+              
           </p>
         </div>
         <div
