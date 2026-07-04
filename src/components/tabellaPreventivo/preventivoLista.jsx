@@ -44,27 +44,36 @@ export default function PreventivoLista({
 
             {/* Vantaggio della spedizione gratuita */}
             <div className="mt-3 border-t border-amber-500/10 pt-2 flex flex-col gap-2">
-              <label className="flex items-center gap-2 cursor-pointer select-none group">
-                <input
-                  type="checkbox"
-                  checked={isAbbonato}
-                  onChange={(e) => setIsAbbonato(e.target.checked)}
-                  className="sr-only"
-                />
-                <div className="text-zinc-600 dark:text-zinc-400 group-hover:text-herbalife-4 dark:group-hover:text-herbalife-1 transition-colors">
-                  {isAbbonato ? (
-                    <CheckSquare
-                      size={16}
-                      className="text-emerald-600 dark:text-emerald-400"
-                    />
-                  ) : (
-                    <Square size={16} />
-                  )}
-                </div>
-                <span className="text-[11px] font-medium text-zinc-700 dark:text-zinc-300">
+              <button
+                type="button"
+                onClick={() => setIsAbbonato(!isAbbonato)}
+                className={`inline-flex w-fit items-center gap-2 pl-1 pr-3 py-1 rounded-full border transition-colors cursor-pointer ${
+                  isAbbonato
+                    ? "bg-emerald-50 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/30"
+                    : "bg-white/50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700"
+                }`}
+              >
+                <span
+                  className={`relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition-colors ${
+                    isAbbonato ? "bg-emerald-500" : "bg-zinc-300 dark:bg-zinc-700"
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-3 w-3 transform rounded-full bg-white shadow transition-transform ${
+                      isAbbonato ? "translate-x-3.5" : "translate-x-0.5"
+                    }`}
+                  />
+                </span>
+                <span
+                  className={`text-[11px] font-medium tracking-tight ${
+                    isAbbonato
+                      ? "text-emerald-700 dark:text-emerald-400"
+                      : "text-zinc-700 dark:text-zinc-300"
+                  }`}
+                >
                   Sono già un utente abbonato Bioniq
                 </span>
-              </label>
+              </button>
               <div className="mt-2 flex items-center gap-1.5 text-[11px] text-emerald-600 dark:text-emerald-400 font-bold border-t border-amber-500/10 pt-2">
                 <Truck size={14} className="shrink-0" />
                 <span>

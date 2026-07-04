@@ -117,46 +117,6 @@ export default function Riga({
           </span>
 
           <span className="hidden lg:inline">{prodotto.ID}</span>
-
-          {/* sezione abbonamento */}
-          {isBioniqPrincipale && (
-            <div
-              className="w-full lg:w-auto flex justify-start lg:justify-center mt-1 lg:mt-0"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={isAbbonato}
-                  onChange={(e) => setIsAbbonato(e.target.checked)}
-                  className="sr-only"
-                />
-
-                <div className="text-zinc-600 dark:text-zinc-400 group-hover:text-herbalife-4 dark:group-hover:text-herbalife-1 transition-colors">
-                  {isAbbonato ? (
-                    <CheckSquare
-                      size={16}
-                      className="text-emerald-600 dark:text-emerald-400"
-                    />
-                  ) : (
-                    <Square size={16} />
-                  )}
-                </div>
-
-                <span
-                  className={`text-[10px] sm:text-[11px] font-medium tracking-tight transition-colors text-balance ${
-                    isAbbonato
-                      ? "text-emerald-700 dark:text-emerald-400 font-bold"
-                      : "text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-900"
-                  }`}
-                >
-                  {isAbbonato
-                    ? `Abbonamento attivo (consegna gratuita${ruolo !== "cliente" ? "" : " e ulteriore sconto del -5%"})`
-                    : "Attiva Abbonamento"}
-                </span>
-              </label>
-            </div>
-          )}
         </td>
 
         {/* 🌟 2. CORPO PRODOTTO (IMMAGINE + NOME) */}
@@ -205,6 +165,39 @@ export default function Riga({
                     </strong>
                   </span>
                 </div>
+              )}
+
+              {/* switch abbonamento */}
+              {isBioniqPrincipale && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsAbbonato(!isAbbonato);
+                  }}
+                  className={`mt-2 inline-flex items-center gap-2 pl-1 pr-3 py-1 rounded-full border transition-colors cursor-pointer ${isAbbonato ? "bg-emerald-50 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/30" : "bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700"}`}
+                >
+                  <span
+                    className={`relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition-colors ${isAbbonato ? "bg-emerald-500" : "bg-zinc-300 dark:bg-zinc-700"}`}
+                  >
+                    <span
+                      className={`inline-block h-3 w-3 transform rounded-full bg-white shadow transition-transform ${
+                        isAbbonato ? "translate-x-3.5" : "translate-x-0.5"
+                      }`}
+                    />
+                  </span>
+                  <span
+                    className={`text-[10px] sm:text-[11px] font-semibold tracking-tight text-left ${
+                      isAbbonato
+                        ? "text-emerald-700 dark:text-emerald-400"
+                        : "text-zinc-600 dark:text-zinc-400"
+                    }`}
+                  >
+                    {isAbbonato
+                      ? `Abbonato · consegna gratuita${ruolo !== "cliente" ? "" : " · sconto -5%"}`
+                      : "Attiva abbonamento"}
+                  </span>
+                </button>
               )}
             </div>
           </div>
