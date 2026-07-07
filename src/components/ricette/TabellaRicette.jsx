@@ -3,7 +3,7 @@ import { ricette } from "./ricette";
 import { motion } from "framer-motion";
 
 export default function TabellaRicette({ searchQuery = "" }) {
-const isSearching = searchQuery.trim() !== "";
+  const isSearching = searchQuery.trim() !== "";
 
   const ricetteFiltrate = ricette.filter(
     (ricetta) =>
@@ -29,20 +29,19 @@ const isSearching = searchQuery.trim() !== "";
         {ricetteInvertite.length > 0 ? (
           <motion.div
             initial={isSearching ? "hidden" : "visible"}
-          animate={!isSearching ? "visible" : undefined}
-          whileInView={isSearching ? "visible" : undefined}
-          
-          viewport={{ once: true, amount: 0, margin: "-50px" }}
+            animate={!isSearching ? "visible" : undefined}
+            whileInView={isSearching ? "visible" : undefined}
+            viewport={{ once: true, amount: 0, margin: "-50px" }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center"
           >
             {ricetteInvertite.map((ricetta) => (
-            <CardRicette
-              key={ricetta.id}
-              titolo={ricetta.titolo}
-              prodotti={ricetta.prodotti}
-              id={ricetta.id}
-            />
-          ))}
+              <CardRicette
+                key={ricetta.id}
+                titolo={ricetta.titolo}
+                prodotti={ricetta.prodotti}
+                id={ricetta.id}
+              />
+            ))}
           </motion.div>
         ) : (
           <motion.div

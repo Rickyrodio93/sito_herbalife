@@ -41,7 +41,7 @@ export default function Footer() {
                     <li key={idx}>
                       {isExternal ? (
                         <a
-                          href={item.link}
+                          href={item.link || "#"}
                           target="_blank"
                           rel="noopener noreferrer"
                           className={linkStyles}
@@ -49,7 +49,7 @@ export default function Footer() {
                           {item.name}
                         </a>
                       ) : (
-                        <Link href={item.link} className={linkStyles}>
+                        <Link href={item.link || "#"} className={linkStyles}>
                           {item.name}
                         </Link>
                       )}

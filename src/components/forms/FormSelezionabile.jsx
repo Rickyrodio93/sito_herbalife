@@ -24,9 +24,9 @@ import { it } from "@daypicker/react/locale";
 import Input from "../Inputs/Input";
 import "@daypicker/react/style.css";
 
-export default function FormSelezionabile() {
-  const [step, setStep] = useState(0);
-  const [scelta, setScelta] = useState(null);
+export default function FormSelezionabile({ defaultScelta = null }) {
+  const [step, setStep] = useState(defaultScelta ? 1 : 0);
+  const [scelta, setScelta] = useState(defaultScelta);
   const [dataCalendario, setDataCalendario] = useState(null);
   const [month, setMonth] = useState(new Date());
 
@@ -380,12 +380,16 @@ export default function FormSelezionabile() {
             </label>
 
             <div className="flex justify-between items-center pt-6 max-w-5xl mx-auto">
-              <button
-                onClick={() => setStep(0)}
-                className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 text-sm flex items-center gap-1 font-semibold transition-colors"
-              >
-                <ChevronLeft size={16} /> Indietro
-              </button>
+              {defaultScelta ? (
+                <span />
+              ) : (
+                <button
+                  onClick={() => setStep(0)}
+                  className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 text-sm flex items-center gap-1 font-semibold transition-colors"
+                >
+                  <ChevronLeft size={16} /> Indietro
+                </button>
+              )}
               <button
                 onClick={() => setStep(2)}
                 disabled={

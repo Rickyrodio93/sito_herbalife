@@ -2,6 +2,7 @@
 
 import { AccordionData } from "@/components/accordion/accordionData";
 import AccordionItem from "@/components/accordion/AccordionItem";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function FAQClient() {
@@ -77,6 +78,11 @@ export default function FAQClient() {
             necessario dedicare e quali sono i vantaggi concreti. Troverai
             informazioni chiare, realistiche e aggiornate per capire se questa
             opportunità nel settore benessere è adatta a te.
+          </p>
+
+          <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400">
+            Cerchi informazioni sui prodotti o su Bioniq?{" "}
+            <Link href="/faq-prodotto">Vai alla FAQ dedicata</Link>
           </p>
         </section>
 

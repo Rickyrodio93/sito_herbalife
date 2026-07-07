@@ -42,7 +42,7 @@ export default function Background({ src, titolo, children }) {
             className="object-cover"
           />
         </motion.div>
-        <div className="hidden lg:block absolute inset-y-0 left-0 w-2/3 bg-linear-to-r from-zinc-200 dark:from-zinc-900 to-transparent"/>
+        <div className="hidden lg:block absolute inset-y-0 left-0 w-1/2 bg-linear-to-r from-zinc-200 dark:from-zinc-900 to-transparent"/>
       </div>
     </div>
   );

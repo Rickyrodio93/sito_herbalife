@@ -29,12 +29,16 @@ export const footerGrid = [
             },
             {
                 name: "catalogo on-line",
-                link: "chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://assets.herbalifenutrition.com/content/dam/regional/emea/it_it/consumable_content/marketing_materials/brochure/2022/03-Mar/product-brochure-it.pdf/_jcr_content/renditions/original."
+                link: "https://assets.herbalifenutrition.com/content/dam/regional/emea/it_it/consumable_content/marketing_materials/brochure/2022/03-Mar/product-brochure-it.pdf/_jcr_content/renditions/original."
             },
             {
                 name: "preventivo prodotti",
                 link: "/preventivo"
             },
+            {
+                name: "domande frequenti prodotto",
+                link: "/faq-prodotto"
+            }
         ]
     },
     {

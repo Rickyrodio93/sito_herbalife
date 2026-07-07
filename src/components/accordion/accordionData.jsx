@@ -4,6 +4,7 @@ import Input from "../Inputs/Input";
 export const AccordionData = [
   {
     id: 1,
+    categoria: "business",
     title: "Quanto tempo bisogna dedicare all'attività Herbalife?",
     content: (
       <>
@@ -23,6 +24,7 @@ export const AccordionData = [
 
   {
     id: 2,
+    categoria: "business",
     title: "Quanto si può guadagnare con l'attività Herbalife?",
     content: (
       <>
@@ -53,6 +55,7 @@ export const AccordionData = [
 
   {
     id: 3,
+    categoria: "business",
     title: "Quali sono i vantaggi di diventare Distributore Herbalife?",
     content: (
       <>
@@ -79,6 +82,7 @@ export const AccordionData = [
 
   {
     id: 4,
+    categoria: "business",
     title: "Posso interrompere l'attività se cambio idea?",
     content: (
       <>
@@ -97,6 +101,7 @@ export const AccordionData = [
 
   {
     id: 5,
+    categoria: "business",
     title: "Serve una laurea in nutrizione per iniziare?",
     content: (
       <>
@@ -115,6 +120,7 @@ export const AccordionData = [
 
   {
     id: 6,
+    categoria: "business",
     title: "Perché iniziare un'attività nel settore benessere oggi?",
     content: (
       <>
@@ -134,6 +140,7 @@ export const AccordionData = [
 
   {
     id: 7,
+    categoria: "business",
     title: "Come si inizia concretamente l'attività Herbalife?",
     content: (
       <>
@@ -160,6 +167,7 @@ export const AccordionData = [
 
   {
     id: 8,
+    categoria: "business",
     title: "Qual è il costo iniziale per diventare Distributore Herbalife?",
     content: (
       <p>
@@ -180,6 +188,7 @@ export const AccordionData = [
 
   {
     id: 9,
+    categoria: "business",
     title: "È un'attività adatta anche a chi lavora già?",
     content: (
       <p>
@@ -191,6 +200,7 @@ export const AccordionData = [
   },
   {
     id: 10,
+    categoria: "business",
     title: "Come vengono controllati i prodotti Herbalife?",
     content: (
       <p>
@@ -201,6 +211,7 @@ export const AccordionData = [
   },
   {
     id: 11,
+    categoria: "business",
     title: "Gli ingredienti sono verificati?",
     content: (
       <p>
@@ -211,6 +222,7 @@ export const AccordionData = [
   },
   {
     id: 12,
+    categoria: "business",
     title: "i prodotti sono testati?",
     content: (
       <p>
@@ -220,6 +232,77 @@ export const AccordionData = [
     ),
   },
 ];
+
+export const AccordionDataProdotto=[
+  {
+    id: 101,
+    categoria: "prodotto",
+    title: "Che differenza c'è tra Bioniq e un multivitaminico generico?",
+    content: (
+      <>
+        <p>
+          Un multivitaminico generico contiene le stesse dosi per chiunque lo
+          acquisti. Bioniq, invece, formula l'integrazione a partire
+          dall'analisi dei tuoi biomarcatori ematici: la composizione è
+          calcolata sulle reali carenze ed esigenze del tuo organismo.
+        </p>
+        <p className="mt-2">
+          Il risultato è un&apos;integrazione mirata, non uno standard uguale
+          per tutti.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 102,
+    categoria: "prodotto",
+    title: "Come funziona l'analisi dei biomarcatori?",
+    content: (
+      <p>
+        Dopo la valutazione iniziale, i tuoi valori ematici vengono analizzati
+        da un sistema di intelligenza artificiale che individua eventuali
+        carenze o squilibri e costruisce una formula personalizzata sulla base
+        di quei dati.
+      </p>
+    ),
+  },
+  {
+    id: 103,
+    categoria: "prodotto",
+    title: "In quanto tempo ricevo la mia formula personalizzata?",
+    content: (
+      <p>
+        I tempi variano in base alla disponibilità del laboratorio e alla fase
+        di analisi. Durante la consulenza ti indico una stima precisa in base
+        al tuo caso specifico.
+      </p>
+    ),
+  },
+  {
+    id: 104,
+    categoria: "prodotto",
+    title: "I prodotti sono sicuri e controllati?",
+    content: (
+      <p>
+        Sì. Le formulazioni seguono standard di controllo qualità rigorosi in
+        ogni fase, dalla selezione degli ingredienti fino al prodotto finale,
+        con verifiche di purezza e conformità.
+      </p>
+    ),
+  },
+  {
+    id: 105,
+    categoria: "prodotto",
+    title: "Posso abbinare Bioniq ai prodotti Herbalife?",
+    content: (
+      <p>
+        Sì, molte persone integrano il percorso Bioniq con la linea
+        nutrizionale Herbalife. Durante la consulenza valutiamo insieme la
+        combinazione più adatta ai tuoi obiettivi.
+      </p>
+    ),
+  }
+]
 
 export const ContattiData = [
   {

@@ -31,7 +31,7 @@ export default function Home() {
           src="/immagini/background/herbalife-bioniq.webp"
         >
 
-          <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 max-w-md sm:max-w-none">
+          <div className="mt-8 flex flex-col items-stretch sm:items-start gap-4 max-w-md sm:max-w-none">
             {/* CTA principale */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
@@ -43,23 +43,20 @@ export default function Home() {
                 href="/preventivo"
                 className="block text-center text-white bg-herbalife-4 hover:bg-herbalife-1 text-base md:text-lg uppercase font-black tracking-wider px-8 py-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
               >
-                preventivo prodotti
+                richiedi una valutazione personalizzata
               </Link>
             </motion.div>
-            {/* CTA secondaria */}
+            {/* link secondario, discreto: opportunità business */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="w-full sm:w-auto"
             >
               <Link
-                href="https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305"
-                target="_blank"
-                className="block text-center text-zinc-900 dark:text-white bg-transparent hover:bg-zinc-900/5 text-base md:text-lg uppercase font-bold tracking-wider px-8 py-4 rounded-xl border-2 border-zinc-900 dark:border-white transition-all duration-300"
-
+                href="/business"
+                className="inline-block text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white underline underline-offset-4 transition-colors duration-300"
               >
-                entra nel mio team
+                Sei interessato all&apos;opportunità commerciale? Scoprila qui
               </Link>
             </motion.div>
           </div>

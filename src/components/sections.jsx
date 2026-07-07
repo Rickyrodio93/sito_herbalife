@@ -15,6 +15,7 @@ import Card from "../components/cards/cardHome";
 import SwiperCard from "../components/swiper/swiperCard";
 import Link from "next/link";
 import FormSelezionabile from "./forms/FormSelezionabile";
+import PercorsoObiettivo from "./percorsoObiettivo/percorsoObiettivo";
 
 const phoneNumber = "+393496635371";
 
@@ -77,11 +78,6 @@ export const CARDSHOME = [
     title: "skin AI",
     link: "https://www.hlskin.ai/customer/68d8040a900d82b0b94c0c33",
   },
-  {
-    icon: Network,
-    title: "opportunità di guadagno",
-    link: "/business",
-  },
 ];
 
 export const SECTIONHOME = [
@@ -100,49 +96,13 @@ export const SECTIONHOME = [
           nutrizionisti in funzione dei tuoi obiettivi di benessere. Le
           formulazioni Herbalife, ispirate al mondo della natura, sono concepite
           per rendere migliore e più facile il tuo rapporto con
-          l&apos;alimentazione. La nostra opportunità commerciale può inoltre
-          permetterti di raggiungere il successo economico!
+          l&apos;alimentazione.
         </p>
       </>
     ),
   },
   {
     component: <SwiperCard />,
-  },
-  {
-    title: "i nostri prodotti",
-    video: "https://youtu.be/H5y4WnDoovY",
-    text: (
-      <>
-        Siamo Leader mondiali nella nutrizione e da oltre 40 anni produciamo
-        frullati, snack e integratori di qualità. I nostri prodotti sono stati
-        formulati scientificamente con i migliori ingredienti per soddisfare le
-        tue specifiche esigiente. E si, siamo tanto altro ancora. Siamo una
-        comunità che vuole aiutarti a fare la differenza e metterti nella
-        condizione di raggiungere i tuoi obiettivi. Dì il tuo sì, unisciti a
-        milioni di persone in tutto il mondo che hanno già detto sì a Herbalife
-        Nutrition.{" "}
-        <span>
-          <Link href="/panoramica">scopri di più</Link>
-        </span>
-      </>
-    ),
-  },
-  {
-    title: "l'azienda",
-    video: "https://youtu.be/WsGz3fiLU6U",
-    text: (
-      <>
-        azienda fondata nel 1980 a Los Angeles da Mark Hughes, oggi è presente
-        in più di 90 paesi in tutto il mondo. E' l'unica azienda del settore ad
-        essere quotata alla borsa di New York (NYSE). Siamo una community
-        globale nell'ambito del benessere nata per supportarti nel vivere la tua
-        vita al meglio.{" "}
-        <span>
-          <Link href="/business">scopri di più</Link>
-        </span>
-      </>
-    ),
   },
   {
     title: "Herbalife e la Scienza del Futuro",
@@ -202,6 +162,43 @@ export const SECTIONHOME = [
     ),
   },
   {
+    title: "un percorso su misura per il tuo obiettivo",
+    text: <PercorsoObiettivo/>
+  },
+  {
+    title: "l'azienda",
+    video: "https://youtu.be/WsGz3fiLU6U",
+    text: (
+      <>
+        azienda fondata nel 1980 a Los Angeles da Mark Hughes, oggi è presente
+        in più di 90 paesi in tutto il mondo. E' l'unica azienda del settore ad
+        essere quotata alla borsa di New York (NYSE). Siamo una community
+        globale nell'ambito del benessere nata per supportarti nel vivere la tua
+        vita al meglio.{" "}
+        <span>
+          <Link href="/business">scopri di più</Link>
+        </span>
+      </>
+    ),
+  },
+  {
+    title: "i nostri prodotti",
+    video: "https://youtu.be/H5y4WnDoovY",
+    text: (
+      <>
+         Siamo leader mondiali nella nutrizione: da oltre 40 anni sviluppiamo
+        frullati, snack e integratori formulati scientificamente con
+        ingredienti selezionati per rispondere alle tue specifiche esigenze.
+        Un ecosistema di prodotti pensato per accompagnarti in ogni fase del
+        tuo percorso di benessere, supportato da una community globale di
+        milioni di persone.{" "}
+        <span>
+          <Link href="/panoramica">scopri di più</Link>
+        </span>
+      </>
+    ),
+  },
+  {
     title: "chi sono",
     image: "/immagini/profilo_1.webp",
     square: true,
@@ -209,17 +206,18 @@ export const SECTIONHOME = [
       <>
         Ciao, mi chiamo Riccardo, ho {etaDinamica} anni, sono laureato in
         scienze agrarie ed ex sportivo agonistico. Ho conosciuto Herbalife{" "}
-        {etaHerbalife} anni fa superando lo scetticismo iniziale grazie a un
+        {etaHerbalife}{" "}anni fa superando lo scetticismo iniziale grazie a un
         evento informativo. Comprendendo il valore dell&apos;azienda, ho
-        ritrovato la forma fisica perdendo circa 8 kg* e ho costruito la mia
-        attività autonoma e indipendente basata sulla condivisione di questi
-        prodotti incredibili e dell&apos;opportunità economica.
+        ritrovato la forma fisica perdendo circa 8 kg* e ho scelto di
+        trasformare questa esperienza in una professione, affiancando le
+        persone nel loro percorso di benessere con una consulenza
+        nutrizionale basata sulla scienza e su risultati reali.
       </>
     ),
   },
   {
     title: "come iniziare",
-    text: <FormSelezionabile />,
+    text: <FormSelezionabile defaultScelta="prodotti" />,
   },
 ];
 
@@ -230,9 +228,9 @@ export const SECTIONCONTROLLOPESO = [
     square: true,
     text: (
       <>
-        I nostri prodotti per la perdita e il controllo del peso sono studiati
-        scientificamente per aiutarti a raggiungere i tuoi obiettivi e
-        raccogliere i benefici di una nutrizione equilibrata.
+        Un percorso di controllo del peso costruito sulla scienza, non sulle
+        promesse facili: formulazioni studiate per accompagnarti verso i tuoi
+        obiettivi con un approccio nutrizionale equilibrato.
       </>
     ),
   },

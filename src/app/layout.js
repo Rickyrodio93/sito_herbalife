@@ -8,19 +8,21 @@ import AssistantChat from "@/components/assistantChat/AssistantChat";
 
 export const metadata = {
   title: {
-    default: "Acquista Prodotti Herbalife e Bioniq | Riccardo Rodio Distributore",
+    default: "nutrizione Personalizzata Herbalife e Bioniq | Riccardo Rodio",
     template: "%s | Riccardo Rodio"
   },
-  description: "Ordina i prodotti integrativi Herbalife e la linea personalizzata Bioniq. Scopri il catalogo completo e calcola il tuo preventivo tramite Distributore Indipendente.",
+  description: "Consulenza nutrizionale personalizzata con Herbalife e analisi dei biomarcatori Bioniq. Scopri il tuo percorso di benessere su misura con Riccardo Rodio.",
   keywords: [
-    "Herbalife",
+    "Nutrizione personalizzata",
+    "Analisi biomarcatori",
+    "Consulenza nutrizionale",
     "Bioniq",
+    "Herbalife",
+    "Bioniq Italia",
+    "Bioniq Herbalife",
     "Herbalife Varese",
     "Bioniq Varese",
     "Integratori Varese",
-    "Acquista Herbalife",
-    "Bioniq Italia",
-    "Bioniq Herbalife",
     "Riccardo Rodio",
     "Controllo Peso",
     "Integratori Sportivi",
@@ -52,8 +54,8 @@ export const metadata = {
   },
   // open graph
   openGraph: {
-    title: "Acquista Prodotti Herbalife e Bioniq | Riccardo Rodio",
-    description: "Ordina i prodotti Herbalife e la linea su misura Bioniq. Calcola il tuo preventivo personalizzato e trasforma il tuo benessere.",
+    title: "Nutrizione Personalizzata Herbalife & Bioniq | Riccardo Rodio",
+    description: "Consulenza nutrizionale personalizzata basata sull'analisi dei tuoi biomarcatori. Scopri il percorso di benessere pensato sulle tue reali esigenze.",
     url: "https://www.riccardorodio.com",
     siteName: "Riccardo Rodio Herbalife & Bioniq",
     locale: "it_IT",
@@ -71,8 +73,8 @@ export const metadata = {
   // twitter card
   twitter: {
     card: "summary_large_image",
-    title: "Acquista Prodotti Herbalife e Bioniq | Riccardo Rodio",
-    description: "Ordina i prodotti Herbalife e la linea di integratori su misura Bioniq. Calcola ora il tuo preventivo.",
+    title: "Nutrizione Personalizzata Herbalife & Bioniq | Riccardo Rodio",
+    description: "Consulenza nutrizionale personalizzata basata sull'analisi dei tuoi biomarcatori con Herbalife e Bioniq.",
     images: ["https://www.riccardorodio.com/immagini/background/home.webp"],
   },
   // favicon

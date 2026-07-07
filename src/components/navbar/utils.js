@@ -7,7 +7,6 @@ export const Menus = [
     },
     {
         name: "Prodotti",
-        subMenuHeading: ["", ""],
         subMenu: [
             {
                 name: "store online",
@@ -18,7 +17,7 @@ export const Menus = [
             {
                 name: "formulazioni personalizzate",
                 desc: "Integratori quotidiani basati sulle tue informazioni personali e sui tuoi obiettivi di benessere",
-                link: "https://shopbioniq.com/it-it/riccardorodio-bioniq",
+                link: "/bioniq",
                 icon: Cylinder,
             },
             {
@@ -48,7 +47,7 @@ export const Menus = [
             {
                 name: "skin AI",
                 desc: "consulenza personalizzata con IA per la pelle del viso",
-                link:"https://www.hlskin.ai/customer/68d8040a900d82b0b94c0c33",
+                link: "https://www.hlskin.ai/customer/68d8040a900d82b0b94c0c33",
                 icon: ScanLine
             },
             {

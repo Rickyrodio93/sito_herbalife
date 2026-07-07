@@ -2,20 +2,20 @@
 import { Phone } from "lucide-react";
 import { motion } from "framer-motion";
 
-export default function FloatingCallCTA({isOpenMobile = false}) {
+export default function FloatingCallCTA({ isOpenMobile = false }) {
   const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
   return (
     <>
-      <motion.div 
-    //   Se il riepilogo mobile è aperto, spostiamo il pulsante verso il basso (y: 100) e lo nascondiamo
-      animate={{ 
-        y: isOpenMobile ? 120 : 0,
-        opacity: isOpenMobile ? 0 : 1 
-      }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed bottom-6 left-6 z-49 pointer-events-none"
-    >
+      <motion.div
+        //   Se il riepilogo mobile è aperto, spostiamo il pulsante verso il basso (y: 100) e lo nascondiamo
+        animate={{
+          y: isOpenMobile ? 120 : 0,
+          opacity: isOpenMobile ? 0 : 1,
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed bottom-6 left-6 z-49 pointer-events-none"
+      >
         <motion.a
           href={`tel:${phoneNumber}`}
           initial={{ scale: 0, opacity: 0 }}
@@ -35,8 +35,8 @@ export default function FloatingCallCTA({isOpenMobile = false}) {
           </div>
 
           <span className="text-xs sm:text-sm font-black uppercase tracking-wider">
-            <span className="inline sm:hidden">Chiamami</span>
-            <span className="hidden sm:inline">Chiamami ora</span>
+            <span className="inline sm:hidden">Contattami</span>
+            <span className="hidden sm:inline">Chiamami</span>
           </span>
         </motion.a>
       </motion.div>

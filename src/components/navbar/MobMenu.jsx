@@ -80,7 +80,7 @@ export default function MobMenu({
                             ({ name: subName, link: subLink, icon: Icon }) => (
                               <li key={subName}>
                                 <Link
-                                  href={subLink}
+                                  href={subLink || "#"}
                                   className="p-2.5 flex items-center hover:bg-zinc-50 dark:hover:bg-zinc-900 rounded-lg text-zinc-600 dark:text-zinc-400 text-sm font-medium gap-x-3 capitalize transition-colors"
                                   onClick={closeAll}
                                 >

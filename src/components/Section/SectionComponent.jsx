@@ -18,7 +18,7 @@ export default function SectionComponent({ section, index }) {
         <h2>{section.title}</h2>
 
         <div
-          className={`grid grid-cols-1 items-center gap-10 md:gap-16 ${hasMedia && hasText ? "md:grid-cols-2" : "grid-cols-1 maw-w-3xl mx-auto w-full"}`}
+          className={`grid grid-cols-1 items-center gap-10 md:gap-16 ${hasMedia && hasText ? "md:grid-cols-2" : "grid-cols-1 max-w-4xl w-full mx-auto"}`}
         >
           {/* colonna 1 */}
           {hasMedia && (
@@ -70,9 +70,9 @@ export default function SectionComponent({ section, index }) {
           {/* colonna 2 */}
           {hasText && (
             <div className="w-full flex flex-col justify-center">
-              <p className="text-zinc-600 dark:text-zinc-300 text-base md:text-lg leading-relaxed font-normal whitespace-pre-line">
+              <div className="text-zinc-600 dark:text-zinc-300 text-base md:text-lg leading-relaxed font-normal whitespace-pre-line">
                 {section.text}
-              </p>
+              </div>
             </div>
           )}
         </div>
