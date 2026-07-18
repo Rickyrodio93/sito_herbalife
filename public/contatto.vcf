@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Rodio;Riccardo;;;
+FN:Riccardo Rodio
+ORG:Distributore Indipendente
+TITLE:Consulente Benessere & Integrazione
+TEL;TYPE=CELL:+393496635371
+EMAIL;TYPE=PREF,INTERNET:rodioriccardo@gmail.com
+URL:https://www.riccardorodio.com
+PHOTO;VALUE=URI:https://www.riccardorodio.com/immagini/profilo_1.webp
+END:VCARD
