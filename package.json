@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "sync-wallet": "node scripts/syncWallet.mjs",
     "lint": "eslint"
   },
   "dependencies": {
@@ -15,7 +16,10 @@
     "@supabase/supabase-js": "^2.106.2",
     "axios": "^1.16.1",
     "date-fns": "^4.4.0",
+    "dotenv": "^17.4.2",
     "framer-motion": "^12.39.0",
+    "google-auth-library": "^11.0.0",
+    "googleapis": "^174.0.1",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^1.16.0",
     "motion": "^12.39.0",
