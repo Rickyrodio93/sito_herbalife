@@ -43,7 +43,7 @@ export default function Home() {
                 href="/preventivo"
                 className="block text-center text-white bg-herbalife-4 hover:bg-herbalife-1 text-base md:text-lg uppercase font-black tracking-wider px-8 py-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
               >
-                richiedi una valutazione personalizzata
+                genera un preventivo prodotti
               </Link>
             </motion.div>
             {/* link secondario, discreto: opportunità business */}
@@ -66,7 +66,7 @@ export default function Home() {
           if (!section.title) {
             return (
               <Section key={index}>
-              {section.component}
+                {section.component}
               </Section>
             );
           }

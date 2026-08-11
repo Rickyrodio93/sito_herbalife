@@ -94,7 +94,7 @@ export default function BioniqClient() {
     manufacturer: { "@type": "Organization", name: "Bioniq / Herbalife" },
     offers: {
       "@type": "Offer",
-      url: "https://shopbioniq.com/it-IT/riccardorodio-bioniq",
+      url: "https://shopbioniq.com/it-IT/riccardorodio",
       priceCurrency: "EUR",
       availability: "https://schema.org/InStock",
       seller: { "@type": "Person", name: "Riccardo Rodio" },
@@ -145,7 +145,7 @@ export default function BioniqClient() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <Link
-                href="https://quiz.mypro2col.com/it-IT/intro?site=riccardorodio-catalog"
+                href="https://quiz.mypro2col.com/it-IT/intro?site=riccardorodio-catalog2"
                 target="_blank"
                 className="inline-block text-center text-bioniq-notte bg-bioniq-acqua hover:bg-bioniq-teal hover:text-white text-base md:text-lg font-black uppercase tracking-wider px-8 py-4 rounded-full shadow-lg transition-all duration-300 no-underline!"
               >
@@ -290,7 +290,7 @@ export default function BioniqClient() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                href="https://quiz.mypro2col.com/it-IT/intro?site=riccardorodio-catalog"
+                href="https://quiz.mypro2col.com/it-IT/intro?site=riccardorodio-catalog2"
                 target="_blank"
                 className="inline-block text-center text-bioniq-teal bg-white hover:bg-bioniq-panna text-sm md:text-base font-black uppercase tracking-wider px-8 py-4 rounded-full shadow-md transition-all duration-300 no-underline!"
               >

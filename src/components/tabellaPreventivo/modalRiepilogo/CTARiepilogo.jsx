@@ -9,7 +9,7 @@ export default function CTARiepilogo({
   encodedMessage,
 }) {
   const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
-  const linkBioniq = "https://shopbioniq.com/it-it/riccardorodio-bioniq";
+  const linkBioniq = "https://shopbioniq.com/it-it/riccardorodio";
   const linkEstoreCliente = `https://riccardorodio.goherbalife.com/Catalog/Product/Search/it-IT/${searchText}`;
   const linkMyHerbalifeBusiness = `https://www.myherbalife.com/it-IT/Shop/Catalog/Items/Search/${ruolo === "DS" ? "Ds" : "Mb"}?searchText=${searchText}`;
 

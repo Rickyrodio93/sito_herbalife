@@ -51,7 +51,7 @@ export const CARDSHOME = [
   {
     icon: Cylinder,
     title: "personalizzazione  con Bioniq",
-    link: "https://shopbioniq.com/it-it/riccardorodio-bioniq",
+    link: "https://shopbioniq.com/it-it/riccardorodio",
   },
   {
     icon: TrendingDown,
