@@ -36,7 +36,7 @@ const LINK = [
 export default function BigliettoDigitale() {
     return (
         <div
-            className="relative min-h-screen flex flex-col items-center justify-between px-6 py-14 font-poppins selection:bg-[#B08D57]/20 transition-colors duration-300
+            className="relative min-h-screen flex flex-col items-center justify-between px-6 py-18 md:py-5 font-poppins selection:bg-[#B08D57]/20 transition-colors duration-300
             bg-[radial-gradient(circle_at_20%_15%,#fffdf8_0%,#f2ece0_55%,#e8e0cd_100%)]
             dark:bg-[radial-gradient(circle_at_20%_15%,#1c2f26_0%,#0f1a15_45%,#0a120e_100%)]"
         >
