@@ -58,7 +58,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.riccardorodio.com/immagini/background/home.webp",
+        url: "https://www.riccardorodio.com/immagini/background/home_hero_3to1.webp",
         width: 1200,
         height: 630,
         alt: "Riccardo Rodio - Distributore Indipendente Herbalife e Bioniq"
@@ -71,7 +71,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Nutrizione Personalizzata Herbalife & Bioniq | Riccardo Rodio",
     description: "Consulenza nutrizionale personalizzata basata sull'analisi dei tuoi biomarcatori con Herbalife e Bioniq.",
-    images: ["https://www.riccardorodio.com/immagini/background/home.webp"],
+    images: ["https://www.riccardorodio.com/immagini/background/home_hero_3to1.webp"],
   },
   // favicon
   icons: {

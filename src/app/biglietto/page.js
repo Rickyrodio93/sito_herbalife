@@ -8,10 +8,10 @@ import DarkMode from "@/components/navbar/dark mode/darkMode";
 
 const LINK = [
     {
-        href: "https://www.riccardorodio.com/bioniq",
+        href: "https://shopbioniq.com/it-it/riccardorodio-personal-formula",
         icon: FaDna,
         label: "Bioniq GO",
-        nota: "Formula su misura",
+        nota: "Integratori formulati su misura",
     },
     {
         href: "https://www.riccardorodio.com",
@@ -23,15 +23,16 @@ const LINK = [
         href: "https://www.riccardorodio.com/sport",
         icon: IoIosFootball,
         label: "Prodotti Sportivi",
-        nota: "Linea H24 pensata per gli sportivi"
-    },
-    {
-        href: "https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305",
-        icon: MdBusinessCenter,
-        label: "Diventa Distributore",
-        nota: "Opportunità commerciale",
+        nota: "Linea H24 pensata per il support degli sportivi"
     },
 ];
+
+const BUSINESS_LINK = {
+    href: "https://accounts.myherbalife.com/Account/Create?appId=1&qrFlow=1&locale=it-IT&SponsorId=kQkJ2BXpUJ4=&cmp=m_it_it_wbs_dssignup_btn_nap_copylink_20250305",
+    icon: MdBusinessCenter,
+    label: "Diventa Distributore",
+    nota: "Entra nel mio team e crea la tua libertà finanziaria",
+};
 
 export default function BigliettoDigitale() {
     return (
@@ -78,6 +79,7 @@ export default function BigliettoDigitale() {
                                 alt="Riccardo Rodio"
                                 fill
                                 priority
+                                sizes="96px"
                                 className="object-cover"
                             />
                         </div>
@@ -114,7 +116,7 @@ export default function BigliettoDigitale() {
                     href="/api/wallet-link"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full mt-3 flex justify-center items-center transition-transform active:scale-[0.98]"
+                    className="w-full mt-3 flex justify-center items-center py-3.5 px-4 rounded-2xl bg-[#F6F3EC] dark:bg-[#14231D] border border-[#B08D57]/30 shadow-sm transition-all active:scale-[0.98] hover:border-[#B08D57]/60"
                 >
                     <Image
                         src="/immagini/google wallet/it_add_to_google_wallet_add-wallet-badge.svg"
@@ -127,8 +129,8 @@ export default function BigliettoDigitale() {
                     <Image
                         src="/immagini/google wallet/it_add_to_google_wallet_wallet-button.svg"
                         alt="Aggiungi a Google Wallet"
-                        width={384}
-                        height={50}
+                        width={220}
+                        height={28}
                         className="hidden md:block object-contain"
                         priority
                     />
@@ -175,6 +177,36 @@ export default function BigliettoDigitale() {
                         ))}
                     </div>
                 </div>
+
+                <div className="w-full flex items-center gap-3 mt-5 mb-3">
+                    <div className="grow border-t border-dashed border-[#b08d57]/30" />
+                    <span className="text-[10px] text-[#b08d57] uppercase tracking-[0.25em] font-semibold">
+                        Opportunità
+                    </span>
+                    <div className="grow border-t border-dashed border-[#b08d57]/30" />
+                </div>
+                <a
+                    href={BUSINESS_LINK.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group w-full flex items-center justify-between py-4 px-4 rounded-2xl bg-[#B08D57]/8 border border-[#b08d57]/25 hover:border-[#b08d57]/50 transition-colors"
+                >
+                    <span className="flex items-center gap-3.5">
+                        <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#b08d57]/15 text-[#b08d57] group-hover:bg-[#b08d57] group-hover:text-[#f6f3ec] transition-colors">
+                            <BUSINESS_LINK.icon size={16} />
+                        </span>
+                        <span className="flex flex-col text-left">
+                            <span className="font-semibold text-[#14231d] dark:text-[#f6f3ec] text-[15px]">
+                                {BUSINESS_LINK.label}
+                            </span>
+                            <span className="text-[11px] text-[#14231D]/50 dark:text-[#F6F3EC]/45">{BUSINESS_LINK.nota}</span>
+                        </span>
+                    </span>
+                    <ArrowRight
+                        size={16}
+                        className="text-[#b08d57]/50 group-hover:text-[#b08d57] group-hover:translate-x-0.5 transition-all"
+                    />
+                </a>
             </div>
 
             {/* footer */}
