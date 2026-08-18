@@ -1,0 +1,140 @@
+{
+    "hexBackgroundColor": "#e5ffc5",
+    "cardTitle": {
+        "defaultValue": {
+            "language": "it-IT",
+            "value": "Riccardo Rodio"
+        }
+    },
+    "header": {
+        "defaultValue": {
+            "language": "it-IT",
+            "value": "Distributore Indipendente"
+        }
+    },
+    "logo": {
+        "sourceUri": {
+            "uri": "https://www.riccardorodio.com/immagini/profilo_1.webp"
+        },
+        "contentDescription": {
+            "defaultValue": {
+                "language": "it-IT",
+                "value": "Foto Profilo"
+            }
+        }
+    },
+    "textModulesData": [
+        {
+            "id": "telefono",
+            "header": "telefono",
+            "body": "+39 349 663 5371"
+        },
+        {
+            "id": "whatsapp",
+            "header": "whatsapp",
+            "body": "Scrivimi su WhatsApp"
+        },
+        {
+            "id": "sito",
+            "header": "sito web",
+            "body": "www.riccardorodio.com"
+        },
+        {
+            "id": "email",
+            "header": "email",
+            "body": "rodioriccardo@gmail.com"
+        }
+    ],
+    "linksModuleData": {
+        "uris": [
+            {
+                "kind": "walletobjects#uri",
+                "uri": "https://wa.me/393496635371",
+                "description": "Scrivimi su WhatsApp",
+                "id": "link_whatsapp"
+            },
+            {
+                "kind": "walletobjects#uri",
+                "uri": "https://www.riccardorodio.com",
+                "description": "Visita il Sito Web",
+                "id": "link_website"
+            },
+            {
+                "kind": "walletobjects#uri",
+                "uri": "tel:+393496635371",
+                "description": "Chiamami",
+                "id": "link_call"
+            },
+            {
+                "kind": "walletobjects#uri",
+                "uri": "https://www.riccardorodio.com/bioniq",
+                "description": "bioniq GO",
+                "id": "link_bioniq"
+            },
+            {
+                "kind": "walletobjects#uri",
+                "uri": "https://www.riccardorodio.com/sport",
+                "description": "linea sportiva",
+                "id": "link_sport"
+            },
+            {
+                "kind": "walletobjects#uri",
+                "uri": "mailto:rodioriccardo@gmail.com",
+                "description": "Invia un'Email",
+                "id": "link_email"
+            }
+        ]
+    },
+    "heroImage": {
+        "sourceUri": {
+            "uri": "https://www.riccardorodio.com/immagini/background/home_hero_3to1.webp"
+        },
+        "contentDescription": {
+            "defaultValue": {
+                "language": "it-IT",
+                "value": "Herbalife Banner"
+            }
+        }
+    },
+    "classTemplateInfo": {
+        "cardTemplateOverride": {
+            "cardRowTemplateInfos": [
+                {
+                    "twoItems": {
+                        "startItem": {
+                            "firstValue": {
+                                "fields": [
+                                    {
+                                        "fieldPath": "object.textModulesData['telefono']"
+                                    }
+                                ]
+                            }
+                        },
+                        "endItem": {
+                            "firstValue": {
+                                "fields": [
+                                    {
+                                        "fieldPath": "object.textModulesData['whatsapp']"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "oneItem": {
+                        "item": {
+                            "firstValue": {
+                                "fields": [
+                                    {
+                                        "fieldPath": "object.textModulesData['sito']"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
