@@ -1,11 +1,140 @@
 import Link from "next/link";
-import { footerGrid } from "./footerUtils";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaPinterest,
+} from "react-icons/fa";
+
+const footerGrid = [
+  {
+    title: "Prodotti",
+    items: [
+      {
+        name: "store on-line",
+        link: "https://riccardorodio.goherbalife.com/Catalog/Home/Index/it-IT",
+      },
+      {
+        name: "controllo del peso",
+        link: "/controlloPeso",
+      },
+      {
+        name: "ottimizza la nutrizione",
+        link: "/ottimizza",
+      },
+      {
+        name: "sport",
+        link: "/sport",
+      },
+      {
+        name: "cura del corpo",
+        link: "/skin",
+      },
+      {
+        name: "ricette",
+        link: "/ricette",
+      },
+      {
+        name: "catalogo on-line",
+        link: "https://assets.herbalifenutrition.com/content/dam/regional/emea/it_it/consumable_content/marketing_materials/brochure/2022/03-Mar/product-brochure-it.pdf/_jcr_content/renditions/original.",
+      },
+      {
+        name: "preventivo prodotti",
+        link: "/preventivo",
+      },
+      {
+        name: "domande frequenti prodotto",
+        link: "/faq-prodotto",
+      },
+    ],
+  },
+  {
+    title: "Link utili",
+    items: [
+      {
+        name: "herbalife",
+        link: "https://www.herbalife.it/",
+      },
+      {
+        name: "bioniq",
+        link: "https://www.bioniq.com",
+      },
+      {
+        name: "informed sport",
+        link: "https://sport.wetestyoutrust.com/",
+      },
+      {
+        name: "herbalife family foundation",
+        link: "https://herbalifefamilyfoundation.org/",
+      },
+      {
+        name: "domande frequenti",
+        link: "/faq",
+      },
+      {
+        name: "privacy policy",
+        link: "/privacy",
+      },
+    ],
+  },
+  {
+    title: "Contattami",
+    items: [
+      {
+        name: "telefono",
+        link: "tel:+393496635371",
+      },
+      {
+        name: "whatsapp",
+        link: "https://wa.me/+393496635371",
+      },
+      {
+        name: "messenger",
+        link: "https://m.me/rickyrodio",
+      },
+      {
+        name: "telegram",
+        link: "https://t.me/RickyCoach24",
+      },
+    ],
+  },
+  {
+    title: "Seguimi sui social",
+    items: [
+      {
+        name: "linkedIn",
+        link: "https://www.linkedin.com/in/riccardo-rodio-593517120/",
+        icon: FaLinkedin,
+        style: "hover:bg-[#0077b5]",
+      },
+      {
+        name: "facebook",
+        link: "https://www.facebook.com/Ricky.rh24coach/",
+        icon: FaFacebook,
+        style: "hover:bg-[#2851a3]",
+      },
+      {
+        name: "pinterest",
+        link: "https://www.pinterest.it/riccardorodio/_saved/",
+        icon: FaPinterest,
+        style: "hover:bg-[#c00]",
+      },
+      {
+        name: "instagram",
+        link: "https://www.instagram.com/riccardo_rodio_wellness_coach/",
+        icon: FaInstagram,
+        style:
+          "hover:bg-radial-[circle_at_30%_107%,#fdf949_0%,#fdf949_5%,#fd5949_45%,#db249f_60%,#285aeb_90%]",
+      },
+    ],
+  },
+];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-zinc-950 text-zinc-400 border-t border-zinc-900 px-6 sm:px-[10%] pt-16 pb-12 transition-colors duration-300">
+    <footer className="bg-zinc-950 text-zinc-400 border-t border-zinc-900 px-6 sm:px-[10%] pt-16 pb-28 transition-colors duration-300">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14 text-center lg:text-left max-w-7xl mx-auto">
         {footerGrid.map((section, index) => (
           <div key={index} className="flex flex-col">

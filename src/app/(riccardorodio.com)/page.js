@@ -6,6 +6,7 @@ import Link from "next/link";
 import { SECTIONHOME } from "@/components/sections";
 import Background from "@/components/background/background";
 import Section from "@/components/Section/Section";
+import AssistantChat from "@/components/assistantChat/AssistantChat";
 
 const SectionComponentDinamico = dynamic(
   () => import("@/components/Section/SectionComponent"),
@@ -25,7 +26,7 @@ const FloatingCallCTA = dynamic(() => import("@/components/FloatingCallCTA"), { 
 export default function Home() {
   return (
     <>
-      <main className="pt-28 md:pt-30">
+      <main className="pt-17 md:pt-20">
         <Background
           titolo="Riscopri il tuo benessere con Herbalife & Bioniq"
           src="/immagini/background/herbalife-bioniq.webp"
@@ -65,14 +66,14 @@ export default function Home() {
           // se NON è presente il title --> nessuna section
           if (!section.title) {
             return (
-              <Section key={index}>
+              <Section key={index} sfondoAlternato={true}>
                 {section.component}
               </Section>
             );
           }
           // se è presente un title --> wrapper <Section />
           return (
-            <Section key={index}>
+            <Section key={index} sfondoAlternato={true}>
               <SectionComponentDinamico index={index} section={section} />
             </Section>
           );
@@ -84,6 +85,7 @@ export default function Home() {
         </Section>
       </main>
       <FloatingCallCTA />
+      <AssistantChat />
     </>
   )
 }

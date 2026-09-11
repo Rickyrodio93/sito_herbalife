@@ -30,7 +30,7 @@ export default function Scienza() {
             <main className="pt-28 md:pt-30">
             <Background titolo={"la scienza dietro i prodotti"} src="/immagini/background/scienza.webp" />
                 {SECTIONSCIENZA.map((section, index) => (
-                    <Section key={section}>
+                    <Section key={section} sfondoAlternato={true}>
                         <SectionComponent index={index} section={section} />
                     </Section>
                 ))}

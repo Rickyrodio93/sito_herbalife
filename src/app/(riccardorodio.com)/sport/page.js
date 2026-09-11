@@ -29,14 +29,14 @@ export const metadata = {
 export default function Sport() {
     return (
         <>
-            <main className="pt-28 md:pt-30">
+            <main className="pt-17 md:pt-20">
                 <Background titolo={"linea h24"} src="/immagini/background/sport.webp" />
                 <Section>
                     <h2>collaboriamo con i campioni</h2>
                     <CardCampioni />
                 </Section>
                 {SECTIONSPORT.map((section, index) => (
-                    <Section key={index}>
+                    <Section key={index} sfondoAlternato={true}>
                         <SectionComponent section={section} index={index} />
                     </Section>
                 ))}

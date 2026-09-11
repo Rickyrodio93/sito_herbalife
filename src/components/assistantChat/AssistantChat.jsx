@@ -191,14 +191,14 @@ export default function AssistantChat() {
   }, [messages, isLoading, isOpen]);
 
   return (
-    <div className="fixed bottom-6 right-6 z-49 font-sans flex flex-col items-end">
+    <div className="fixed bottom-22 md:bottom-6 right-4 md:right-6 z-49 font-sans flex flex-col items-end">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="w-80 md:w-96 h-112.5 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-2xl flex flex-col overflow-hidden mb-4"
+            className="w-[calc(100vw-2rem)] sm:w-80 md:w-96 max-h-[70vh] h-112.5 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-2xl flex flex-col overflow-hidden mb-4"
           >
             <div className="bg-herbalife-4 text-white p-4 flex justify-between items-center">
               <div>

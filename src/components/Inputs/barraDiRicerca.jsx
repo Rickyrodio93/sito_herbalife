@@ -57,7 +57,6 @@ export default function BarraDiRicerca({ search, setSearch, prodotti }) {
       }
     });
 
-    // Limito a 6 risultati per non intasare lo schermo
     return risultati
   }, [search, prodotti]);
 

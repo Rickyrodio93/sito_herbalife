@@ -35,7 +35,7 @@ export default function Business() {
                 />
                 {SECTIONBUSINESS.map((section, index) => (
                     <Section
-                        key={index}>
+                        key={index} sfondoAlternato={true}>
                         <SectionComponent section={section} index={index} />
                     </Section>
                 ))}

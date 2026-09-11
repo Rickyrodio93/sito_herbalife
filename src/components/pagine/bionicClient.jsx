@@ -129,7 +129,7 @@ export default function BioniqClient() {
       />
 
       <div className="bioniq-theme">
-        <main className="pt-28 md:pt-32 bg-bioniq-panna dark:bg-bioniq-notte transition-colors duration-300">
+        <main className="pt-17 md:pt-20 bg-bioniq-panna dark:bg-bioniq-notte transition-colors duration-300">
           <Background
             titolo="il tuo corpo non è una media statistica"
             src="/immagini/swiperImmagini/Bioniq_phone.webp"

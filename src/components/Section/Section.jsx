@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
-export default function Section({ children, sfondoAlternato = false }) {
+export default function Section({ children, sfondoAlternato = false}) {
   return (
     <section
       className={`bg-white dark:bg-zinc-950 px-6 md:px-16 py-16 text-center border-b border-zinc-100 dark:border-zinc-900 last:border-0 ${sfondoAlternato ? "even:bg-zinc-50/50 dark:even:bg-zinc-900/30" : ""}`}

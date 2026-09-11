@@ -325,17 +325,6 @@ export default function PreventivoClient() {
             </div>
 
             <div className="mb-2">
-              {/* <Input
-                as="input"
-                type="search"
-                placeholder="ricerca in tutte le linee..."
-                onChange={(e) => setSearch(e.target.value)}
-                iconaDestra={
-                  <div className="text-herbalife-1 font-bold">
-                    <Search size={24} />
-                  </div>
-                }
-              /> */}
               <BarraDiRicerca
                 search={search}
                 setSearch={setSearch}

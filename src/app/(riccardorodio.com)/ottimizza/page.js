@@ -34,7 +34,7 @@ export default function Ottimizza() {
           src="/immagini/background/ottimizza_nutrizione.webp"
         />
         {SECTIONOTTIMIZZA.map((section, index) => (
-          <Section key={index}>
+          <Section key={index} sfondoAlternato={true}>
             <SectionComponent index={index} section={section} />
           </Section>
         ))}

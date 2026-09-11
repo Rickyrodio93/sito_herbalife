@@ -31,7 +31,7 @@ export default function ControlloPeso() {
             <main className="pt-28 md:pt-30">
                 <Background titolo="controllo del peso" src="/immagini/background/controlloPeso.webp" />
                 {SECTIONCONTROLLOPESO.map((section, index) => (
-                    <Section key={index}>
+                    <Section key={index} sfondoAlternato={true}>
                         <SectionComponent index={index} section={section} />
                     </Section>
                 ))}
