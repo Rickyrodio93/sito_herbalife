@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useDragControls } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -12,9 +12,7 @@ export default function MobMenu({ Menus, closeAll }) {
 
   const [openSubmenuIdx, setOpenSubmenuIdx] = useState(null);
 
-  // if (isPreventivoPage) {
-  //   return null;
-  // }
+  const dragControls = useDragControls();
 
   const handleMenuClick = (menu, index) => {
     if (menu.subMenu && menu.subMenu.length > 0) {
@@ -118,6 +116,8 @@ export default function MobMenu({ Menus, closeAll }) {
               exit={{ y: "100%" }}
               transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
               drag="y"
+              dragControls={dragControls}
+              dragListener={false}
               dragConstraints={{ top: 0 }}
               dragElastic={{ top: 0, bottom: 0.5 }}
               onDragEnd={(event, info) => {
@@ -127,7 +127,12 @@ export default function MobMenu({ Menus, closeAll }) {
               }}
               className="group fixed bottom-0 left-0 right-0 z-50 max-h-[80dvh] overflow-y-auto overscroll-contain rounded-t-4xl bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 p-6 pt-4 border-t border-zinc-200 dark:border-zinc-800 shadow-2xl pb-24 lg:hidden"
             >
-              <div className="w-12 h-1.5 bg-zinc-300 dark:bg-zinc-700 rounded-full mx-auto mb-4 group-active:bg-herbalife-1" />
+              <div
+                onPointerDown={(e) => dragControls.start(e)}
+                className="w-full py-2 cursor-grab active:cursor-grabbing touch-none flex justify-center"
+              >
+                <div className="w-12 h-1.5 bg-zinc-300 dark:bg-zinc-700 rounded-full group-active:bg-herbalife-1" />
+              </div>
 
               <div className="flex justify-between items-center mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-3">
                 <h3 className="text-lg font-bold capitalize">

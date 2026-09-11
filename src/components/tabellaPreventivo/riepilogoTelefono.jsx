@@ -1,12 +1,7 @@
 "use client";
-import {
-  ChevronUp,
-  ClipboardCopy,
-  ShoppingBag,
-  X,
-} from "lucide-react";
+import { ChevronUp, ClipboardCopy, ShoppingBag, X } from "lucide-react";
 import { AnimatePresence } from "motion/react";
-import { motion } from "framer-motion";
+import { motion, useDragControls } from "framer-motion";
 import PreventivoDettaglio from "./preventivoDettaglio";
 import PreventivoLista from "./preventivoLista";
 
@@ -25,6 +20,8 @@ export default function riepilogoTelefono({
   isAbbonato,
   setIsAbbonato,
 }) {
+  const dragControls = useDragControls();
+
   const totaleCalcolato =
     ruolo === "cliente"
       ? `${preventivo.venditaCliente.toFixed(2)} €`
@@ -96,11 +93,14 @@ export default function riepilogoTelefono({
 
             {/* Bottom Sheet Modal */}
             <motion.div
+              key="drawer"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
               drag="y"
+              dragControls={dragControls}
+              dragListener={false}
               dragConstraints={{ top: 0 }}
               dragElastic={{ top: 0, bottom: 0.5 }}
               onDragEnd={(event, info) => {
@@ -108,10 +108,14 @@ export default function riepilogoTelefono({
                   setIsOpenMobile(false);
                 }
               }}
-              key="drawer"
               className="group fixed bottom-0 left-0 right-0 z-49 max-h-[82dvh] overflow-y-auto rounded-t-4xl bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 p-6 pt-4 border-t border-zinc-200 dark:border-zinc-800 shadow-2xl pb-48 lg:hidden"
             >
-              <div className="w-12 h-1.5 bg-zinc-300 dark:bg-zinc-700 rounded-full mx-auto mb-4 group-active:bg-herbalife-1 transition-colors" />
+              <div
+                onPointerDown={(e) => dragControls.start(e)}
+                className="w-full py-2 cursor-grab active:cursor-grabbing touch-none flex justify-center"
+              >
+                <div className="w-12 h-1.5 bg-zinc-300 dark:bg-zinc-700 rounded-full group-active:bg-herbalife-1 transition-colors" />
+              </div>
 
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-bold capitalize">
