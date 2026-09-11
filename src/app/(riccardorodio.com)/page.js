@@ -44,7 +44,7 @@ export default function Home() {
                 href="/preventivo"
                 className="block text-center text-white bg-herbalife-4 hover:bg-herbalife-1 text-base md:text-lg uppercase font-black tracking-wider px-8 py-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
               >
-                genera un preventivo prodotti
+                genera un preventivo
               </Link>
             </motion.div>
             {/* link secondario, discreto: opportunità business */}
@@ -55,7 +55,7 @@ export default function Home() {
             >
               <Link
                 href="/business"
-                className="inline-block text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white underline underline-offset-4 transition-colors duration-300"
+                className="inline-block text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-100 dark:hover:text-white underline underline-offset-4 transition-colors duration-300"
               >
                 Sei interessato all&apos;opportunità commerciale? Scoprila qui
               </Link>

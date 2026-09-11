@@ -120,7 +120,7 @@ export default function MobMenu({ Menus, closeAll }) {
               dragListener={false}
               dragConstraints={{ top: 0 }}
               dragElastic={{ top: 0, bottom: 0.5 }}
-              onDragEnd={(event, info) => {
+              onDragEnd={(_, info) => {
                 if (info.offset.y > 100 || info.velocity.y > 300) {
                   setOpenSubmenuIdx(null);
                 }
