@@ -9,7 +9,9 @@ dotenv.config({ path: ".env" });
 const ISSUER_ID = process.env.GOOGLE_WALLET_ISSUER_ID;
 const CLASS_ID = `${ISSUER_ID}.biglietto_generico`;
 const SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_WALLET_CLIENT_EMAIL;
-const PRIVATE_KEY = process.env.GOOGLE_WALLET_PRIVATE_KEY?.replace(/\\n/g, "\n");
+const PRIVATE_KEY = process.env.GOOGLE_WALLET_PRIVATE_KEY
+    ? process.env.GOOGLE_WALLET_PRIVATE_KEY.replace(/\\n/g, "\n").replace(/"/g, "")
+    : "";
 
 if (!ISSUER_ID || !SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
     console.error("❌ Errore: Variabili d'ambiente mancanti nel file .env");
