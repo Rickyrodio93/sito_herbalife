@@ -1,3 +1,4 @@
+"use client"
 import { ArrowRight, Wallet } from "lucide-react";
 import Image from "next/image";
 import { IoIosFootball, IoIosSave } from "react-icons/io";
@@ -112,11 +113,24 @@ export default function BigliettoDigitale() {
                     </a>
                 </div>
 
-                <a
-                    href="/api/wallet-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full mt-3 flex justify-center items-center py-3.5 px-4 rounded-2xl bg-[#F6F3EC] dark:bg-[#14231D] border border-[#B08D57]/30 shadow-sm transition-all active:scale-[0.98] hover:border-[#B08D57]/60"
+                <button
+                    onClick={async () => {
+                        try {
+                            const res = await fetch("/api/wallet-link");
+                            const data = await res.json();
+                            if (data.url) {
+                                window.location.href = data.url;
+                            }else {
+                                alert("Errore nella generazione del Pass Google Wallet.")
+                            }
+                        } catch (err) {
+                            console.error(err)
+                        }
+                    }}
+                    // href="/api/wallet-link"
+                    // target="_blank"
+                    // rel="noopener noreferrer"
+                    className="w-full mt-3 flex justify-center items-center py-3.5 px-4 rounded-2xl bg-[#F6F3EC] dark:bg-[#14231D] border border-[#B08D57]/30 shadow-sm transition-all active:scale-[0.98] cursor-pointer"
                 >
                     <Image
                         src="/immagini/google wallet/it_add_to_google_wallet_add-wallet-badge.svg"
@@ -134,7 +148,7 @@ export default function BigliettoDigitale() {
                         className="hidden md:block object-contain"
                         priority
                     />
-                </a>
+                </button>
 
                 {/* separatore editoriale */}
                 <div className="w-full flex items-center gap-3 mt-9 mb-3">
