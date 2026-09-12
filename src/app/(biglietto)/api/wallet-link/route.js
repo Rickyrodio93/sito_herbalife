@@ -8,7 +8,7 @@ export async function GET() {
     } catch (e) {
         console.error("Errore generatore Wallet:", e);
         return NextResponse.json(
-            { error: "Impossibile generare il pass." },
+            { error: "Impossibile generare il pass.", details: error.message },
             { status: 500 }
         );
     }
