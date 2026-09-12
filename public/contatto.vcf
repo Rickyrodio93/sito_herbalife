@@ -6,6 +6,7 @@ ORG:Distributore Indipendente
 TITLE:Consulente Benessere & Integrazione
 TEL;TYPE=CELL:+393496635371
 EMAIL;TYPE=PREF,INTERNET:rodioriccardo@gmail.com
-URL:https://www.riccardorodio.com
+URL;TYPE=INTERNET,HOME:https://www.riccardorodio.com
 PHOTO;VALUE=URI:https://www.riccardorodio.com/immagini/profilo_1.png
+NOTE:ID Distributore Herbalife: 25800048 | Nutrizione di Precisione Bioniq
 END:VCARD
