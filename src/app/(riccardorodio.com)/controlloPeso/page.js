@@ -28,8 +28,8 @@ export const metadata = {
 export default function ControlloPeso() {
     return (
         <>
-            <main className="pt-28 md:pt-30">
-                <Background titolo="controllo del peso" src="/immagini/background/controlloPeso.webp" />
+            <main>
+                <Background titolo="controllo del peso" src="/immagini/background/controlloPeso.webp" compatta />
                 {SECTIONCONTROLLOPESO.map((section, index) => (
                     <Section key={index} sfondoAlternato={true}>
                         <SectionComponent index={index} section={section} />

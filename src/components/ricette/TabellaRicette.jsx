@@ -1,58 +1,58 @@
+import { ChefHat } from "lucide-react";
 import CardRicette from "../cards/CardRicette";
 import { ricette } from "./ricette";
-import { motion } from "framer-motion";
+
+const normalizza = (s) =>
+  String(s ?? "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
 
 export default function TabellaRicette({ searchQuery = "" }) {
-  const isSearching = searchQuery.trim() !== "";
+  const termine = searchQuery.trim();
+  const q = normalizza(termine);
 
-  const ricetteFiltrate = ricette.filter(
-    (ricetta) =>
-      ricetta.titolo &&
-      ricetta.titolo.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
-
-  const ricetteInvertite = [...ricetteFiltrate].reverse();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
+  // cerca nel titolo e nei prodotti; le più recenti per prime
+  const risultati = ricette
+    .filter(
+      (r) =>
+        !q ||
+        normalizza(`${r.titolo} ${(r.prodotti || []).join(" ")}`).includes(q),
+    )
+    .reverse();
 
   return (
-    <>
-      <div className="w-full py-4 max-w-5xl mx-auto mb-20">
-        {ricetteInvertite.length > 0 ? (
-          <motion.div
-            initial={isSearching ? "hidden" : "visible"}
-            animate={!isSearching ? "visible" : undefined}
-            whileInView={isSearching ? "visible" : undefined}
-            viewport={{ once: true, amount: 0, margin: "-50px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center"
-          >
-            {ricetteInvertite.map((ricetta) => (
-              <CardRicette
-                key={ricetta.id}
-                titolo={ricetta.titolo}
-                prodotti={ricetta.prodotti}
-                id={ricetta.id}
-              />
-            ))}
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-12 text-zinc-400 dark:text-zinc-500 font-medium"
-          >
-            Nessuna ricetta trovata 😞
-          </motion.div>
-        )}
-      </div>
-    </>
+    <div className="w-full">
+      <p className="mb-6 text-sm font-medium text-zinc-500 dark:text-zinc-400">
+        {risultati.length} {risultati.length === 1 ? "ricetta" : "ricette"}
+        {termine && ` per "${termine}"`}
+      </p>
+
+      {risultati.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {risultati.map((ricetta, index) => (
+            <CardRicette
+              key={ricetta.id}
+              id={ricetta.id}
+              titolo={ricetta.titolo}
+              prodotti={ricetta.prodotti}
+              index={index}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center gap-3 py-16 text-center">
+          <span className="p-4 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-400 dark:text-zinc-500">
+            <ChefHat size={32} />
+          </span>
+          <p className="font-bold text-zinc-900 dark:text-zinc-100">
+            Nessuna ricetta trovata
+          </p>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+            Prova con un altro ingrediente o con il nome di un prodotto.
+          </p>
+        </div>
+      )}
+    </div>
   );
 }

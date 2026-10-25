@@ -27,7 +27,7 @@ export default function UltimaModifica() {
   }, []);
 
   return (
-    <p className="text-right text-sm text-gray-500 mb-2 capitalize">
+    <p className="text-right text-sm text-zinc-500 dark:text-zinc-400 mb-2 capitalize">
       Ultimo aggiornamento:{" "}
       <span className="italic">{dataUltimaModifica || "Verifico ultimo aggiornamento..."}</span>
     </p>

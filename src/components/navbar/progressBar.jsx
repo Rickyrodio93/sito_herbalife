@@ -19,7 +19,7 @@ export default function ProgressBar() {
           height: 3,
           originX: 0,
         }}
-        className="bg-herbalife-1 dark:bg-herbalife-3 z-50 rounded-full"
+        className="bg-herbalife-1 dark:bg-herbalife-3 z-50 rounded-full pointer-events-none"
       ></motion.div>
     </>
   );

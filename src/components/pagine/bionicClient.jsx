@@ -129,12 +129,12 @@ export default function BioniqClient() {
       />
 
       <div className="bioniq-theme">
-        <main className="pt-17 md:pt-20 bg-bioniq-panna dark:bg-bioniq-notte transition-colors duration-300">
+        <main className="bg-bioniq-panna dark:bg-bioniq-notte transition-colors duration-300">
           <Background
             titolo="il tuo corpo non è una media statistica"
             src="/immagini/swiperImmagini/Bioniq_phone.webp"
           >
-            <p className="text-zinc-600 dark:text-bioniq-panna/70 text-base md:text-lg max-w-lg leading-relaxed mb-8">
+            <p className="text-zinc-400 dark:text-bioniq-panna/70 text-base md:text-lg max-w-lg leading-relaxed mb-8">
               Bioniq costruisce una formula di integrazione unica, calcolata
               sulla tua reale Valutazione del Benessere — non uno standard
               uguale per tutti.
@@ -145,7 +145,7 @@ export default function BioniqClient() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <Link
-                href="https://quiz.mypro2col.com/it-IT/intro?site=riccardorodio-catalog2"
+                href="https://shopbioniq.com/it-it/riccardorodio"
                 target="_blank"
                 className="inline-block text-center text-bioniq-notte bg-bioniq-acqua hover:bg-bioniq-teal hover:text-white text-base md:text-lg font-black uppercase tracking-wider px-8 py-4 rounded-full shadow-lg transition-all duration-300 no-underline!"
               >

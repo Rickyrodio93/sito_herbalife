@@ -11,7 +11,7 @@ export default function AccordionItem({
 }) {
   return (
     <div
-      className={`w-full rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/50 backdrop-blur-md shadow-sm transition-all duration-300 ${
+      className={`w-full rounded-2xl border border-line bg-card shadow-sm transition-all duration-300 ${
         isExpanded
           ? "shadow-md ring-1 ring-herbalife-1/10 dark:ring-herbalife-4/10"
           : ""
@@ -27,7 +27,7 @@ export default function AccordionItem({
         </span>
 
         <div
-          className={`flex items-center justify-center p-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 group-hover:text-herbalife-1 dark:group-hover:text-green-400 transition-all duration-300 ${
+          className={`flex items-center justify-center p-1.5 rounded-lg bg-line text-zinc-500 dark:text-zinc-400 group-hover:text-herbalife-1 dark:group-hover:text-green-400 transition-all duration-300 ${
             isExpanded
               ? "rotate-180 bg-herbalife-1/10 dark:bg-herbalife-4/10 text-herbalife-1! dark:text-green-400"
               : ""

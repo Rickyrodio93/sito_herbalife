@@ -108,11 +108,11 @@ export default function Riga({
           stiffness: 350,
           damping: 28,
         }}
-        className="bg-white dark:bg-zinc-950 hover:bg-zinc-50/80 dark:hover:bg-zinc-900/40 transition-colors duration-150 border-b border-zinc-100 dark:border-zinc-900 flex flex-col p-4 gap-3 lg:table-row lg:p-0 lg:gap-0 relative"
+        className="bg-card hover:bg-raised transition-colors duration-150 border-b border-line flex flex-col p-4 gap-3 lg:table-row lg:p-0 lg:gap-0 relative"
       >
         {/* 🌟 1. ID PRODOTTO: Diventa un'etichetta fluttuante nell'angolo su mobile */}
-        <td className="text-left font-mono text-[10px] text-zinc-400 dark:text-zinc-500 lg:table-cell lg:px-4 lg:py-4 lg:text-center lg:text-xs flex justify-between">
-          <span className="lg:hidden bg-zinc-100 dark:bg-zinc-900 px-2 py-0.5 rounded font-bold mr-1">
+        <td className="text-left font-mono text-[10px] text-zinc-500 dark:text-zinc-400 lg:table-cell lg:px-4 lg:py-4 lg:text-center lg:text-xs flex justify-between">
+          <span className="lg:hidden bg-raised px-2 py-0.5 rounded font-bold mr-1">
             ID: {prodotto.ID}
           </span>
 
@@ -123,7 +123,7 @@ export default function Riga({
         <td className="p-0 block lg:table-cell lg:p-4 lg:align-middle capitalize">
           <div className="flex items-center gap-4 lg:gap-6">
             {/* Box Immagine bilanciato per mobile */}
-            <div className="relative min-w-20 max-w-20 sm:min-w-24 sm:max-w-24 aspect-square flex justify-center bg-zinc-50 dark:bg-zinc-900/30 rounded-lg p-1">
+            <div className="relative min-w-20 max-w-20 sm:min-w-24 sm:max-w-24 aspect-square flex justify-center bg-raised rounded-lg p-1">
               <Image
                 src={`/immagini/prodotti/${prodotto.ID}.webp`}
                 alt={prodotto.Prodotto}
@@ -151,16 +151,16 @@ export default function Riga({
                 {prodotto.Prodotto.toLowerCase()}
               </p>
               {ruolo !== "cliente" && (
-                <div className="flex gap-3 text-zinc-400 dark:text-zinc-500 font-mono text-[10px] sm:text-[11px]">
+                <div className="flex gap-3 text-zinc-500 dark:text-zinc-400 font-mono text-[10px] sm:text-[11px]">
                   <span>
                     Listino:{" "}
-                    <strong className="text-zinc-600 dark:text-zinc-400">
+                    <strong className="text-zinc-700 dark:text-zinc-200">
                       {(prodotto.PrezzoListino || 0).toFixed(2)}€
                     </strong>
                   </span>
                   <span>
                     PV:{" "}
-                    <strong className="text-zinc-600 dark:text-zinc-400">
+                    <strong className="text-zinc-700 dark:text-zinc-200">
                       {(prodotto.PuntiVolume || 0).toFixed(2)}
                     </strong>
                   </span>
@@ -175,7 +175,7 @@ export default function Riga({
                     e.stopPropagation();
                     setIsAbbonato(!isAbbonato);
                   }}
-                  className={`mt-2 inline-flex items-center gap-2 pl-1 pr-3 py-1 rounded-full border transition-colors cursor-pointer ${isAbbonato ? "bg-emerald-50 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/30" : "bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700"}`}
+                  className={`mt-2 inline-flex items-center gap-2 pl-1 pr-3 py-1 rounded-full border transition-colors cursor-pointer ${isAbbonato ? "bg-emerald-50 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/30" : "bg-raised border-line hover:border-zinc-300 dark:hover:border-zinc-700"}`}
                 >
                   <span
                     className={`relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition-colors ${isAbbonato ? "bg-emerald-500" : "bg-zinc-300 dark:bg-zinc-700"}`}
@@ -209,7 +209,7 @@ export default function Riga({
           <td className="p-0 block lg:table-cell lg:p-4">
             <div className="flex items-center gap-2 justify-end flex-col lg:items-center">
               {/* Selettore +/- */}
-              <div className="flex items-center bg-zinc-100 dark:bg-zinc-900 p-0.5 rounded-lg border border-zinc-200/50 dark:border-zinc-800 dark:text-white">
+              <div className="flex items-center bg-raised p-0.5 rounded-lg border border-line dark:text-white">
                 <button
                   type="button"
                   onClick={decrementa}
@@ -243,7 +243,7 @@ export default function Riga({
                 </button>
                 <button
                   onClick={handleRimuovi}
-                  className="p-2 text-zinc-400 hover:text-red-500 border border-zinc-200 dark:border-zinc-800 hover:border-red-200 dark:hover:border-red-900/50 rounded transition-colors cursor-pointer h-9 w-9 flex items-center justify-center"
+                  className="p-2 text-zinc-500 dark:text-zinc-400 hover:text-red-500 border border-line hover:border-red-200 dark:hover:border-red-900/50 rounded transition-colors cursor-pointer h-9 w-9 flex items-center justify-center"
                 >
                   <Trash size={14} />
                 </button>
@@ -253,10 +253,10 @@ export default function Riga({
 
           {/* 🌟 4. PREZZO FINALE (Viene dopo nel codice -> Fine della riga su Desktop. Su Mobile va a sinistra) */}
           <td className="p-0 text-left lg:table-cell lg:px-6 lg:py-4 lg:text-right font-semibold text-zinc-950 dark:text-zinc-50 font-mono text-base">
-            <span className="text-xs text-zinc-400 block lg:hidden font-sans font-normal mb-0.5">
+            <span className="text-xs text-zinc-500 dark:text-zinc-400 block lg:hidden font-sans font-normal mb-0.5">
               Prezzo calcolato:
             </span>
-            <div className="text-lg lg:text-base text-herbalife-1 lg:text-zinc-950 lg:dark:text-zinc-50 font-bold">
+            <div className="text-lg lg:text-base text-herbalife-1 dark:text-green-400 lg:text-zinc-950 lg:dark:text-zinc-50 font-bold">
               {`${(Number(prezzoUnitario) || 0).toFixed(2)}€`}
             </div>
           </td>

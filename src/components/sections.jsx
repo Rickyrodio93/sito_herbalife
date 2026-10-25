@@ -16,6 +16,7 @@ import SwiperCard from "../components/swiper/swiperCard";
 import Link from "next/link";
 import FormSelezionabile from "./forms/FormSelezionabile";
 import PercorsoObiettivo from "./percorsoObiettivo/percorsoObiettivo";
+import CardsHome from "../components/cards/cardHome";
 
 const phoneNumber = "+393496635371";
 
@@ -51,7 +52,7 @@ export const CARDSHOME = [
   {
     icon: Cylinder,
     title: "personalizzazione  con Bioniq",
-    link: "https://shopbioniq.com/it-it/riccardorodio",
+    link: "/bioniq",
   },
   {
     icon: TrendingDown,
@@ -85,11 +86,7 @@ export const SECTIONHOME = [
     title: "i prodotti e le soluzioni herbalife offrono:",
     text: (
       <>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-5xl mx-auto mb-24 gap-6 sm:gap-8 px-4">
-          {CARDSHOME.map((card) => (
-            <Card key={card.link} {...card} />
-          ))}
-        </div>
+        <CardsHome cards={CARDSHOME} />
         <p>
           Formulati scientificamente pensando al tuo successo, gli innovativi
           prodotti Herbalife sono stati ideati da ricercatori, medici e

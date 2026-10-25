@@ -14,7 +14,7 @@ export default function CTARiepilogo({
   const linkMyHerbalifeBusiness = `https://www.myherbalife.com/it-IT/Shop/Catalog/Items/Search/${ruolo === "DS" ? "Ds" : "Mb"}?searchText=${searchText}`;
 
   return (
-    <div className="flex flex-col sm:flex-row shrink-0 gap-3 items-center justify-end p-5 bg-zinc-50 dark:bg-zinc-900/50 border-t border-zinc-100 dark:border-zinc-900">
+    <div className="flex flex-col sm:flex-row shrink-0 gap-3 items-center justify-end p-5 bg-raised border-t border-line">
       <button
         type="button"
         onClick={() => setShowModal(false)}

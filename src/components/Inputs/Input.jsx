@@ -31,7 +31,7 @@ export default function Input({
   const isSelectPlaceholder = as === "select" && (value === "" || !value);
 
   return (
-    <div className={`relative flex items-center w-full max-w-5xl mx-auto rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/50 backdrop-blur-md focus-within:border-herbalife-1 dark:focus-within:border-green-500 focus-within:ring-2 focus-within:ring-herbalife-1/20 dark:focus-within:ring-green-500/20 shadow-sm transition-all duration-300 group ${
+    <div className={`relative flex items-center w-full max-w-5xl mx-auto rounded-xl border border-line bg-card focus-within:border-herbalife-1 dark:focus-within:border-green-500 focus-within:ring-2 focus-within:ring-herbalife-1/20 dark:focus-within:ring-green-500/20 shadow-sm transition-all duration-300 group ${
       as === "textarea" ? "h-auto py-2" : "h-14"
     } ${className}`}>
       

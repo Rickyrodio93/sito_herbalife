@@ -85,7 +85,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="it-IT" dir="ltr">
-      <body className="bg-gray-200 dark:bg-p selection:bg-herbalife-3 dark:selection:bg-herbalife-1 selection:text-white">
+      <body className="bg-surface selection:bg-herbalife-3 dark:selection:bg-herbalife-1 selection:text-white">
         <Script
           id="theme-color"
           strategy="beforeInteractive"
@@ -106,7 +106,7 @@ export default function RootLayout({ children }) {
                 }
           
                 // 3. Applica il colore corretto alla barra del browser
-                meta.content = isDark ? '#09090b' : '#266431';
+                meta.content = isDark ? '#1a201c' : '#266431';
               }
         
               // Esegui subito al caricamento iniziale

@@ -81,10 +81,10 @@ export default function ModalRiepilogo({
         >
           <div
             ref={modalRef}
-            className="relative flex flex-col rounded-xl w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 max-h-full overflow-hidden text-sm shadow-2xl"
+            className="relative flex flex-col rounded-xl w-full bg-card border border-line max-h-full overflow-hidden text-sm shadow-2xl"
           >
             {/* header del modale */}
-            <div className="flex items-center shrink-0 justify-between p-5 border-b border-zinc-100 dark:border-zinc-900">
+            <div className="flex items-center shrink-0 justify-between p-5 border-b border-line">
               <h3 className="uppercase tracking-wider font-bold text-zinc-900 dark:text-zinc-50 text-lg mb-0">
                 riepilogo ordine{" "}
                 <span>

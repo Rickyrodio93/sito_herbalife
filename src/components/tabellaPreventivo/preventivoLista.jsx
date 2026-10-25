@@ -1,5 +1,4 @@
-import { AlertTriangle, CheckSquare, Square, Truck, X } from "lucide-react";
-import Input from "../Inputs/Input";
+import { AlertTriangle, Truck, X } from "lucide-react";
 
 export default function PreventivoLista({
   prodotti,
@@ -10,6 +9,7 @@ export default function PreventivoLista({
   haOrdineMisto,
   isAbbonato,
   setIsAbbonato,
+  mostraLista = true,
 }) {
   return (
     <>
@@ -50,12 +50,14 @@ export default function PreventivoLista({
                 className={`inline-flex w-fit items-center gap-2 pl-1 pr-3 py-1 rounded-full border transition-colors cursor-pointer ${
                   isAbbonato
                     ? "bg-emerald-50 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/30"
-                    : "bg-white/50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700"
+                    : "bg-white/60 dark:bg-raised border-line hover:border-zinc-300 dark:hover:border-zinc-700"
                 }`}
               >
                 <span
                   className={`relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition-colors ${
-                    isAbbonato ? "bg-emerald-500" : "bg-zinc-300 dark:bg-zinc-700"
+                    isAbbonato
+                      ? "bg-emerald-500"
+                      : "bg-zinc-300 dark:bg-zinc-700"
                   }`}
                 >
                   <span
@@ -101,25 +103,27 @@ export default function PreventivoLista({
           )}
         </>
       )}
-      <ul className="mb-4 space-y-2 border-b border-dashed border-gray-400 lg:text-left">
-        {prodotti.map((p) => (
-          <li
-            key={p.id}
-            className="lg:mb-5 lg:font-courier flex justify-between items-center border-b border-none pb-2"
-          >
-            <p>
-              <strong>{p.id}</strong> - {p.nome} -{" "}
-              <strong>x{p.quantita}</strong>
-            </p>
-            <button
-              onClick={() => onRimuoviProdotto && onRimuoviProdotto(p.id)}
-              className="flex justify-center items-center font-semibold lg:border-gray-300 lg:border-2 rounded-md aspect-square h-6 cursor-pointer text-red-600 lg:text-black lg:dark:text-white"
+      {mostraLista && (
+        <ul className="mb-4 space-y-2 border-b border-dashed border-gray-400 lg:text-left">
+          {prodotti.map((p) => (
+            <li
+              key={p.id}
+              className="lg:mb-5 lg:font-courier flex justify-between items-center border-b border-none pb-2"
             >
-              <X size={14} />
-            </button>
-          </li>
-        ))}
-      </ul>
+              <p>
+                <strong>{p.id}</strong> - {p.nome} -{" "}
+                <strong>x{p.quantita}</strong>
+              </p>
+              <button
+                onClick={() => onRimuoviProdotto && onRimuoviProdotto(p.id)}
+                className="flex justify-center items-center font-semibold lg:border-gray-300 lg:border-2 rounded-md aspect-square h-6 cursor-pointer text-red-600 lg:text-black lg:dark:text-white"
+              >
+                <X size={14} />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 }

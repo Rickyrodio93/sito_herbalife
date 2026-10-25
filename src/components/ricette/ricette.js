@@ -533,7 +533,7 @@ export const ricette = [
         id: 65,
         titolo: "fondente al cioccolato",
         prodotti: [
-            "rebuind strength"
+            "rebuild strength"
         ]
     }
 ]

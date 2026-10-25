@@ -31,7 +31,7 @@ export default function MobMenu({ Menus, closeAll }) {
           NAVBAR FLOATING (DINAMICA DA MENUS)
       ---------------------------------------------------- */}
       <div className="fixed bottom-4 left-4 right-4 z-50 lg:hidden pb-[env(safe-area-inset-bottom)]">
-        <nav className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl border border-zinc-200/80 dark:border-zinc-800 rounded-full p-1.5 sm:p-2 shadow-2xl flex items-center justify-around">
+        <nav className="bg-card/90 backdrop-blur-xl border border-line rounded-full p-1.5 sm:p-2 shadow-2xl flex items-center justify-around">
           {Menus?.map((menu, idx) => {
             const hasSubMenu = menu.subMenu && menu.subMenu.length > 0;
             const Icon = menu.icon;
@@ -50,7 +50,7 @@ export default function MobMenu({ Menus, closeAll }) {
                     setOpenSubmenuIdx(null);
                     if (closeAll) closeAll();
                   }}
-                  className="bg-herbalife-1 dark:bg-green-500 text-white dark:text-zinc-950 p-3.5 rounded-full shadow-lg shadow-herbalife-1/30 dark:shadow-green-500/20 -mt-6 border-4 border-slate-100 dark:border-zinc-950 hover:scale-105 active:scale-95 transition-all flex items-center justify-center"
+                  className="bg-herbalife-1 dark:bg-green-500 text-white dark:text-zinc-950 p-3.5 rounded-full shadow-lg shadow-herbalife-1/30 dark:shadow-green-500/20 -mt-6 border-4 border-slate-100 dark:border-zinc-800 hover:scale-105 active:scale-95 transition-all flex items-center justify-center"
                   aria-label={menu.name}
                 >
                   <Calculator size={22} />
@@ -125,7 +125,7 @@ export default function MobMenu({ Menus, closeAll }) {
                   setOpenSubmenuIdx(null);
                 }
               }}
-              className="group fixed bottom-0 left-0 right-0 z-50 max-h-[80dvh] overflow-y-auto overscroll-contain rounded-t-4xl bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 p-6 pt-4 border-t border-zinc-200 dark:border-zinc-800 shadow-2xl pb-24 lg:hidden"
+              className="group fixed bottom-0 left-0 right-0 z-50 max-h-[80dvh] overflow-y-auto overscroll-contain rounded-t-4xl bg-card text-zinc-900 dark:text-zinc-100 p-6 pt-4 border-t border-zinc-200 dark:border-zinc-800 shadow-2xl pb-24 lg:hidden"
             >
               <div
                 onPointerDown={(e) => dragControls.start(e)}

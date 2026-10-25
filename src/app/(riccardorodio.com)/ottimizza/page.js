@@ -28,10 +28,11 @@ export const metadata = {
 export default function Ottimizza() {
   return (
     <>
-      <main className="pt-28 md:pt-30">
+      <main>
         <Background
           titolo={"ottimizza la nutrizione"}
           src="/immagini/background/ottimizza_nutrizione.webp"
+          compatta
         />
         {SECTIONOTTIMIZZA.map((section, index) => (
           <Section key={index} sfondoAlternato={true}>

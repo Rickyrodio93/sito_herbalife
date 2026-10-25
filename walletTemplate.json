@@ -9,7 +9,7 @@
     "header": {
         "defaultValue": {
             "language": "it-IT",
-            "value": "Distributore Indipendente"
+            "value": "Consulente Benessere"
         }
     },
     "logo": {
@@ -19,30 +19,25 @@
         "contentDescription": {
             "defaultValue": {
                 "language": "it-IT",
-                "value": "Foto Profilo"
+                "value": "Foto Profilo Riccardo Rodio"
             }
         }
     },
     "textModulesData": [
         {
             "id": "telefono",
-            "header": "telefono",
+            "header": "Telefono",
             "body": "+39 349 663 5371"
         },
         {
-            "id": "whatsapp",
-            "header": "whatsapp",
-            "body": "Scrivimi su WhatsApp"
-        },
-        {
-            "id": "sito",
-            "header": "sito web",
-            "body": "www.riccardorodio.com"
-        },
-        {
-            "id": "email",
-            "header": "email",
+            "id": "email_front",
+            "header": "Email",
             "body": "rodioriccardo@gmail.com"
+        },
+        {
+            "id": "sito_front",
+            "header": "Sito Web",
+            "body": "www.riccardorodio.com"
         }
     ],
     "linksModuleData": {
@@ -55,33 +50,33 @@
             },
             {
                 "kind": "walletobjects#uri",
-                "uri": "https://www.riccardorodio.com",
-                "description": "Visita il Sito Web",
-                "id": "link_website"
-            },
-            {
-                "kind": "walletobjects#uri",
                 "uri": "tel:+393496635371",
                 "description": "Chiamami",
                 "id": "link_call"
             },
             {
                 "kind": "walletobjects#uri",
-                "uri": "https://www.riccardorodio.com/bioniq",
-                "description": "bioniq GO",
+                "uri": "mailto:rodioriccardo@gmail.com",
+                "description": "Invia un'Email",
+                "id": "link_email"
+            },
+            {
+                "kind": "walletobjects#uri",
+                "uri": "https://www.riccardorodio.com",
+                "description": "Visita il Sito Web",
+                "id": "link_website"
+            },
+            {
+                "kind": "walletobjects#uri",
+                "uri": "https://shopbioniq.com/it-it/riccardorodio-personal-formula",
+                "description": "Bioniq GO - Nutrizione Personalizzata",
                 "id": "link_bioniq"
             },
             {
                 "kind": "walletobjects#uri",
                 "uri": "https://www.riccardorodio.com/sport",
-                "description": "linea sportiva",
+                "description": "Linea Sport H24",
                 "id": "link_sport"
-            },
-            {
-                "kind": "walletobjects#uri",
-                "uri": "mailto:rodioriccardo@gmail.com",
-                "description": "Invia un'Email",
-                "id": "link_email"
             }
         ]
     },
@@ -92,7 +87,7 @@
         "contentDescription": {
             "defaultValue": {
                 "language": "it-IT",
-                "value": "Herbalife Banner"
+                "value": "Riccardo Rodio Banner"
             }
         }
     },
@@ -114,7 +109,7 @@
                             "firstValue": {
                                 "fields": [
                                     {
-                                        "fieldPath": "object.textModulesData['whatsapp']"
+                                        "fieldPath": "object.textModulesData['email_front']"
                                     }
                                 ]
                             }
@@ -127,7 +122,7 @@
                             "firstValue": {
                                 "fields": [
                                     {
-                                        "fieldPath": "object.textModulesData['sito']"
+                                        "fieldPath": "object.textModulesData['sito_front']"
                                     }
                                 ]
                             }

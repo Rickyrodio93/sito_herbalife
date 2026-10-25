@@ -28,8 +28,8 @@ export const metadata = {
 export default function Skin() {
     return (
         <>
-            <main className="pt-17 md:pt-20">
-                <Background titolo={"herbalife skin"} src={"/immagini/background/skin.webp"} />
+            <main>
+                <Background titolo="herbalife skin" src="/immagini/background/skin.webp" compatta />
                 {SECTIONSKIN.map((section, index) => (
                     <Section key={index} sfondoAlternato={true}>
                         <SectionComponent section={section} index={index} />

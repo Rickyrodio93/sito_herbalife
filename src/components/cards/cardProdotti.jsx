@@ -10,9 +10,9 @@ export default function CardProdotti({
 }) {
   return (
     <>
-      <div className="group relative w-full h-full bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 shadow-sm flex flex-col justify-between overflow-hidden rounded-2xl pb-4 transition-all duration-300 hover:shadow-md">
+      <div className="group relative w-full h-full bg-card border-line shadow-sm flex flex-col justify-between overflow-hidden rounded-2xl pb-4 transition-all duration-300 hover:shadow-md">
         {/* contenitore immagine */}
-        <div className="relative w-full h-52 flex items-center justify-center bg-zinc-50/50 dark:bg-zinc-800/20 p-4 overflow-hidden">
+        <div className="relative w-full h-52 flex items-center justify-center bg-raised p-4 overflow-hidden">
           <div className="relative w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
             <Image
               src={`/immagini/prodotti/${id}.webp`}

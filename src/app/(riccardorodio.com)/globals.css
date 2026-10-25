@@ -25,11 +25,43 @@
     --color-bioniq-acqua: #4FD1C5;
     --color-bioniq-oro: #C9A24B;
 
+    --surface: #ffffff;
+    --surface-alt: #f4f4f5;
+    --card: #ffffff;
+    --raised: #fafafa;
+    --line: #e4e4e7;
+
+    --paper: #fffdf8;
+    --ink: #1f1b16;
+    --ink-soft: #6b645a;
+
     --drop-shadow-text: 0px 0px 5px #000000;
 
     --shadow-nav: 0 1px 5px 3px rgba(0, 0, 0, 10%);
     --shadow-card: 12px 12px 8px rgba(0, 0, 0, 30%);
     --shadow-prodotti: 6px 6px 5px rgba(0, 0, 0, 30%);
+}
+
+[data-theme="dark"] {
+    --surface: #1a201c;
+    --surface-alt: #222923;
+    --card: #2c342e;
+    --raised: #353e37;
+    --line: #46514a;
+    --paper: #d9cdb2;
+    --ink: #262016;
+    --ink-soft: #5e5543;
+}
+
+@theme inline {
+    --color-surface: var(--surface);
+    --color-surface-alt: var(--surface-alt);
+    --color-card: var(--card);
+    --color-raised: var(--raised);
+    --color-line: var(--line);
+    --color-paper: var(--paper);
+    --color-ink: var(--ink);
+    --color-ink-soft: var(--ink-soft);
 }
 
 /* scrollbar */
@@ -84,7 +116,7 @@ h2 {
         height: 0.5rem;
         width: 100%;
         left: 0;
-        background-color: #ffffff;
+        background-color: var(--paper);
         clip-path: polygon(1% 0%, 4% 100%, 9% 0%, 13% 100%, 19% 1%, 21% 100%, 26% 5%, 30% 100%, 36% 2%, 39% 48%, 43% 100%, 50% 1%, 52% 100%, 61% 0%, 69% 94%, 70% 0%, 76% 100%, 81% 0%, 84% 100%, 91% 0%, 97% 100%, 99% 3%);
     }
 }

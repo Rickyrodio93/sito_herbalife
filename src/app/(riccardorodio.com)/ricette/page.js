@@ -13,7 +13,7 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "https://www.riccardorodio/immagini/background/sfondoRicette.jpg",
+                url: "https://www.riccardorodio.com/immagini/background/sfondoRicette.jpg",
                 width: 1200,
                 height: 630,
                 alt: "ricette - Distributore Indipendente Herbalife"
@@ -21,11 +21,11 @@ export const metadata = {
         ]
     },
     alternates: {
-    canonical: "https://www.riccardorodio.com/ricette",
-    languages: {
-      "it-IT": "https://www.riccardorodio.com"
-    }
-  },
+        canonical: "https://www.riccardorodio.com/ricette",
+        languages: {
+            "it-IT": "https://www.riccardorodio.com/ricette"
+        }
+    },
 }
 
 export default function Ricette() {

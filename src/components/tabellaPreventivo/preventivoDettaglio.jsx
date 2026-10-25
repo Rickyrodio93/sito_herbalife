@@ -18,14 +18,14 @@ export default function PreventivoDettaglio({
 
         {ruolo !== "cliente" ? (
           <>
-            <div className="flex justify-between text-green-700">
+            <div className="flex justify-between text-green-700 dark:text-green-400">
               <span>sconto (-{livelloMarketing}%)</span>
               <span>- {preventivo.sconto.toFixed(2)} €</span>
             </div>
 
             <div
               className={`flex justify-between ${
-                preventivo.spedizione === 0 ? "text-green-700" : "text-red-600"
+                preventivo.spedizione === 0 ? "text-green-700 dark:text-green-400" : "text-red-600 dark:text-red-400"
               }`}
             >
               <span>spedizione</span>

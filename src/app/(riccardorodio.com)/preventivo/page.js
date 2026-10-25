@@ -27,7 +27,7 @@ export const metadata = {
 export default function Preventivo() {
     return (
         <>
-            <main className="pt-17 md:pt-20 px-6 sm:p-16">
+            <main className="pt-15 md:pt-25 px-6 md:px-16 py-16">
                 <PreventivoWrapper />
             </main>
         </>

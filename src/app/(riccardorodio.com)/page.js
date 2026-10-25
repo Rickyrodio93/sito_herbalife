@@ -26,13 +26,14 @@ const FloatingCallCTA = dynamic(() => import("@/components/FloatingCallCTA"), { 
 export default function Home() {
   return (
     <>
-      <main className="pt-17 md:pt-20">
+      <main>
         <Background
           titolo="Riscopri il tuo benessere con Herbalife & Bioniq"
+          sottotitolo="Nutrizione personalizzata sui tuoi biomarcatori, con consulenza diretta."
           src="/immagini/background/herbalife-bioniq.webp"
         >
 
-          <div className="mt-8 flex flex-col items-stretch sm:items-start gap-4 max-w-md sm:max-w-none">
+          <div className="flex flex-col items-stretch sm:items-start gap-4 max-w-md sm:max-w-none">
             {/* CTA principale */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
@@ -55,7 +56,7 @@ export default function Home() {
             >
               <Link
                 href="/business"
-                className="inline-block text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-100 dark:hover:text-white underline underline-offset-4 transition-colors duration-300"
+                className="inline-block text-sm text-zinc-300 hover:text-white underline underline-offset-4 transition-colors duration-300"
               >
                 Sei interessato all&apos;opportunità commerciale? Scoprila qui
               </Link>

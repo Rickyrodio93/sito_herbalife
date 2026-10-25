@@ -109,7 +109,7 @@ export default function RiepilogoTable({
   return (
     <div className="overflow-y-auto relative flex-[1_1_auto] p-5">
       <table className="w-full border-collapse">
-        <thead className="text-zinc-400 dark:text-zinc-500 uppercase text-[11px] font-bold tracking-wider border-b border-zinc-100 dark:border-zinc-900">
+        <thead className="text-zinc-500 dark:text-zinc-400 uppercase text-[11px] font-bold tracking-wider border-b border-line">
           <tr className="text-center">
             {modalThead.map((nameCol, idx) => (
               <td
@@ -127,13 +127,13 @@ export default function RiepilogoTable({
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-zinc-100 dark:divide-zinc-900">
+        <tbody className="divide-y divide-line">
           {righe.map(({ p, q, isBioniq, cad, scontoRiga, tasseRiga, ivaRiga, totaleRiga }) => (
             <tr
               key={p.id}
               className="text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors text-xs sm:text-sm"
             >
-              <td className="text-center py-4 px-2 font-mono text-zinc-400 dark:text-zinc-500">
+              <td className="text-center py-4 px-2 font-mono text-zinc-500 dark:text-zinc-400">
                 {p.id}
               </td>
               <td className="text-left font-medium py-4 px-2 tracking-tight">
@@ -152,7 +152,7 @@ export default function RiepilogoTable({
               </td>
 
               {(!isCliente || (isCliente && mostraScontoBioniqCliente)) && (
-                <td className="text-center py-4 px-2 font-mono text-green-500 dark:text-green-400 font-semibold">
+                <td className="text-center py-4 px-2 font-mono text-green-700 dark:text-green-400 font-semibold">
                   {scontoRiga > 0 ? `-${scontoRiga.toFixed(2)}€` : "-"}
                 </td>
               )}
@@ -213,16 +213,16 @@ export default function RiepilogoTable({
             </tr>
           )}
         </tbody>
-        <tfoot className="border-t border-t-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-100 font-semibold text-sm sm:text-base">
+        <tfoot className="border-t border-line text-zinc-900 dark:text-zinc-100 font-semibold text-sm sm:text-base">
           <tr>
             <td
               colSpan={2}
-              className="pt-5 pb-2 uppercase tracking-wider font-bold text-xs text-zinc-400 pl-2"
+              className="pt-5 pb-2 uppercase tracking-wider font-bold text-xs text-zinc-500 dark:text-zinc-400 pl-2"
             >
               totale riepilogo:
             </td>
-            <td className="pt-5 pb-2"></td>
-            <td className="pt-5 pb-2 text-center font-bold text-zinc-600">
+            <td className="pt-5 pb-2" />
+            <td className="pt-5 pb-2 text-center font-bold text-zinc-600 dark:text-zinc-300">
               {preventivo.sommaProdotti || preventivo.quantitaTotale}
             </td>
 
@@ -238,10 +238,10 @@ export default function RiepilogoTable({
 
             {!isCliente && (
               <>
-                <td className="text-center pt-5 pb-2 font-mono text-zinc-500 text-xs">
+                <td className="text-center pt-5 pb-2 font-mono text-zinc-600 dark:text-zinc-300 text-xs">
                   {preventivo.tasse ? `${preventivo.tasse.toFixed(2)}€` : "-"}
                 </td>
-                <td className="text-center pt-5 pb-2 font-mono text-zinc-500 text-xs">
+                <td className="text-center pt-5 pb-2 font-mono text-zinc-600 dark:text-zinc-300 text-xs">
                   {preventivo.iva.toFixed(2)}€
                 </td>
               </>

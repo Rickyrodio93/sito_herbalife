@@ -15,7 +15,7 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "https://www.riccardorodio/immagini/background/scienza.webp",
+                url: "https://www.riccardorodio.com/immagini/background/scienza.webp",
                 width: 1200,
                 height: 630,
                 alt: "scienza - Distributore Indipendente Herbalife"
@@ -27,8 +27,8 @@ export const metadata = {
 export default function Scienza() {
     return (
         <>
-            <main className="pt-28 md:pt-30">
-            <Background titolo={"la scienza dietro i prodotti"} src="/immagini/background/scienza.webp" />
+            <main>
+                <Background titolo="la scienza dietro i prodotti" src="/immagini/background/scienza.webp" compatta />
                 {SECTIONSCIENZA.map((section, index) => (
                     <Section key={section} sfondoAlternato={true}>
                         <SectionComponent index={index} section={section} />

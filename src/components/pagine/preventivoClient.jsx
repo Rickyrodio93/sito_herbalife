@@ -335,10 +335,10 @@ export default function PreventivoClient() {
             {/* TABELLA 1: LINEA BIONIQ */}
             <div className="flex flex-col gap-2">
             <UltimaModifica />
-              <h3 className="text-lg font-bold uppercase tracking-wider text-herbalife-1 font-mono">
+              <h3 className="text-lg font-bold uppercase tracking-wider text-herbalife-1 dark:text-green-400 font-mono">
                 🧬 Linea Bioniq
               </h3>
-              <div className="lg:max-h-[50vh] max-w-4xl overflow-x-auto shadow-nav rounded-lg border border-zinc-100 dark:border-zinc-900">
+              <div className="lg:max-h-[50vh] max-w-4xl overflow-x-auto shadow-nav rounded-2xl border border-line bg-card">
                 <Tabella
                   prodotti={bioniqFiltrati}
                   isLoading={loading}
@@ -354,10 +354,10 @@ export default function PreventivoClient() {
             </div>
             {/* tabella 2: prodotti classici */}
             <div className="flex flex-col gap-2">
-              <h3 className="text-lg font-bold uppercase tracking-wider text-zinc-800 dark:text-zinc-200 font-mono">
+              <h3 className="text-lg font-bold uppercase tracking-wider text-herbalife-1 dark:text-green-400 font-mono">
                 📦 Linea Herbalife
               </h3>
-              <div className="lg:max-h-[50vh] max-w-4xl overflow-x-auto shadow-nav rounded-lg border border-zinc-100 dark:border-zinc-900">
+              <div className="lg:max-h-[50vh] max-w-4xl overflow-x-auto shadow-nav rounded-2xl border border-line bg-card">
                 <Tabella
                   prodotti={classiciFiltrati}
                   isLoading={loading}
