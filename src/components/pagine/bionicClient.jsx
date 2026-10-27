@@ -20,6 +20,8 @@ import {
   ShoppingBag,
   Sparkles,
 } from "lucide-react";
+import VideoModal from "./VideoModal";
+import { Play } from "lucide-react";
 
 const OBIETTIVI = [
   {
@@ -83,6 +85,7 @@ const QUALITA = [
 
 export default function BioniqClient() {
   const [expandedId, setExpandedId] = useState(null);
+  const [videoOpen, setVideoOpen] = useState(false);
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
   const productSchema = {
     "@context": "https://schema.org",
@@ -129,20 +132,21 @@ export default function BioniqClient() {
       />
 
       <div className="bioniq-theme">
-        <main className="bg-bioniq-panna dark:bg-bioniq-notte transition-colors duration-300">
+        <main className="bg-surface transition-colors duration-300">
           <Background
             titolo="il tuo corpo non è una media statistica"
             src="/immagini/swiperImmagini/Bioniq_phone.webp"
           >
-            <p className="text-zinc-400 dark:text-bioniq-panna/70 text-base md:text-lg max-w-lg leading-relaxed mb-8">
+            <p className="text-zinc-200 text-base md:text-lg max-w-lg leading-relaxed mb-8">
               Bioniq costruisce una formula di integrazione unica, calcolata
-              sulla tua reale Valutazione del Benessere — non uno standard
-              uguale per tutti.
+              sulla tua reale Valutazione del Benessere, non uno standard uguale
+              per tutti.
             </p>
             <motion.div
               initial={{ y: 16, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col gap-3 sm:flex-row sm:items-center"
             >
               <Link
                 href="https://shopbioniq.com/it-it/riccardorodio"
@@ -151,43 +155,60 @@ export default function BioniqClient() {
               >
                 Inizia la valutazione del benessere
               </Link>
+              <button
+                type="button"
+                onClick={() => setVideoOpen(true)}
+                className="flex cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-white/50 px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-white/10"
+              >
+                <Play size={16} className="fill-current" /> guarda il video
+              </button>
             </motion.div>
           </Background>
 
+          <VideoModal
+            open={videoOpen}
+            onClose={() => setVideoOpen(false)}
+            src="/video/bioniq-hero.mp4"
+            poster="immagini/bioniq/bioniq-hero-poster.webp"
+            titolo="Bioniq: il futuro della nutrizione personalizzata"
+          />
+
           {/* PER OBIETTIVO */}
-          <section className="max-w-6xl mx-auto px-6 py-20">
-            <h3 className="font-serif text-2xl md:text-4xl text-center text-zinc-900 dark:text-bioniq-panna font-bold mb-3">
-              Un integratore per ogni obiettivo
-            </h3>
-            <p className="text-center text-zinc-500 dark:text-bioniq-panna/60 max-w-xl mx-auto mb-12">
-              La formula viene calibrata sulla tua priorità di benessere
-            </p>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-              {OBIETTIVI.map(({ icon: Icon, title, description }) => (
-                <motion.div
-                  key={title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5 }}
-                  className="flex flex-col items-center yext-center p-6 bg-white dark:bg-bioniq-notte/60 border border-zinc-200 dark:border-bioniq-teal/30 rounded-2xl shadow-sm"
-                >
-                  <span className="mb-4 p-4 rounded-full bg-bioniq-teal/10 text-bioniq-teal dark:text-bioniq-acqua">
-                    <Icon size={26} />
-                  </span>
-                  <span className="text-sm sm:text-base font-bold text-zinc-900 dark:text-bioniq-panna mb-2">
-                    {title}
-                  </span>
-                  <span className="text-xs sm:text-sm text-zinc-500 dark:text-bioniq-panna/60 leading-normal">
-                    {description}
-                  </span>
-                </motion.div>
-              ))}
+          <section className="bg-surface">
+            <div className="max-w-6xl mx-auto px-6 py-20">
+              <h3 className="font-serif text-2xl md:text-4xl text-center text-zinc-900 dark:text-bioniq-panna font-bold mb-3">
+                Un integratore per ogni obiettivo
+              </h3>
+              <p className="text-center text-zinc-500 dark:text-bioniq-panna/60 max-w-xl mx-auto mb-12">
+                La formula viene calibrata sulla tua priorità di benessere
+              </p>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                {OBIETTIVI.map(({ icon: Icon, title, description }) => (
+                  <motion.div
+                    key={title}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-col items-center text-center p-6 bg-card border border-line rounded-2xl shadow-sm"
+                  >
+                    <span className="mb-4 p-4 rounded-full bg-bioniq-teal/10 text-bioniq-teal dark:text-bioniq-acqua">
+                      <Icon size={26} />
+                    </span>
+                    <span className="text-sm sm:text-base font-bold text-zinc-900 dark:text-bioniq-panna mb-2">
+                      {title}
+                    </span>
+                    <span className="text-xs sm:text-sm text-zinc-500 dark:text-bioniq-panna/60 leading-normal">
+                      {description}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </section>
 
           {/* COME FUNZIONA */}
-          <section className="bg-bioniq-notte py-20">
+          <section className="bg-bioniq-notte dark:bg-[#061219] dark:border-y dark:border-line py-20">
             <div className="max-w-5xl mx-auto px-6">
               <h3 className="font-serif text-2xl md:text-4xl text-center text-bioniq-panna font-bold mb-14">
                 Crea il tuo integratore quotidiano
@@ -224,58 +245,62 @@ export default function BioniqClient() {
           </section>
 
           {/* QUALITà SVIZZERA */}
-          <section className="max-w-5xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div>
-              <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-bioniq-teal dark:text-bioniq-acqua mb-4">
-                <ShieldCheck size={16} /> Qualità svizzera certificata
-              </span>
-              <h3 className="font-serif text-2xl md:text-3xl font-bold text-zinc-900 dark:text-bioniq-panna mb-4">
-                Ogni lotto, controllato.
-              </h3>
-              <p className="text-zinc-600 dark:text-bioniq-panna/70 mb-6 leading-relaxed">
-                I processi produttivi sono regolarmente controllati da
-                SwissMedic. La tecnologia a granuli è pensata per favorire
-                l&apos;assorbimento, senza coloranti artificiali, zuccheri,
-                dolcificanti o gelatina.
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {QUALITA.map((voce) => (
-                  <li
-                    key={voce}
-                    className="flex items-center gap-2 text-sm text-zinc-700 dark:text-bioniq-acqua shrink-0"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-bioniq-teal dark:bg-bioniq-acqua shrink-0" />
-                    {voce}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative aspect-4/5 rounded-2xl overflow-hidden shadow-xl">
-              <Image
-                src="/immagini/bioniq/Bioniq_Carosello.webp"
-                alt="Qualità svizzera Bioniq"
-                fill
-                className="object-cover"
-              />
+          <section className="bg-surface-alt border-y border-line">
+            <div className="max-w-5xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-bioniq-teal dark:text-bioniq-acqua mb-4">
+                  <ShieldCheck size={16} /> Qualità svizzera certificata
+                </span>
+                <h3 className="font-serif text-2xl md:text-3xl font-bold text-zinc-900 dark:text-bioniq-panna mb-4">
+                  Ogni lotto, controllato.
+                </h3>
+                <p className="text-zinc-600 dark:text-bioniq-panna/70 mb-6 leading-relaxed">
+                  I processi produttivi sono regolarmente controllati da
+                  SwissMedic. La tecnologia a granuli è pensata per favorire
+                  l&apos;assorbimento, senza coloranti artificiali, zuccheri,
+                  dolcificanti o gelatina.
+                </p>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {QUALITA.map((voce) => (
+                    <li
+                      key={voce}
+                      className="flex items-center gap-2 text-sm text-zinc-700 dark:text-bioniq-acqua shrink-0"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-bioniq-teal dark:bg-bioniq-acqua shrink-0" />
+                      {voce}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="relative aspect-4/5 rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                  src="/immagini/bioniq/Bioniq_Carosello.webp"
+                  alt="Qualità svizzera Bioniq"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </section>
 
           {/* FAQ */}
-          <section className="max-w-3xl mx-auto px-6 py-20">
-            <h3 className="font-serif text-2xl md:text-3xl font-bold text-center text-zinc-900 dark:text-bioniq-panna mb-10">
-              Domande frequenti su Bioniq
-            </h3>
-            <div className="flex flex-col gap-4">
-              {AccordionDataProdotto.map((item) => (
-                <AccordionItem
-                  key={item.id}
-                  {...item}
-                  isExpanded={expandedId === item.id}
-                  onToggle={() =>
-                    setExpandedId(expandedId === item.id ? null : item.id)
-                  }
-                />
-              ))}
+          <section className="bg-surface">
+            <div className="max-w-3xl mx-auto px-6 py-20">
+              <h3 className="font-serif text-2xl md:text-3xl font-bold text-center text-zinc-900 dark:text-bioniq-panna mb-10">
+                Domande frequenti su Bioniq
+              </h3>
+              <div className="flex flex-col gap-4">
+                {AccordionDataProdotto.map((item) => (
+                  <AccordionItem
+                    key={item.id}
+                    {...item}
+                    isExpanded={expandedId === item.id}
+                    onToggle={() =>
+                      setExpandedId(expandedId === item.id ? null : item.id)
+                    }
+                  />
+                ))}
+              </div>
             </div>
           </section>
 

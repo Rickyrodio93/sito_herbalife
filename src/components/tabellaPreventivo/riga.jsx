@@ -9,6 +9,8 @@ import { pushEvent } from "../utils/gtm";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+const IMMAGINE_DEFAULT = "/immagini/prodotti/default.svg";
+
 export default function Riga({
   prodotto,
   quantita,
@@ -23,6 +25,12 @@ export default function Riga({
 }) {
   const [isZoomOpen, setIsZoomOpen] = useState(false);
   const isBioniqPrincipale = prodotto?.ID === "628K";
+
+  const [immagineMancante, setImmagineMancante] = useState(false);
+
+  const srcImmagine = immagineMancante
+    ? IMMAGINE_DEFAULT
+    : `/immagini/prodotti/${prodotto.ID}.webp`;
 
   // funzioni per gestire l'input quantità con i pulsanti + e -
   const incrementa = () => onInputChange(prodotto.ID, quantita + 1);
@@ -125,11 +133,12 @@ export default function Riga({
             {/* Box Immagine bilanciato per mobile */}
             <div className="relative min-w-20 max-w-20 sm:min-w-24 sm:max-w-24 aspect-square flex justify-center bg-raised rounded-lg p-1">
               <Image
-                src={`/immagini/prodotti/${prodotto.ID}.webp`}
+                src={srcImmagine}
                 alt={prodotto.Prodotto}
                 fill
-                sizes="(max-w-640px) 80px, 144px"
+                sizes="(max-width: 640px) 80px, 144px"
                 className="m-auto object-contain cursor-zoom-in"
+                onError={() => setImmagineMancante(true)}
                 onClick={(e) => {
                   e.preventDefault();
                   setIsZoomOpen(true);
@@ -138,7 +147,7 @@ export default function Riga({
               <AnimatePresence>
                 {isZoomOpen && (
                   <ZoomImage
-                    src={`/immagini/prodotti/${prodotto.ID}.webp`}
+                    src={srcImmagine}
                     onClose={() => setIsZoomOpen(false)}
                   />
                 )}

@@ -1,4 +1,8 @@
+"use client"
 import Image from "next/image";
+import { useState } from "react";
+
+const IMMAGINE_DEFAULT = "/immagini/prodotti/default.svg"
 
 export default function CardProdotti({
   id,
@@ -8,6 +12,10 @@ export default function CardProdotti({
   prezzo,
   OpenModal,
 }) {
+  const [immagineMancante, setImmagineMancante] = useState(false);
+  const srcImmagine = immagineMancante
+  ? IMMAGINE_DEFAULT
+  : `/immagini/prodotti/${id}.webp`
   return (
     <>
       <div className="group relative w-full h-full bg-card border-line shadow-sm flex flex-col justify-between overflow-hidden rounded-2xl pb-4 transition-all duration-300 hover:shadow-md">
@@ -15,12 +23,13 @@ export default function CardProdotti({
         <div className="relative w-full h-52 flex items-center justify-center bg-raised p-4 overflow-hidden">
           <div className="relative w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
             <Image
-              src={`/immagini/prodotti/${id}.webp`}
+              src={srcImmagine}
               alt={titolo}
               fill
               className="object-contain p-2"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={false}
+              onError={() => setImmagineMancante(true)}
             />
           </div>
 

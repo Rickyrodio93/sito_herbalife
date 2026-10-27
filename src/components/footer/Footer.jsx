@@ -5,6 +5,7 @@ import {
   FaLinkedin,
   FaPinterest,
 } from "react-icons/fa";
+import ImpostazioniCookie from "./ImpostazioniCookie";
 
 const footerGrid = [
   {
@@ -194,6 +195,9 @@ export default function Footer() {
         <p className="font-medium text-zinc-400">
           Sito creato da Riccardo Rodio | © {currentYear} Tutti i diritti
           Riservati
+        </p>
+        <p>
+          <ImpostazioniCookie className="underline underline-offset-4 hover:text-white transition-colors" />
         </p>
         <p className="max-w-3xl mx-auto leading-relaxed px-4">
           Questo sito è interamente di proprietà ed è gestito dal distributore

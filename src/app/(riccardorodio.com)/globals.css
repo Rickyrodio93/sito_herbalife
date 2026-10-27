@@ -53,6 +53,22 @@
     --ink-soft: #5e5543;
 }
 
+.bioniq-theme {
+    --surface: #eaf3f2;
+    --surface-alt: #ffffff;
+    --card: #ffffff;
+    --raised: #dcebe9;
+    --line: #c9dcd9;
+}
+
+[data-theme="dark"] .bioniq-theme {
+    --surface: #0b1f2a;
+    --surface-alt: #102b39;
+    --card: #163645;
+    --raised: #1d4354;
+    --line: #2a5566;
+}
+
 @theme inline {
     --color-surface: var(--surface);
     --color-surface-alt: var(--surface-alt);
@@ -100,18 +116,26 @@ h2 {
 }
 
 @layer utilities {
-        .paper::before {
+    .paper-before::before {
         content: "";
         top: -7px;
         rotate: 180deg;
     }
 
-    .paper::after {
-        content: "";
-        bottom: -7px
+    .paper-after::after {
+        display: none;
     }
 
-    .paper::before, .paper::after {
+    @media (min-width: 640px) {
+
+        .paper-after::after {
+            display: block;
+            content: "";
+            bottom: -7px
+        }
+    }
+
+    .paper-before::before, .paper-after::after {
         position: absolute;
         height: 0.5rem;
         width: 100%;

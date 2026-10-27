@@ -153,7 +153,7 @@ export default function RiepilogoTelefono({
               animate={visibile}
               exit={nascosto}
               transition={transizioneIn}
-              className="pointer-events-auto mx-8 flex max-h-full min-h-0 flex-col gap-4 pt-2 pb-3"
+              className="pointer-events-auto mx-8 flex max-h-full min-h-0 flex-col gap-4 pt-2"
             >
               {haBioniq && (
                 <div className="shrink-0 rounded-2xl border border-line bg-card p-3">

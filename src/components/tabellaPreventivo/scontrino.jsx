@@ -63,7 +63,7 @@ export default function Scontrino({
 
   return (
     <div
-      className={`paper relative flex flex-col bg-paper text-ink font-courier uppercase shadow-2xl ${className}`}
+      className={`paper-before paper-after relative flex flex-col bg-paper text-ink font-courier uppercase shadow-2xl ${className}`}
     >
       <div className={`px-5 pt-6 pb-2 ${scrollClassName}`}>
         {/* intestazione */}
@@ -171,7 +171,7 @@ export default function Scontrino({
               <div className="mt-3 flex flex-col gap-1">
                 <Voce
                   etichetta="punti volume"
-                  valore={`${euro(preventivo.puntiVolume)} €`}
+                  valore={`${euro(preventivo.puntiVolume)} PV`}
                 />
                 {mostraGuadagno && (
                   <>

@@ -1214,15 +1214,3 @@ export const SECTIONBUSINESS = [
     ),
   },
 ];
-
-export const SECTIONPOLICY = [
-  {
-    text: (
-      <>
-        {/* <!-- ShareThis BEGIN --> */}
-        <div className="sharethis-privacy-policy"></div>
-        {/* <!-- ShareThis END --> */}
-      </>
-    ),
-  },
-];
