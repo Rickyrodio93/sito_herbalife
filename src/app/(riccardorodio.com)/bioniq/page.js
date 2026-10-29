@@ -30,7 +30,7 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "https://www.riccardorodio.com/immagini/og_image/bioniq.png",
+                url: "https://www.riccardorodio.com//immagini/swiperImmagini/Bioniq_phone.webp",
                 width: 1200,
                 height: 630,
                 alt: "Bioniq - Nutrizione personalizzata by Riccardo Rodio",
@@ -43,7 +43,7 @@ export const metadata = {
         title: "Bioniq: Nutrizione Personalizzata su Analisi dei Biomarcatori",
         description:
             "Una formula di integrazione unica per te, basata sui tuoi biomarcatori. Scienza svizzera certificata con Riccardo Rodio.",
-        images: ["https://www.riccardorodio.com/immagini/og_image/bioniq.png"],
+        images: ["https://www.riccardorodio.com//immagini/swiperImmagini/Bioniq_phone.webp"],
     },
 };
 
