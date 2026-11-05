@@ -17,7 +17,7 @@ const ProdottiConsigliatiDinamici = dynamic(
   () => import("@/components/prodottiConsigliati/prodottiConsigliati"),
   {
     ssr: false, // Se caricano dati lato client o usano localizzazioni/storage
-    loading: () => <div className="h-60 w-full bg-zinc-100 dark:bg-zinc-900 animate-pulse rounded-2xl" />
+    loading: () => <div className="h-60 w-full bg-raised animate-pulse rounded-3xl" />
   }
 );
 const FloatingCallCTA = dynamic(() => import("@/components/FloatingCallCTA"), { ssr: false });
