@@ -1,130 +1,168 @@
 "use client";
-import { useRef } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "./swiperStyle.css";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { slides } from "./swiperSlide";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { getImageProps } from "next/image";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { slides } from "./swiperSlide";
+
+const DELAY = 8000;
+
+// una sola immagine scaricata: desktop o mobile, a seconda dello schermo
+function ImmagineSlide({ slide }) {
+  const comune = {
+    alt: "",
+    fill: true,
+    sizes: "(max-width: 768px) 100vw, 560px",
+    className: "object-cover",
+  };
+  const {
+    props: { srcSet: desktop },
+  } = getImageProps({ ...comune, src: slide.src });
+  const {
+    props: { srcSet: mobile, ...resto },
+  } = getImageProps({ ...comune, src: slide.srcMobile || slide.src });
+
+  return (
+    <picture>
+      <source media="(min-width: 768px)" srcSet={desktop} />
+      <source media="(max-width: 767px)" srcSet={mobile} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img {...resto} />
+    </picture>
+  );
+}
 
 export default function SwiperCard() {
   const swiperRef = useRef(null);
-  const progressCircle = useRef(null);
-  const progressContent = useRef(null);
+  const barRef = useRef(null);
+  const [active, setActive] = useState(0);
 
-  const onAutoplayTimeLeft = (s, time, progress) => {
-    if (progressCircle.current) {
-      progressCircle.current.style.setProperty("--progress", 1 - progress);
-    }
-    if (progressContent.current) {
-      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-    }
-  };
+  // rispetta "riduci movimento"
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const applica = () => {
+      const a = swiperRef.current?.autoplay;
+      if (!a) return;
+      if (mq.matches) a.stop();
+      else a.start();
+    };
+    applica();
+    mq.addEventListener("change", applica);
+    return () => mq.removeEventListener("change", applica);
+  }, []);
+
+  const frecciaStyle =
+    "p-2.5 rounded-xl bg-card border border-line text-zinc-700 dark:text-zinc-300 hover:text-herbalife-1 dark:hover:text-green-400 transition-all active:scale-95 shadow-sm cursor-pointer";
 
   return (
-    <div className="relative max-w-7xl m-auto md:rounded-2xl h-[75dvh] overflow-hidden bg-zinc-950">
-      {/* controlli */}
-      <div className="absolute top-6 right-6 z-20 flex items-center gap-2">
-        <button
-          onClick={() => swiperRef.current?.swiper.slidePrev()}
-          className="p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 backdrop-blur-md text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 dark:hover:text-emerald-400 transition-all active:scale-95 shadow-lg"
-          aria-label="Slide precedente"
-        >
-          <ArrowLeft size={18} strokeWidth={2.5} />
-        </button>
-        <button
-          onClick={() => swiperRef.current?.swiper.slideNext()}
-          className="p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 backdrop-blur-md text-zinc-300 hover:bg-zinc-800 hover:text-emerald-400 dark:hover:text-emerald-400 transition-all active:scale-95 shadow-lg"
-          aria-label="Slide successiva"
-        >
-          <ArrowRight size={18} strokeWidth={2.5} />
-        </button>
+    <div className="mx-auto max-w-6xl text-left">
+      <div className="mb-6 flex items-end justify-between gap-4">
+        <h2>in evidenza</h2>
+        <div className="flex shrink-0 items-center gap-2">
+          <button
+            type="button"
+            onClick={() => swiperRef.current?.slidePrev()}
+            className={frecciaStyle}
+            aria-label="Slide precedente"
+          >
+            <ArrowLeft size={18} strokeWidth={2.5} />
+          </button>
+          <button
+            type="button"
+            onClick={() => swiperRef.current?.slideNext()}
+            className={frecciaStyle}
+            aria-label="Slide successiva"
+          >
+            <ArrowRight size={18} strokeWidth={2.5} />
+          </button>
+        </div>
       </div>
 
-      <Swiper
-        ref={swiperRef}
-        spaceBetween={0}
-        centeredSlides={true}
-        autoplay={{ delay: 12000, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
-        modules={[Autoplay, Pagination, Navigation]}
-        onAutoplayTimeLeft={onAutoplayTimeLeft}
-        className="w-full h-full [&_.swiper-pagination-bullet-active]:bg-emerald-500! [&_.swiper-pagination-bullet]:bg-zinc-400! [&_.swiper-pagination]:bottom-6!"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide
-            className="relative w-full h-full flex items-center justify-center overflow-hidden"
-            key={slide.title || index}
-          >
-            {/* immagine desktop */}
-            <div className="hidden md:block absolute inset-0 w-full h-full">
-              <Image
-                fill
-                src={slide.src}
-                alt={slide.title || "immagine desktop"}
-                priority={index === 0}
-                className="object-cover select-none pointer-events-none scale-102"
-                sizes="100vw"
-              />
-            </div>
-            {/* 📱 Immagine Mobile */}
-            <div className="block md:hidden absolute inset-0 w-full h-full">
-              <Image
-                fill
-                src={slide.srcMobile || slide.src}
-                alt={slide.title || "immagine mobile"}
-                priority={index === 0}
-                className="object-cover select-none pointer-events-none scale-102"
-                sizes="100vw"
-              />
-            </div>
-            {/* titolo */}
-            <div className="absolute top-6 left-6 z-10">
-              <h3 className="px-5 py-2 text-xs bg-emerald-600/90 text-white uppercase tracking-widest font-black rounded-xl shadow-lg backdrop-blur-md border border-emerald-500/30">
-                {slide.title}
-              </h3>
-            </div>
-
-            {/* overlay sfumato */}
-            <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/10 to-zinc-950/95 z-2"></div>
-
-            {/* descrizione */}
-            <div className="absolute bottom-16 md:bottom-24 left-0 right-0 z-10 flex flex-col items-center text-center px-8 md:px-12 gap-6 max-w-3xl mx-auto">
-              <p className="text-white text-lg md:text-3xl lg:text-4xl font-black uppercase tracking-tight leading-snug drop-shadow-xl [text-shadow:0_2px_4px_rgba(0,0,0,0.8)] [-webkit-text-stroke:1px_#000000]">
-                {slide.description}
-              </p>
-
-              <div className="mt-2">
-                <Link
-                  href={slide.linkTo || "#"}
-                  target={slide.linkTo?.startsWith("http") ? "_blank" : "_self"}
-                  className="inline-flex items-center justify-center bg-zinc-50 hover:bg-white text-zinc-950 font-bold px-8 py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-xl transition-all hover:-translate-y-0.5 active:scale-95 duration-200 no-underline"
-                >
-                  scopri di più
-                </Link>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-        {/* autoplay progress */}
-        <div
-          className="absolute left-6 bottom-6 md:left-auto md:right-6 z-10 w-11 h-11 flex items-center justify-center font-black text-[9px] text-emerald-400 bg-zinc-900/80 border border-zinc-800/80 backdrop-blur-sm rounded-full select-none shadow-lg"
-          slot="container-end"
+      <div className="relative overflow-hidden rounded-3xl border border-line bg-card shadow-sm">
+        <Swiper
+          modules={[Autoplay, A11y]}
+          onSwiper={(s) => (swiperRef.current = s)}
+          onSlideChange={(s) => setActive(s.realIndex)}
+          onAutoplayTimeLeft={(_s, _t, progress) => {
+            if (barRef.current) {
+              barRef.current.style.width = `${(1 - progress) * 100}%`;
+            }
+          }}
+          autoplay={{
+            delay: DELAY,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          rewind
+          speed={600}
+          a11y={{ slideLabelMessage: "Slide {{index}} di {{slidesLength}}" }}
         >
-          <svg
-            viewBox="0 0 48 48"
-            ref={progressCircle}
-            className="absolute inset-0 w-full -rotate-90 [&_circle]:fill-none [&_circle]:stroke-emerald-500 [&_circle]:stroke-[3px] [&_circle]:[stroke-dasharray:125.6]  [&_circle]:[stroke-dashoffset:calc(125.6px*var(--progress,0))]"
-          >
-            <circle cx="24" cy="24" r="20" />
-          </svg>
-          <span ref={progressContent} className="relative z-10"></span>
+          {slides.map((slide, i) => {
+            const esterno = slide.linkTo.startsWith("http");
+            return (
+              <SwiperSlide key={slide.title} className="h-auto!">
+                <article className="grid h-full grid-cols-1 md:grid-cols-2">
+                  <div className="relative aspect-16/10 md:aspect-auto md:min-h-96">
+                    <ImmagineSlide slide={slide} />
+                  </div>
+
+                  <div className="flex flex-col justify-center gap-4 p-6 sm:p-8 md:p-12">
+                    <span className="text-xs font-black uppercase tracking-widest text-herbalife-1 dark:text-green-400">
+                      {slide.eyebrow}
+                    </span>
+                    <h3 className="text-2xl font-black tracking-tight text-balance text-zinc-900 md:text-4xl dark:text-zinc-50">
+                      {slide.title}
+                    </h3>
+                    <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+                      {slide.description}
+                    </p>
+                    <Link
+                      href={slide.linkTo}
+                      target={esterno ? "_blank" : undefined}
+                      rel={esterno ? "noopener noreferrer" : undefined}
+                      tabIndex={i === active ? 0 : -1}
+                      className="mt-2 inline-flex w-fit items-center gap-2 rounded-xl bg-herbalife-1 px-6 py-3.5 text-sm font-black uppercase tracking-wider text-white no-underline! shadow-md transition-all duration-300 hover:opacity-90 hover:shadow-lg active:scale-[0.98] dark:bg-green-700"
+                    >
+                      {esterno ? "vai al sito" : "scopri di più"}
+                      <ArrowUpRight size={16} />
+                    </Link>
+                  </div>
+                </article>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+
+        {/* avanzamento autoplay */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-0.75 bg-line z-1"
+        >
+          <div ref={barRef} className="h-full w-0 bg-herbalife-1 dark:bg-green-500" />
         </div>
-      </Swiper>
+      </div>
+
+      {/* indicatori */}
+      <div className="mt-5 flex justify-center gap-2">
+        {slides.map((slide, i) => (
+          <button
+            key={slide.title}
+            type="button"
+            onClick={() => swiperRef.current?.slideTo(i)}
+            aria-label={`Vai a: ${slide.title}`}
+            aria-current={i === active}
+            className={`relative h-2 cursor-pointer rounded-full transition-all duration-300 before:absolute before:-inset-2 before:content-[''] ${
+              i === active
+                ? "w-8 bg-herbalife-1 dark:bg-green-500"
+                : "w-2 bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-500"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

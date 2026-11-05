@@ -45,6 +45,13 @@ export const metadata = {
             "Una formula di integrazione unica per te, basata sui tuoi biomarcatori. Scienza svizzera certificata con Riccardo Rodio.",
         images: ["https://www.riccardorodio.com//immagini/swiperImmagini/Bioniq_phone.webp"],
     },
+
+    // favicon
+  icons: {
+    icon: "/immagini/favicon.ico",
+    shortcut: "",
+    apple: "/immagini/favicon.ico"
+  }
 };
 
 export default function Bioniq() {

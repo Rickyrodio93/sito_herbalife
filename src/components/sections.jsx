@@ -99,9 +99,6 @@ export const SECTIONHOME = [
     ),
   },
   {
-    component: <SwiperCard />,
-  },
-  {
     title: "Herbalife e la Scienza del Futuro",
     text: (
       <>
@@ -194,6 +191,9 @@ export const SECTIONHOME = [
         </span>
       </>
     ),
+  },
+  {
+    component: <SwiperCard />,
   },
   {
     title: "chi sono",

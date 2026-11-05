@@ -18,7 +18,7 @@ export default function Background({
     offset: ["start start", "end start"],
   });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
   const opacityText = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (

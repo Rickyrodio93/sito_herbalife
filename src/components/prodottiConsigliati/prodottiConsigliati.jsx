@@ -1,154 +1,161 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import ModalProdotti from "./ModalProdotti";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import CardProdotti from "../../components/cards/cardProdotti";
+
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { A11y } from "swiper/modules";
+import "swiper/css";
 import axios from "axios";
 import Papa from "papaparse";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import CardProdotti from "../cards/cardProdotti";
+import ModalProdotti from "./ModalProdotti";
+
+const CSV_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTCM_3vWzdtq9AefTo1Qh44lF4d1lpbrUMLVihG5SJJB1m0LfpaTf35K1FvLUG5jm_m5eyMpOqmViGJ/pub?gid=126954972&single=true&output=csv";
+
+// una sola richiesta per pagina, anche con più carousel
+let cache = null;
+const caricaProdotti = () => {
+  cache ??= axios
+    .get(CSV_URL)
+    .then(
+      (res) =>
+        Papa.parse(res.data, { header: true, skipEmptyLines: true }).data,
+    )
+    .catch((err) => {
+      cache = null;
+      throw err;
+    });
+  return cache;
+};
+
+const frecciaStyle =
+  "p-2.5 rounded-xl bg-card border border-line text-zinc-700 dark:text-zinc-300 hover:text-herbalife-1 dark:hover:text-green-400 transition-all active:scale-95 shadow-sm cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:text-zinc-700 dark:disabled:hover:text-zinc-300";
 
 export default function ProdottiConsigliati({ pagina, title }) {
-  const [modalOpen, setModalOpen] = useState(null); // stato per aprire il modal
-  const [selectedProduct, setSelectedProduct] = useState(null);
   const [prodotti, setProdotti] = useState([]);
-  const carouselRef = useRef(null);
-
-  const csvUrlConsigliati =
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vTCM_3vWzdtq9AefTo1Qh44lF4d1lpbrUMLVihG5SJJB1m0LfpaTf35K1FvLUG5jm_m5eyMpOqmViGJ/pub?gid=126954972&single=true&output=csv";
+  const [modalOpen, setModalOpen] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [swiper, setSwiper] = useState(null);
+  const [bordi, setBordi] = useState({ inizio: true, fine: false });
 
   useEffect(() => {
-    axios.get(csvUrlConsigliati).then((res) => {
-      Papa.parse(res.data, {
-        header: true,
-        skipEmptyLines: true,
-        complete: (result) => {
-          const prodottiFiltrati = result.data
+    let attivo = true;
+    caricaProdotti()
+      .then((righe) => {
+        if (!attivo) return;
+        setProdotti(
+          righe
             .filter((riga) => riga.Pagina === pagina)
-            .map((prodotto) => ({
-              id: prodotto.id,
-              titolo: prodotto.prodotto,
-              descrizione: prodotto.descrizione,
-              nuovoProdotto:
-                String(prodotto.nuovoProdotto).toUpperCase() === "TRUE",
-              prezzoPubblico: parseFloat(
-                prodotto.prezzoPubblico.replace(",", "."),
-              ),
-            }));
-
-          setProdotti(prodottiFiltrati);
-        },
-      });
-    });
+            .map((p) => {
+              const prezzo = parseFloat(
+                String(p.prezzoPubblico ?? "").replace(",", "."),
+              );
+              return {
+                id: p.id,
+                titolo: p.prodotto,
+                descrizione: p.descrizione,
+                nuovoProdotto: String(p.nuovoProdotto).toUpperCase() === "TRUE",
+                prezzoPubblico: Number.isFinite(prezzo) ? prezzo : null,
+              };
+            }),
+        );
+      })
+      .catch((err) =>
+        console.error("Errore nel caricamento dei prodotti:", err),
+      );
+    return () => {
+      attivo = false;
+    };
   }, [pagina]);
 
-  // apre il modal
+  const aggiornaBordi = (s) =>
+    setBordi({ inizio: s.isBeginning, fine: s.isEnd });
+
   const OpenModal = (id, titolo, descrizione) => {
     setModalOpen(id);
     setSelectedProduct({ id, titolo, descrizione });
   };
 
-  // chiude il modal
   const closeModal = () => {
-    setModalOpen(null); // chiude il modal
+    setModalOpen(null);
     setTimeout(() => setSelectedProduct(null), 300);
-  };
-
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 40000, min: 1536 },
-      items: 4,
-    },
-    desktop: {
-      breakpoint: { max: 1536, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 640 },
-      items: 2,
-      partialVisibilityGutter: 30,
-    },
-    mobile: {
-      breakpoint: { max: 640, min: 0 },
-      items: 1,
-      partialVisibilityGutter: 40,
-    },
-  };
-
-  // Funzioni di navigazione collegate ai pulsanti in alto a destra
-  const handlePrev = () => {
-    if (carouselRef.current) carouselRef.current.previous();
-  };
-
-  const handleNext = () => {
-    if (carouselRef.current) carouselRef.current.next();
   };
 
   if (prodotti.length === 0) return null;
 
+  // se tutte le card entrano nello schermo, le frecce non servono
+  const tuttoVisibile = bordi.inizio && bordi.fine;
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
-      <div className="flex items-end justify-between mb-6 border-b border-zinc-200 dark:border-zinc-800 pb-4">
-        <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-herbalife-4 dark:text-herbalife-1">
-            {title}
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handlePrev}
-            className="p-2.5 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/60 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700/50 hover:text-herbalife-4 dark:hover:text-herbalife-1 transition-all active:scale-95 shadow-sm"
-            aria-label="Prodotto precedente"
-          >
-            <ArrowLeft size={18} strokeWidth={2.5} />
-          </button>
-          <button
-            onClick={handleNext}
-            className="p-2.5 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/60 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700/50 hover:text-herbalife-4 dark:hover:text-herbalife-1 transition-all active:scale-95 shadow-sm"
-            aria-label="Prodotto successivo"
-          >
-            <ArrowRight size={18} strokeWidth={2.5} />
-          </button>
-        </div>
+    <div className="mx-auto max-w-6xl text-left not-first:mt-16">
+      <div className="mb-6 flex items-end justify-between gap-4">
+        <h2>{title}</h2>
+        {!tuttoVisibile && (
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={() => swiper?.slidePrev()}
+              disabled={bordi.inizio}
+              className={frecciaStyle}
+              aria-label="Prodotto precedente"
+            >
+              <ArrowLeft size={18} strokeWidth={2.5} />
+            </button>
+            <button
+              type="button"
+              onClick={() => swiper?.slideNext()}
+              disabled={bordi.fine}
+              className={frecciaStyle}
+              aria-label="Prodotto successivo"
+            >
+              <ArrowRight size={18} strokeWidth={2.5} />
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* struttura carosello */}
-      <div className="relative">
-        <Carousel
-          ref={carouselRef}
-          responsive={responsive}
-          arrows={false}
-          showDots={false}
-          draggable={true}
-          swipeable={true}
-          infinite={true}
-          partialVisible={true}
-          keyBoardControl={true}
-          itemClass="px-2 pb-4"
-          className="overflow-visible"
-        >
-          {prodotti.map((prodotto) => (
-            <div key={prodotto.id} className="h-full transition-all duration-300 hover:-translate-y-1">
+      <Swiper
+        modules={[A11y]}
+        onSwiper={(s) => {
+          setSwiper(s);
+          aggiornaBordi(s);
+        }}
+        onSlideChange={aggiornaBordi}
+        onResize={aggiornaBordi}
+        onBreakpoint={aggiornaBordi}
+        onUpdate={aggiornaBordi}
+        slidesPerView={1.2}
+        spaceBetween={16}
+        breakpoints={{
+          640: { slidesPerView: 2, spaceBetween: 20 },
+          1024: { slidesPerView: 3, spaceBetween: 24 },
+        }}
+        className="px-1! py-3!"
+      >
+        {prodotti.map((prodotto) => (
+          <SwiperSlide key={prodotto.id} className="h-auto!">
+            <div>
               <CardProdotti
-                id={prodotto.id}
-                titolo={prodotto.titolo}
-                descrizione={prodotto.descrizione}
-                nuovoProdotto={prodotto.nuovoProdotto}
-                prezzo={prodotto.prezzoPubblico}
-                OpenModal={OpenModal}
+              id={prodotto.id}
+              titolo={prodotto.titolo}
+              descrizione={prodotto.descrizione}
+              nuovoProdotto={prodotto.nuovoProdotto}
+              prezzo={prodotto.prezzoPubblico}
+              OpenModal={OpenModal}
               />
             </div>
-          ))}
-        </Carousel>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
       {selectedProduct && (
-        <ModalProdotti
-          id={selectedProduct.id}
-          titolo={selectedProduct.titolo}
-          descrizione={selectedProduct.descrizione}
-          open={modalOpen === selectedProduct.id}
-          closeModal={closeModal}
+        <ModalProdotti 
+        id={selectedProduct.id}
+        titolo={selectedProduct.titolo}
+        descrizione={selectedProduct.descrizione}
+        open={modalOpen === selectedProduct.id}
+        closeModal={closeModal}
         />
       )}
     </div>

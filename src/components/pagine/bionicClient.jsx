@@ -315,7 +315,7 @@ export default function BioniqClient() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                href="https://quiz.mypro2col.com/it-IT/intro?site=riccardorodio-catalog2"
+                href="https://shopbioniq.com/it-it/riccardorodio"
                 target="_blank"
                 className="inline-block text-center text-bioniq-teal bg-white hover:bg-bioniq-panna text-sm md:text-base font-black uppercase tracking-wider px-8 py-4 rounded-full shadow-md transition-all duration-300 no-underline!"
               >

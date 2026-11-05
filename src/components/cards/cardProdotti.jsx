@@ -18,7 +18,7 @@ export default function CardProdotti({
   : `/immagini/prodotti/${id}.webp`
   return (
     <>
-      <div className="group relative w-full h-full bg-card border-line shadow-sm flex flex-col justify-between overflow-hidden rounded-2xl pb-4 transition-all duration-300 hover:shadow-md">
+      <div className="group relative w-full h-full bg-card border border-line shadow-sm flex flex-col justify-between overflow-hidden rounded-3xl pb-4 transition-all duration-300 hover:border-herbalife-1! dark:hover:border-green-500 hover:shadow-lg">
         {/* contenitore immagine */}
         <div className="relative w-full h-52 flex items-center justify-center bg-raised p-4 overflow-hidden">
           <div className="relative w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
@@ -36,7 +36,7 @@ export default function CardProdotti({
           {/* badge */}
           <div className="absolute top-3 left-3 right-3 flex justify-between items-center pointer-events-none">
             {/* prezzo */}
-            <div className="text-herbalife-2 bg-herbalife-1 dark:bg-herbalife-3 text-xs lg:text-sm font-bold py-1 px-2.5 rounded-lg shadow-sm pointer-events-auto backdrop-blur-sm bg-opacity-95">
+            <div className="text-white bg-herbalife-1 dark:ring-1 dark:ring-white/20 text-xs lg:text-sm font-bold py-1 px-2.5 rounded-lg shadow-sm pointer-events-auto backdrop-blur-sm">
               {typeof prezzo === "number" ? `${prezzo.toFixed(2)} €` : "0.00 €"}
             </div>
             {/* nuovo prodotto */}
@@ -50,7 +50,7 @@ export default function CardProdotti({
 
         {/* titolo e info */}
         <div className="px-4 flex flex-col justify-between grow pt-3">
-          <h4 className="text-zinc-900 dark:text-zinc-100 group-hover:text-herbalife-4 dark:group-hover:text-herbalife-1 font-bold text-base line-clamp-2 min-h-12 flex items-center justify-center capitalize mb-3 transition-colors duration-300">
+          <h4 className="text-zinc-900 dark:text-zinc-100 text-center group-hover:text-herbalife-1 dark:group-hover:text-green-400 font-bold text-base line-clamp-2 min-h-12 flex items-center justify-center capitalize mb-3 transition-colors duration-300">
             {titolo}
           </h4>
           <div className="w-full flex items-center justify-center">
