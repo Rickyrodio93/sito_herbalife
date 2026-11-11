@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { creaLinkGoogleWallet } from "@/lib/googleWallet";
+import { creaLinkGoogleWallet } from "@/app/(biglietto)/lib/googleWallet";
 
 export async function GET() {
     try {

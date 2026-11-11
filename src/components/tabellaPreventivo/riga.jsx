@@ -1,58 +1,122 @@
 "use client";
 
-import { CheckSquare, Minus, Plus, Square, Trash } from "lucide-react";
-import { useState } from "react";
-import ZoomImage from "../zoomImage/ZoomImage";
+import { memo, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence } from "framer-motion";
+import { Minus, Plus } from "lucide-react";
+import ZoomImage from "../zoomImage/ZoomImage";
 import calcoloPrezzo from "./calcoloPrezzo";
 import { pushEvent } from "../utils/gtm";
-import Image from "next/image";
-import { motion } from "framer-motion";
 
 const IMMAGINE_DEFAULT = "/immagini/prodotti/default.svg";
+const MAX = 999;
+const limita = (n) => Math.min(Math.max(n, 0), MAX);
 
-export default function Riga({
+function Contatore({ quantita, nome, onApplica }) {
+  // la bozza vale solo finché la quantità nel preventivo non cambia
+  const [bozza, setBozza] = useState(null); // { base, valore }
+
+  const mostrato =
+    bozza && bozza.base === quantita ? bozza.valore : String(quantita);
+  const n = parseInt(mostrato, 10);
+  const valido = !Number.isNaN(n);
+  const corrente = valido ? n : quantita;
+  const inAttesa = valido && n !== quantita;
+
+  const scrivi = (valore) =>
+    setBozza({ base: quantita, valore: String(valore) });
+  const cambia = (delta) => scrivi(limita(corrente + delta));
+
+  const applica = () => {
+    if (!inAttesa) return;
+    onApplica(limita(n));
+    setBozza(null);
+  };
+
+  const tasto =
+    "flex size-9 cursor-pointer items-center justify-center rounded-lg text-zinc-600 transition-colors hover:text-zinc-900 active:scale-90 disabled:cursor-not-allowed disabled:opacity-40 dark:text-zinc-300 dark:hover:text-white";
+
+  return (
+    <div className="flex w-fit flex-col items-stretch gap-1">
+      <div className="flex items-center rounded-xl border border-line bg-raised p-0.5">
+        <button
+          type="button"
+          onClick={() => cambia(-1)}
+          disabled={corrente <= 0}
+          aria-label={`Diminuisci la quantità di ${nome}`}
+          className={tasto}
+        >
+          <Minus size={16} />
+        </button>
+        <input
+          type="number"
+          inputMode="numeric"
+          min="0"
+          max={MAX}
+          value={mostrato}
+          onChange={(e) => {
+            const v = e.target.value;
+            scrivi(v === "" ? "" : limita(parseInt(v, 10) || 0));
+          }}
+          onBlur={() => {
+            // campo lasciato vuoto: torna alla quantità del preventivo
+            if (!valido) setBozza(null);
+          }}
+          onKeyDown={(e) => e.key === "Enter" && applica()}
+          aria-label={`Quantità di ${nome}`}
+          className="w-10 bg-transparent text-center text-sm font-bold text-zinc-900 outline-none [appearance:textfield] dark:text-zinc-100 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        />
+        <button
+          type="button"
+          onClick={() => cambia(1)}
+          disabled={corrente >= MAX}
+          aria-label={`Aumenta la quantità di ${nome}`}
+          className={tasto}
+        >
+          <Plus size={16} />
+        </button>
+      </div>
+
+      {/* fascia riservata: il pulsante compare senza spostare la riga */}
+      <div className="h-8" aria-live="polite">
+        {inAttesa && (
+          <button
+            type="button"
+            onClick={applica}
+            className={`h-8 w-full cursor-pointer rounded-lg px-2 text-[11px] font-black uppercase tracking-wider text-white transition-all active:scale-[0.97] ${
+              n === 0
+                ? "bg-red-600 hover:bg-red-700"
+                : "bg-herbalife-1 hover:opacity-90 dark:bg-green-700"
+            }`}
+          >
+            {n === 0 ? "rimuovi" : "aggiorna"}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function Riga({
   prodotto,
   quantita,
-  onInputChange,
+  onSet,
   ruolo,
   usoDistributore,
   livelloMarketing,
-  onAggiungi,
   isAbbonato,
   setIsAbbonato,
-  ...props
 }) {
-  const [isZoomOpen, setIsZoomOpen] = useState(false);
-  const isBioniqPrincipale = prodotto?.ID === "628K";
-
+  const [zoom, setZoom] = useState(false);
   const [immagineMancante, setImmagineMancante] = useState(false);
 
-  const srcImmagine = immagineMancante
+  const src = immagineMancante
     ? IMMAGINE_DEFAULT
     : `/immagini/prodotti/${prodotto.ID}.webp`;
+  const isBioniqPrincipale = prodotto.ID === "628K";
+  const inCarrello = quantita > 0;
 
-  // funzioni per gestire l'input quantità con i pulsanti + e -
-  const incrementa = () => onInputChange(prodotto.ID, quantita + 1);
-  const decrementa = () => {
-    if (quantita > 0) onInputChange(prodotto.ID, quantita - 1);
-  };
-
-  // funzione per gestire l'inserimento manuale da tastiera
-  const handleInput = (e) => {
-    const newQuantity = parseInt(e.target.value, 10) || 0;
-    onInputChange(prodotto.ID, newQuantity);
-
-    pushEvent({
-      event: "product_quantity_change",
-      product_id: prodotto.ID,
-      quantity: newQuantity,
-      page: window.location.pathname,
-    });
-  };
-
-  // calcolo il prezzo (calcoloPrezzo ora restituisce un numero)
-  const prezzoUnitario = calcoloPrezzo(
+  const prezzo = calcoloPrezzo(
     ruolo,
     prodotto,
     usoDistributore,
@@ -60,217 +124,128 @@ export default function Riga({
     isAbbonato,
   );
 
-  // quando premi aggiungi, chiedo al parent di aggiungere/sostituire/rimuovere
-  const handleAggiungi = () => {
-    // Chiamiamo sempre onAggiungi (anche con qta = 0): il parent decide se rimuovere
-    onAggiungi(prodotto, quantita, prezzoUnitario);
-
-    // per il monitoraggio
+  const imposta = (n) => {
+    onSet(prodotto, n);
     pushEvent({
-      event: "product_add",
+      event:
+        n === 0
+          ? "product_remove"
+          : quantita === 0
+            ? "product_add"
+            : "product_quantity_change",
       product_id: prodotto.ID,
       product_name: prodotto.Prodotto,
-      quantity: quantita,
-      price: prezzoUnitario,
-      role: ruolo,
-      page: window.location.pathname,
-    });
-  };
-
-  // alternativa: rimuovi direttamente con il tasto Trash
-  const handleRimuovi = () => {
-    onAggiungi(prodotto, 0, prezzoUnitario);
-
-    // per il monitoraggio
-    pushEvent({
-      event: "product_remove",
-      product_id: prodotto.ID,
-      product_name: prodotto.Prodotto,
+      quantity: n,
+      price: prezzo,
       role: ruolo,
       page: window.location.pathname,
     });
   };
 
   return (
-    <>
-      <motion.tr
-        initial={{
-          opacity: 0,
-          y: -20,
-          scaleY: 0.8,
-          transformOrigin: "top",
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          scaleY: 1,
-        }}
-        exit={{
-          opacity: 0,
-          y: -20, // Rientra verso l'alto, scomparendo sotto la categoria
-          scaleY: 0.8,
-          transition: { duration: 0.15 }, // Uscita leggermente più rapida per dare un feeling scattante
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 350,
-          damping: 28,
-        }}
-        className="bg-card hover:bg-raised transition-colors duration-150 border-b border-line flex flex-col p-4 gap-3 lg:table-row lg:p-0 lg:gap-0 relative"
-      >
-        {/* 🌟 1. ID PRODOTTO: Diventa un'etichetta fluttuante nell'angolo su mobile */}
-        <td className="text-left font-mono text-[10px] text-zinc-500 dark:text-zinc-400 lg:table-cell lg:px-4 lg:py-4 lg:text-center lg:text-xs flex justify-between">
-          <span className="lg:hidden bg-raised px-2 py-0.5 rounded font-bold mr-1">
-            ID: {prodotto.ID}
-          </span>
+    <li
+      className={`flex flex-col gap-3 rounded-2xl border p-3 transition-colors @md:flex-row @md:items-center @md:gap-4 ${
+        inCarrello
+          ? "border-herbalife-1 bg-herbalife-2/30 dark:border-green-500 dark:bg-green-500/10"
+          : "border-line bg-card hover:bg-raised"
+      }`}
+    >
+      <div className="flex min-w-0 grow items-center gap-3">
+        <button
+          type="button"
+          onClick={() => setZoom(true)}
+          aria-label={`Ingrandisci l'immagine di ${prodotto.Prodotto}`}
+          className="relative size-16 shrink-0 cursor-zoom-in overflow-hidden rounded-xl bg-raised @md:size-20"
+        >
+          <Image
+            src={src}
+            alt=""
+            fill
+            sizes="80px"
+            className="object-contain p-1"
+            onError={() => setImmagineMancante(true)}
+          />
+        </button>
+        <AnimatePresence>
+          {zoom && <ZoomImage src={src} onClose={() => setZoom(false)} />}
+        </AnimatePresence>
 
-          <span className="hidden lg:inline">{prodotto.ID}</span>
-        </td>
+        <div className="min-w-0">
+          <p className="text-sm font-semibold leading-tight capitalize text-zinc-900 sm:text-base dark:text-zinc-100">
+            {prodotto.Prodotto.toLowerCase()}
+            {inCarrello && <span className="sr-only"> (nel preventivo)</span>}
+          </p>
+          <p className="mt-1 flex flex-wrap gap-x-3 font-mono text-[11px] text-zinc-500 dark:text-zinc-400">
+            <span>ID {prodotto.ID}</span>
+            {ruolo !== "cliente" && (
+              <>
+                <span>Listino {(prodotto.PrezzoListino || 0).toFixed(2)}€</span>
+                <span>PV {(prodotto.PuntiVolume || 0).toFixed(2)}</span>
+              </>
+            )}
+          </p>
 
-        {/* 🌟 2. CORPO PRODOTTO (IMMAGINE + NOME) */}
-        <td className="p-0 block lg:table-cell lg:p-4 lg:align-middle capitalize">
-          <div className="flex items-center gap-4 lg:gap-6">
-            {/* Box Immagine bilanciato per mobile */}
-            <div className="relative min-w-20 max-w-20 sm:min-w-24 sm:max-w-24 aspect-square flex justify-center bg-raised rounded-lg p-1">
-              <Image
-                src={srcImmagine}
-                alt={prodotto.Prodotto}
-                fill
-                sizes="(max-width: 640px) 80px, 144px"
-                className="m-auto object-contain cursor-zoom-in"
-                onError={() => setImmagineMancante(true)}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsZoomOpen(true);
-                }}
-              />
-              <AnimatePresence>
-                {isZoomOpen && (
-                  <ZoomImage
-                    src={srcImmagine}
-                    onClose={() => setIsZoomOpen(false)}
-                  />
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Info Testuali */}
-            <div className="w-full">
-              <p className="text-zinc-900 dark:text-zinc-100 font-semibold text-sm sm:text-base mb-1 tracking-tight leading-tight">
-                {prodotto.Prodotto.toLowerCase()}
-              </p>
-              {ruolo !== "cliente" && (
-                <div className="flex gap-3 text-zinc-500 dark:text-zinc-400 font-mono text-[10px] sm:text-[11px]">
-                  <span>
-                    Listino:{" "}
-                    <strong className="text-zinc-700 dark:text-zinc-200">
-                      {(prodotto.PrezzoListino || 0).toFixed(2)}€
-                    </strong>
-                  </span>
-                  <span>
-                    PV:{" "}
-                    <strong className="text-zinc-700 dark:text-zinc-200">
-                      {(prodotto.PuntiVolume || 0).toFixed(2)}
-                    </strong>
-                  </span>
-                </div>
-              )}
-
-              {/* switch abbonamento */}
-              {isBioniqPrincipale && (
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsAbbonato(!isAbbonato);
-                  }}
-                  className={`mt-2 inline-flex items-center gap-2 pl-1 pr-3 py-1 rounded-full border transition-colors cursor-pointer ${isAbbonato ? "bg-emerald-50 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/30" : "bg-raised border-line hover:border-zinc-300 dark:hover:border-zinc-700"}`}
-                >
-                  <span
-                    className={`relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition-colors ${isAbbonato ? "bg-emerald-500" : "bg-zinc-300 dark:bg-zinc-700"}`}
-                  >
-                    <span
-                      className={`inline-block h-3 w-3 transform rounded-full bg-white shadow transition-transform ${
-                        isAbbonato ? "translate-x-3.5" : "translate-x-0.5"
-                      }`}
-                    />
-                  </span>
-                  <span
-                    className={`text-[10px] sm:text-[11px] font-semibold tracking-tight text-left ${
-                      isAbbonato
-                        ? "text-emerald-700 dark:text-emerald-400"
-                        : "text-zinc-600 dark:text-zinc-400"
-                    }`}
-                  >
-                    {isAbbonato
-                      ? `Abbonato · consegna gratuita${ruolo !== "cliente" ? "" : " · sconto -5%"}`
-                      : "Attiva abbonamento"}
-                  </span>
-                </button>
-              )}
-            </div>
-          </div>
-        </td>
-
-        {/* 🌟 SEZIONE COMFORT: Prezzo e Controlli uniti su Mobile */}
-        <div className="flex flex-row-reverse items-center justify-between mt-2 pt-2 border-t border-dashed border-zinc-100 dark:border-zinc-900 lg:contents">
-          {/* 🌟 3. CONTROLLI QUANTITÀ (Viene prima nel codice -> Perfetto per Desktop. Su Mobile va a destra grazie a flex-row-reverse) */}
-          <td className="p-0 block lg:table-cell lg:p-4">
-            <div className="flex items-center gap-2 justify-end flex-col lg:items-center">
-              {/* Selettore +/- */}
-              <div className="flex items-center bg-raised p-0.5 rounded-lg border border-line dark:text-white">
-                <button
-                  type="button"
-                  onClick={decrementa}
-                  className="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 rounded-md transition-colors cursor-pointer active:scale-90"
-                >
-                  <Minus size={14} />
-                </button>
-                <input
-                  type="number"
-                  min="0"
-                  value={quantita}
-                  onChange={handleInput}
-                  className="w-8 text-center bg-transparent text-sm font-bold focus:outline-none dark:text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          {isBioniqPrincipale && (
+            <button
+              type="button"
+              onClick={() => setIsAbbonato(!isAbbonato)}
+              aria-pressed={isAbbonato}
+              className={`mt-2 inline-flex cursor-pointer items-center gap-2 rounded-full border py-1 pl-1 pr-3 transition-colors ${
+                isAbbonato
+                  ? "border-emerald-300 bg-emerald-50 dark:border-emerald-500/30 dark:bg-emerald-500/10"
+                  : "border-line bg-raised hover:border-zinc-400"
+              }`}
+            >
+              <span
+                className={`relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition-colors ${
+                  isAbbonato ? "bg-emerald-500" : "bg-zinc-300 dark:bg-zinc-600"
+                }`}
+              >
+                <span
+                  className={`inline-block size-3 rounded-full bg-white shadow transition-transform ${
+                    isAbbonato ? "translate-x-3.5" : "translate-x-0.5"
+                  }`}
                 />
-                <button
-                  type="button"
-                  onClick={incrementa}
-                  className="w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 rounded-md transition-colors cursor-pointer active:scale-90"
-                >
-                  <Plus size={14} />
-                </button>
-              </div>
-
-              {/* Pulsanti Azione (Aggiungi / Cestino) */}
-              <div className="flex gap-1.5 items-center">
-                <button
-                  onClick={handleAggiungi}
-                  className="py-2 px-3 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-900 text-white text-[10px] font-bold uppercase tracking-wider rounded transition-colors cursor-pointer shadow-sm h-9 flex items-center justify-center"
-                >
-                  aggiungi
-                </button>
-                <button
-                  onClick={handleRimuovi}
-                  className="p-2 text-zinc-500 dark:text-zinc-400 hover:text-red-500 border border-line hover:border-red-200 dark:hover:border-red-900/50 rounded transition-colors cursor-pointer h-9 w-9 flex items-center justify-center"
-                >
-                  <Trash size={14} />
-                </button>
-              </div>
-            </div>
-          </td>
-
-          {/* 🌟 4. PREZZO FINALE (Viene dopo nel codice -> Fine della riga su Desktop. Su Mobile va a sinistra) */}
-          <td className="p-0 text-left lg:table-cell lg:px-6 lg:py-4 lg:text-right font-semibold text-zinc-950 dark:text-zinc-50 font-mono text-base">
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 block lg:hidden font-sans font-normal mb-0.5">
-              Prezzo calcolato:
-            </span>
-            <div className="text-lg lg:text-base text-herbalife-1 dark:text-green-400 lg:text-zinc-950 lg:dark:text-zinc-50 font-bold">
-              {`${(Number(prezzoUnitario) || 0).toFixed(2)}€`}
-            </div>
-          </td>
+              </span>
+              <span
+                className={`text-left text-[11px] font-semibold tracking-tight ${
+                  isAbbonato
+                    ? "text-emerald-700 dark:text-emerald-400"
+                    : "text-zinc-600 dark:text-zinc-300"
+                }`}
+              >
+                {isAbbonato
+                  ? `Abbonato · consegna gratuita${ruolo === "cliente" ? " · sconto -5%" : ""}`
+                  : "Attiva abbonamento"}
+              </span>
+            </button>
+          )}
         </div>
-      </motion.tr>
-    </>
+      </div>
+
+      <div className="flex items-center justify-between gap-4 @md:justify-end">
+        <span className="font-mono text-lg font-bold text-herbalife-1 dark:text-green-400">
+          {(Number(prezzo) || 0).toFixed(2)}€
+        </span>
+        {inCarrello ? (
+          <Contatore
+            quantita={quantita}
+            nome={prodotto.Prodotto}
+            onApplica={imposta}
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => imposta(1)}
+            className="h-10 cursor-pointer rounded-xl bg-zinc-950 px-5 text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-zinc-800 active:scale-[0.97] dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-white"
+          >
+            aggiungi
+          </button>
+        )}
+      </div>
+    </li>
   );
 }
+
+// con memo si aggiorna solo la riga toccata, non l'intera lista
+export default memo(Riga);

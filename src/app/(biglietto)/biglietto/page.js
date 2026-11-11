@@ -1,4 +1,7 @@
 "use client"
+import { Briefcase, Check, ChevronRight, Dna, Leaf, MessageCircle, Phone, Share2, Sparkles, Trophy, UserPlus } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 const LINK = [
     {
@@ -36,9 +39,6 @@ const BUSINESS_LINK = {
     bg: "bg-gradient-to-r from-emerald-900/50 to-zinc-900 border-emerald-500/50 hover:border-emerald-400"
 };
 
-import { Briefcase, Check, ChevronRight, Dna, Leaf, MessageCircle, Phone, Share2, Sparkles, Trophy, UserPlus } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
 
 export default function BigliettoDigitale() {
     const [copied, setCopied] = useState(false);

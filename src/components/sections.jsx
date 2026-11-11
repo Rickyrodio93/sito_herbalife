@@ -2,7 +2,6 @@ import {
   Banana,
   Bath,
   Cylinder,
-  Network,
   ScanLine,
   TrendingDown,
   Trophy,
@@ -11,7 +10,6 @@ import TableBrand from "../components/tableBrand/tableBrand";
 import FatturatoChart from "../components/grafici/fatturatoChart";
 import { Dati } from "../components/tableBrand/datiHL";
 
-import Card from "../components/cards/cardHome";
 import SwiperCard from "../components/swiper/swiperCard";
 import Link from "next/link";
 import FormSelezionabile from "./forms/FormSelezionabile";

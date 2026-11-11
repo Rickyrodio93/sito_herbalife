@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import walletTemplate from "../../walletTemplate.json"
+import walletTemplate from "../../../../walletTemplate.json"
 
 const ISSUER_ID = process.env.GOOGLE_WALLET_ISSUER_ID;
 const CLASS_ID = `${ISSUER_ID}.biglietto_generico`;
