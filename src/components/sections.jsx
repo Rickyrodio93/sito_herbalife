@@ -185,7 +185,7 @@ export const SECTIONHOME = [
         tuo percorso di benessere, supportato da una community globale di
         milioni di persone.{" "}
         <span>
-          <Link href="/panoramica">scopri di più</Link>
+          <Link href="/scienza">scopri di più</Link>
         </span>
       </>
     ),

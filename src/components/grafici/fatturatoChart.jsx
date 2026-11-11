@@ -78,7 +78,7 @@ export default function FatturatoChart() {
       </div>
 
       {/* Area Grafico o Loader */}
-      <div className="h-[380px] w-full">
+      <div className="h-95 w-full">
         {loading ? (
           <div className="flex h-full w-full items-center justify-center">
             <div className="flex items-center gap-3 text-sm text-neutral-500">
