@@ -312,8 +312,8 @@ export default function PreventivoClient() {
     <div className="flex flex-col gap-8 md:gap-10">
       <h2>genera un preventivo gratuito per i tuoi prodotti</h2>
 
-      <div className="grid w-full grid-cols-1 items-start gap-8 sm:px-4 lg:grid-cols-12">
-        <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 lg:col-span-8">
+      <div className="preventivo-griglia grid w-full grid-cols-1 items-start gap-8 lg:grid-cols-12">
+        <div className="preventivo-catalogo mx-auto flex w-full min-w-0 max-w-4xl flex-col gap-6 lg:col-span-8">
           {/* profilo */}
           <div className="flex flex-col gap-5 rounded-3xl border border-line bg-card p-5 shadow-sm">
             <Scelta
@@ -476,7 +476,7 @@ export default function PreventivoClient() {
         </div>
 
         {/* riepilogo */}
-        <div className="z-30 mx-auto w-full max-w-md lg:sticky lg:top-25 lg:col-span-4">
+        <div className="preventivo-scontrino z-30 mx-auto w-full max-w-md lg:sticky lg:top-25 lg:col-span-4">
           <Riepilogo
             prodotti={carrello}
             onRimuoviProdotto={rimuovi}

@@ -1,5 +1,4 @@
 import { ClipboardCheck } from "lucide-react";
-import PreventivoLista from "./preventivoLista";
 import Scontrino from "./scontrino";
 
 export default function RiepilogoDesktop({
@@ -19,22 +18,9 @@ export default function RiepilogoDesktop({
     haOrdineMisto || (haBioniq && ruolo === "DS" && usoDistributore !== "uso personale");
 
   return (
-    <div className="hidden lg:block w-full">
+    <div className="hidden pane:block lg:block w-full" scrollClassName="max-h-[max(8rem,calc(100dvh_-_40rem))] lg:max-h-[max(8rem,calc(100dvh_-_34rem))] overflow-y-auto">
       <div className="mx-auto my-5 w-full max-w-sm">
-        {haBioniq && (
-          <div className="mb-6 rounded-2xl border border-line bg-card p-3">
-            <PreventivoLista
-              mostraLista={false}
-              prodotti={prodotti}
-              haBioniq={haBioniq}
-              ruolo={ruolo}
-              usoDistributore={usoDistributore}
-              haOrdineMisto={haOrdineMisto}
-              isAbbonato={isAbbonato}
-              setIsAbbonato={setIsAbbonato}
-            />
-          </div>
-        )}
+        
 
         <Scontrino
           prodotti={prodotti}
@@ -45,6 +31,8 @@ export default function RiepilogoDesktop({
           isAbbonato={isAbbonato}
           onRimuoviProdotto={onRimuoviProdotto}
           haOrdineMisto={haOrdineMisto}
+          haBioniq={haBioniq}
+          setIsAbbonato={setIsAbbonato}
           scrollClassName="max-h-[50dvh] overflow-y-auto"
           footer={
             prodotti.length > 0 && (

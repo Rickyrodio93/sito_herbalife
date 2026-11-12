@@ -10,7 +10,10 @@ const ETICHETTE_RUOLO = {
   DS: "distributore",
 };
 
-const BARRE = [2, 1, 3, 1, 2, 1, 1, 3, 1, 2, 3, 1, 1, 2, 1, 3, 2, 1, 1, 2, 3, 1, 2, 1, 1, 3, 1, 2];
+const BARRE = [
+  2, 1, 3, 1, 2, 1, 1, 3, 1, 2, 3, 1, 1, 2, 1, 3, 2, 1, 1, 2, 3, 1, 2, 1, 1, 3,
+  1, 2,
+];
 
 function Voce({ etichetta, valore, className = "" }) {
   return (
@@ -26,6 +29,53 @@ const Taglio = () => (
   <div className="my-3 border-t border-dashed border-ink/40" />
 );
 
+function AvvisoBioniq({ ruolo, usoDistributore, isAbbonato, setIsAbbonato }) {
+  const usoNonValido = ruolo === "DS" && usoDistributore !== "uso personale";
+
+  return (
+    <div
+      role="note"
+      className="mt-5 border-2 border-dashed border-ink/70 text-xs"
+    >
+      <p className="bg-ink px-2 py-1 text-center text-[11px] font-black traking-[0.25em] text-paper">
+        *** avviso bioniq ***
+      </p>
+      <div className="flex flex-col gap-2 p-3">
+        <p className="font-bold leading-snug">
+          integratore personalizzato: ordine separato, non rimborsabile.
+        </p>
+
+        {usoNonValido && (
+          <p className="font-black leading-snug text-red-800">
+            ! acquistabile solo per uso personale
+          </p>
+        )}
+
+        {setIsAbbonato && (
+          <button
+            type="button"
+            role="checkbox"
+            aria-checked={isAbbonato}
+            onClick={() => setIsAbbonato(!isAbbonato)}
+            className="flex cursor-pointer items-center gap-2 py-1 text-left"
+          >
+            <span className="flex size-4 shrink-0 items-center justify-center border-2 border-ink text-[11px] font-black leading-none">
+              {isAbbonato ? "x" : ""}
+            </span>
+            <span>sono già abbonato bioniq</span>
+          </button>
+        )}
+
+        <p className="text-[10px] tracking-widest text-ink-soft">
+          {isAbbonato
+            ? "spedizione gratuita attiva"
+            : "abbonati per la spedizione gratuita"}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function Scontrino({
   prodotti,
   ruolo,
@@ -35,6 +85,8 @@ export default function Scontrino({
   isAbbonato,
   onRimuoviProdotto,
   haOrdineMisto,
+  haBioniq = false,
+  setIsAbbonato,
   footer,
   className = "",
   scrollClassName = "",
@@ -188,6 +240,15 @@ export default function Scontrino({
               </div>
             )}
           </>
+        )}
+
+        {haBioniq && (
+          <AvvisoBioniq
+            ruolo={ruolo}
+            usoDistributore={usoDistributore}
+            isAbbonato={isAbbonato}
+            setIsAbbonato={setIsAbbonato}
+          />
         )}
 
         {/* piè di pagina */}

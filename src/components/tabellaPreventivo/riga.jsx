@@ -144,7 +144,7 @@ function Riga({
 
   return (
     <li
-      className={`flex flex-col gap-3 rounded-2xl border p-3 transition-colors @md:flex-row @md:items-center @md:gap-4 ${
+      className={`flex flex-col gap-3 rounded-2xl border p-3 transition-colors @lg:flex-row @lg:items-center @lg:gap-4 ${
         inCarrello
           ? "border-herbalife-1 bg-herbalife-2/30 dark:border-green-500 dark:bg-green-500/10"
           : "border-line bg-card hover:bg-raised"
@@ -155,7 +155,7 @@ function Riga({
           type="button"
           onClick={() => setZoom(true)}
           aria-label={`Ingrandisci l'immagine di ${prodotto.Prodotto}`}
-          className="relative size-16 shrink-0 cursor-zoom-in overflow-hidden rounded-xl bg-raised @md:size-20"
+          className="relative size-16 shrink-0 cursor-zoom-in overflow-hidden rounded-xl bg-raised @lg:size-20"
         >
           <Image
             src={src}
@@ -223,7 +223,7 @@ function Riga({
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-4 @md:justify-end">
+      <div className="flex items-center justify-between gap-4 @lg:justify-end">
         <span className="font-mono text-lg font-bold text-herbalife-1 dark:text-green-400">
           {(Number(prezzo) || 0).toFixed(2)}€
         </span>

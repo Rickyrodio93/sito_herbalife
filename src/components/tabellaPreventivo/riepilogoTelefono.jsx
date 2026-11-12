@@ -2,7 +2,6 @@
 
 import { ChevronUp, ClipboardCheck, Printer, ShoppingBag } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import PreventivoLista from "./preventivoLista";
 import Scontrino from "./scontrino";
 import { useEffect, useRef, useState } from "react";
 
@@ -70,7 +69,7 @@ export default function RiepilogoTelefono({
   return (
     <>
       {/* STAMPANTE */}
-      <div className="lg:hidden fixed bottom-24 left-4 right-4 z-50 pb-[env(safe-area-inset-bottom)]">
+      <div className="pane:hidden lg:hidden fixed bottom-24 left-4 right-4 z-50 pb-[env(safe-area-inset-bottom)]">
         {/* fessura da cui esce la carta */}
         <div
           ref={slotRef}
@@ -136,7 +135,7 @@ export default function RiepilogoTelefono({
             animate={{ opacity: 0.55 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black z-40 lg:hidden"
+            className="fixed inset-0 bg-black z-40 pane:hidden lg:hidden"
             onClick={() => setIsOpenMobile(false)}
           />
         )}
@@ -146,7 +145,7 @@ export default function RiepilogoTelefono({
           <div
             key="layer"
             style={{ bottom: sopraSlot - 6 }}
-            className="pointer-events-none fixed inset-x-0 top-20 z-49 flex flex-col justify-end overflow-hidden lg:hidden"
+            className="pointer-events-none fixed inset-x-0 top-20 z-49 flex flex-col justify-end overflow-hidden pane:hidden lg:hidden"
           >
             <motion.div
               initial={nascosto}
@@ -155,20 +154,6 @@ export default function RiepilogoTelefono({
               transition={transizioneIn}
               className="pointer-events-auto mx-8 flex max-h-full min-h-0 flex-col gap-4 pt-2"
             >
-              {haBioniq && (
-                <div className="shrink-0 rounded-2xl border border-line bg-card p-3">
-                  <PreventivoLista
-                    mostraLista={false}
-                    prodotti={prodotti}
-                    haBioniq={haBioniq}
-                    ruolo={ruolo}
-                    usoDistributore={usoDistributore}
-                    haOrdineMisto={haOrdineMisto}
-                    isAbbonato={isAbbonato}
-                    setIsAbbonato={setIsAbbonato}
-                  />
-                </div>
-              )}
 
               <Scontrino
                 className="min-h-0"
@@ -181,6 +166,8 @@ export default function RiepilogoTelefono({
                 isAbbonato={isAbbonato}
                 onRimuoviProdotto={onRimuoviProdotto}
                 haOrdineMisto={haOrdineMisto}
+                haBioniq={haBioniq}
+                setIsAbbonato={setIsAbbonato}
                 footer={
                   prodotti.length > 0 && (
                     <button
